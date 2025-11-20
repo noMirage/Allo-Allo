@@ -1,0 +1,9 @@
+{
+  "name": "project-root",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "frontend": "cd frontendpart && npm start",
+    "backend": "cd backendpart && npm run dev"
+  }
+}

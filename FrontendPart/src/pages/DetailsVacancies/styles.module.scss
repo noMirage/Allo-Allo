@@ -1,0 +1,80 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@import '../../utils/styles/colors.scss';
+
+.wrapper {
+    padding: f.rem(20) 0 f.rem(50) 0;
+}
+
+.title {
+    margin-bottom: f.rem(10);
+}
+
+.container {
+    max-width: f.rem(1200);
+    width: 100%;
+}
+
+.extraWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.body {
+    width: 100%;
+    padding: f.rem(25) f.rem(50);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.price {
+    margin-bottom: f.rem(25);
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    margin-bottom: f.rem(5);
+
+    p:first-child {
+        margin-right: f.rem(20);
+        position: relative;
+
+        &::after {
+            content: "|";
+            display: block;
+            position: absolute;
+            top: 0;
+            right: -12%;
+        }
+    }
+}
+
+.list {
+    display: flex;
+    gap: f.rem(15);
+    margin-bottom: f.rem(30);
+
+    li {
+        background-color: map.get($colors, "lightGray");
+        padding: f.rem(2) f.rem(20);
+        border-radius: f.rem(12);
+    }
+}
+
+.located {
+    margin-bottom: f.rem(20);
+}
+
+.return {
+    display: flex;
+    align-items: center;
+    margin-bottom: f.rem(20);
+
+    svg {
+        width: 25px;
+    }
+
+    a {
+        color: map.get($colors, 'black');
+    }
+}

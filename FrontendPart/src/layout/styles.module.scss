@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use '../utils/styles/functions.scss' as f;
+@import '../utils/styles/colors.scss';
+
+.body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page {
+    flex: 1 1 auto;
+    min-height: 100%;
+    width: 100%;
+}

@@ -1,0 +1,34 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@import '../../utils/styles/colors.scss';
+
+.list {
+    display: flex;
+    gap: f.rem(10);
+    justify-content: center;
+}
+
+.item {
+    width: f.rem(40);
+    height: f.rem(40);
+    border-radius: f.rem(6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-color: map.get($colors, 'silver');
+    cursor: pointer;
+    transition: 0.3s linear;
+
+    &:hover {
+        transition: 0.3s linear;
+        // color: map.get($colors, 'lightGreen');
+        // background-color: map.get($colors, 'silver');
+
+    }
+}
+
+.activePagination {
+    transition: 0.3s linear;
+    // color: map.get($colors, 'lightGreen');
+    // background-color: map.get($colors, 'smoke');
+}

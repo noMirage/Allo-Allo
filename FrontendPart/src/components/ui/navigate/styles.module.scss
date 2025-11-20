@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use '../../../utils/styles/functions.scss' as f;
+@import '../../../utils/styles/colors.scss';
+
+.list {
+    margin-bottom: f.rem(20);
+    display: flex;
+    align-items: center;
+
+    a {
+        color: map.get($colors, 'black');
+    }
+
+    li {
+        &:last-child {
+            margin: 0;
+        }
+
+        a {
+            transition: 0.4s linear;
+
+            &:hover {
+                transition: 0.4s linear;
+                color: map.get($colors, 'gray') !important;
+            }
+        }
+
+    }
+
+}
+
+.item {
+    &::after {
+        content: '/';
+        margin: 0 f.rem(20);
+    }
+
+    &:last-child {
+        &::after {
+            content: '';
+            margin: 0;
+        }
+    }
+}

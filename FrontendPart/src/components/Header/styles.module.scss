@@ -1,0 +1,150 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@import '../../utils/styles/colors.scss';
+
+.list {
+    height: f.rem(100);
+    width: 100%;
+}
+
+
+.headerTop {
+    padding: f.rem(30);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    li:nth-child(2) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        address {
+            order: 2;
+        }
+
+        img {
+            order: 1;
+        }
+    }
+}
+
+.phone {
+    margin-right: f.rem(100);
+
+    img {
+        width: 30px;
+        height: 30px;
+        margin-right: f.rem(10);
+    }
+}
+
+.logoBody {
+    flex: 1 1 40%;
+}
+
+.collab {
+    margin-right: f.rem(25);
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        max-width: f.rem(250);
+        width: 100%;
+        padding: f.rem(12) f.rem(35);
+        background-color: map-get($colors, "amber");
+        font-weight: 700;
+        border-radius: f.rem(6);
+        color: map.get($colors, 'white');
+
+        img {
+            width: 30px;
+            height: 30px;
+            margin-right: f.rem(15);
+        }
+    }
+}
+
+.list {
+    display: flex;
+    align-items: center;
+}
+
+.bodyList {
+    width: 100%;
+    background: map-get($colors, 'charCoal');
+}
+
+.listName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: map-get($colors, 'white');
+    position: relative;
+    height: 100%;
+    transition: 0.6s linear;
+    width: 100%;
+    cursor: pointer;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 100%;
+        height: 100%;
+        color: map-get($colors, 'white');
+    }
+
+    &:hover {
+        transition: 0.6s linear;
+        background-color: map.get($colors, 'darkGray');
+
+        .itemIcon {
+            transition: 0.6s linear;
+            transform: rotate(12deg);
+        }
+    }
+
+    &::before {
+        content: "";
+        width: 1.5px;
+        height: 100%;
+        position: absolute;
+        border: none;
+        top: 0;
+        left: 0;
+        background: map-get($colors, 'charCoal') linear-gradient(180deg, map-get($colors, 'charCoal'), map-get($colors, 'gray'), map-get($colors, 'charCoal')) repeat-x;
+    }
+
+    &::after {
+        content: "";
+        width: 1.5px;
+        height: 100%;
+        position: absolute;
+        border: none;
+        top: 0;
+        right: 0;
+        background: map-get($colors, 'charCoal') linear-gradient(180deg, map-get($colors, 'charCoal'), map-get($colors, 'gray'), map-get($colors, 'charCoal')) repeat-x;
+    }
+}
+
+.itemIcon {
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    margin-right: f.rem(15);
+    transition: 0.6s linear;
+}
+
+.button {
+    width: 100%;
+    max-width: f.rem(250);
+    padding: f.rem(12) f.rem(35);
+    background-color: map.get($colors, 'brightRed');
+    color: map.get($colors, 'white');
+    border-radius: f.rem(6);
+    font-weight: 700;
+}

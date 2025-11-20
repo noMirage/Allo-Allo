@@ -1,0 +1,56 @@
+@use '../utils/styles/functions.scss' as f;
+@import '../utils/styles/colors.scss';
+@import '../utils/styles/null.scss';
+
+.container {
+    max-width: f.rem(1480);
+    width: 100%;
+    padding: 0 f.rem(20);
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+.textExtraLarge {
+    font-size: f.rem(35);
+    font-weight: 700;
+    line-height: f.em(42.67, 35);
+}
+
+.textLarge {
+    font-size: f.rem(25);
+    font-weight: 700;
+    line-height: f.em(30.48, 25);
+}
+
+.textBig {
+    font-size: f.rem(20);
+    line-height: f.em(21.94, 18);
+}
+
+.textMedium {
+    font-size: f.rem(16);
+    line-height: f.em(19.5, 16);
+}
+
+.textExtraMedium {
+    font-size: f.rem(16);
+    line-height: f.em(25, 16);
+}
+
+.textExtraBig {
+    font-size: f.rem(18);
+    line-height: f.em(27, 18);
+}
+
+.textSmall {
+    font-size: f.rem(14);
+    line-height: f.em(21, 14);
+}
+
+.errorField {
+    border: 1px solid red !important;
+}

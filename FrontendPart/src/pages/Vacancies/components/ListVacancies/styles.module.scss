@@ -1,0 +1,82 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@import '../../../../utils/styles/colors.scss';
+
+.itemBody {
+    width: 100%;
+    padding: f.rem(25) f.rem(30);
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    color: map.get($colors, 'black');
+    transition: 0.4s linear;
+
+    &:hover {
+        transition: 0.4s linear;
+        background-color: map.get($colors, 'lightGray');
+    }
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: f.rem(0);
+}
+
+.list {
+    margin-bottom: f.rem(50);
+
+    li {
+        margin-bottom: f.rem(25);
+        transition: 0.4s linear;
+
+        &:hover {
+            transition: 0.4s linear;
+            transform: scale(1.01);
+        }
+    }
+}
+
+.title {
+    margin-bottom: f.rem(5);
+    flex: 1 1 auto;
+}
+
+.price {
+    margin-bottom: f.rem(5);
+}
+
+
+.body {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 30px;
+    cursor: pointer;
+}
+
+.organisation {
+    margin-bottom: f.rem(10);
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.iconReviews {
+    width: 30px;
+    height: 30px;
+    margin-right: f.rem(5);
+}
+
+.viewes {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    flex: 1 1 auto;
+}

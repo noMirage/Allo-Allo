@@ -1,0 +1,87 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@import '../../utils/styles/colors.scss';
+
+.footer {
+    width: 100%;
+    padding: f.rem(50);
+    background-color: map-get($colors , 'charCoal');
+}
+
+.logo {
+    margin-bottom: f.rem(25);
+    display: block;
+
+    img {
+        max-width: 220px;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.phone {
+    margin-bottom: f.rem(10);
+    color: map.get($colors, 'white');
+    font-style: normal;
+    display: flex;
+    align-items: center;
+}
+
+.email {
+    color: map.get($colors, 'white');
+    font-style: normal;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    fill: map-get($colors, 'white') !important;
+    max-width: 30px;
+    max-height: 30px;
+    min-width: 30px;
+    color: red;
+    max-height: 30px;
+    margin-right: f.rem(15);
+}
+
+.body {
+    flex: 1 1 30%;
+    margin-right: f.rem(25);
+}
+
+.containerFooter {
+    display: flex;
+    align-items: center;
+}
+
+.list {
+    flex: 1 1 70%;
+}
+
+.item {
+    margin-bottom: f.rem(10);
+    transition: 0.4s linear;
+
+    a {
+        color: map.get($colors, 'white');
+        display: inline-block;
+        position: relative;
+
+        &::before {
+            content: '';
+            width: 0%;
+            height: 2px;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            background-color: map.get($colors, 'amber');
+            transition: 0.4s linear;
+        }
+
+        &:hover::before {
+            content: '';
+            transition: 0.4s linear;
+            width: 100%;
+        }
+    }
+}

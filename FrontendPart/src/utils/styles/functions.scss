@@ -1,0 +1,11 @@
+@function rem($size) {
+    @return #{$size / 16}rem;
+}
+
+@function em($size, $sizeParent) {
+    @return #{$size / $sizeParent}em;
+}
+
+@function proccent($size, $distance) {
+    @return #{$size / $distance * 100};
+}

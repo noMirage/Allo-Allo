@@ -1,0 +1,113 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@import '../../../../utils/styles/colors.scss';
+
+.body {
+    padding: f.rem(100) 0 f.rem(100) 0;
+}
+
+.list {
+    display: flex;
+}
+
+.item {
+    padding: f.rem(40) f.rem(25);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    cursor: pointer;
+
+    a {
+        color: map.get($colors, 'black');
+    }
+}
+
+.itemBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.name {
+    text-transform: uppercase;
+    margin: 0 0 f.rem(50) 0;
+}
+
+.icon {
+    max-width: f.rem(120);
+    width: 100%;
+
+    img {
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+.wrapperSwiper {
+    padding: f.rem(20) 0;
+    position: relative;
+}
+
+.buttonSwiper {
+    width: 80px;
+    height: 80px;
+    background-color: map-get($colors, 'white');
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+
+    div {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    img {
+        min-width: 40px;
+        min-height: 40px;
+        max-width: 40px;
+        max-height: 40px;
+        object-fit: cover;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.buttonNextSwiper {
+    top: 50%;
+    right: 3%;
+    transform: translateY(-50%);
+}
+
+.buttonPrevSwiper {
+    top: 50%;
+    left: 3%;
+    transform: translateY(-50%);
+
+    img {
+        transform: translate(-50%, -50%) rotate(-180deg);
+
+    }
+}
+
+.containerSwiper {
+    margin: 0 auto;
+    max-width: f.rem(1200);
+    width: 100%;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+}
+
+.item {
+    transition: 0.4s linear;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}

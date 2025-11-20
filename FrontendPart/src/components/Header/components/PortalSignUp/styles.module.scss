@@ -1,0 +1,46 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@use '../../../../utils/styles/mixins.scss' as m;
+@import '../../../../utils/styles/colors.scss';
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    background-color: map.get($colors, 'white');
+    padding: f.rem(25) f.rem(50);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    border-radius: f.rem(6);
+    max-width: f.rem(1000);
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: f.rem(25);
+    column-gap: f.rem(50);
+}
+
+.switchButton {
+    @include m.button($padding: f.rem(12) f.rem(35) f.rem(12) f.rem(35),
+        $width: f.rem(450),
+        $borderRadius: f.rem(6),
+        $border: 0px solid map.get($colors, 'black'),
+        $backgroundColor: map.get($colors, 'black'),
+        $color: map.get($colors, 'white'));
+    font-weight: 700;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+

@@ -1,0 +1,239 @@
+[
+  {
+    "id": 1,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": "",
+    "reviews": 132
+  },
+  {
+    "id": 2,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 90 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 221
+  },
+  {
+    "id": 3,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 4,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 5,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 6,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 7,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 9,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 10,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 11,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 12,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 13,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 14,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  },
+  {
+    "id": 15,
+    "title": "JavaScript Developer / Front-end / Java dev",
+    "price": "38 000 — 42 000 000 ₴",
+    "date": "19.09.2025",
+    "located": "Київр-н. Шевченківськийметро Університет",
+    "advantages": [
+      "В офісі/на місці",
+      "Повна зайнятість",
+      "Бонуси / премії"
+    ],
+    "organisation": "Шаповалова О.О., ФОП",
+    "description": "a lot of text here....",
+    "logo": ""
+    ,
+    "reviews": 86
+  }
+]

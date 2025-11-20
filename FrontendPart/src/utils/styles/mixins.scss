@@ -1,0 +1,33 @@
+@use 'sass:map';
+@use './functions.scss' as f;
+@import './colors.scss';
+
+@mixin button($padding: f.rem(15) f.rem(15) f.rem(15) f.rem(15),
+    $width: 100%,
+    $borderRadius: f.rem(100),
+    $border: 1px solid map.get($colors, 'black'),
+    $backgroundColor: map.get($colors, 'black'),
+    $color: map.get($colors, 'white')) {
+    padding: $padding;
+    max-width: $width;
+    width: 100%;
+    border-radius: $borderRadius;
+    border: $border;
+    background-color: $backgroundColor;
+    color: $color;
+}
+
+@mixin input($padding: f.rem(22) f.rem(22) f.rem(22) f.rem(22),
+    $width: 100%,
+    $borderRadius: f.rem(10),
+    $border: 1px solid map.get($colors, 'white'),
+    $backgroundColor: map.get($colors, 'black'),
+    $color: map.get($colors, 'white')) {
+    padding: $padding;
+    max-width: $width;
+    width: 100%;
+    border-radius: $borderRadius;
+    border: $border;
+    background-color: $backgroundColor;
+    color: $color;
+}

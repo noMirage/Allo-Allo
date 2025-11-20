@@ -1,0 +1,45 @@
+@use "sass:map";
+@use "../../../../utils/styles/functions.scss" as f;
+@use "../../../../utils/styles/mixins.scss" as m;
+@import "../../../../utils/styles/colors.scss";
+
+.wrapper {
+    max-width: f.rem(450);
+    padding: f.rem(20) f.rem(35);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+        rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+        rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    width: 100%;
+    border-radius: f.rem(6);
+    align-self: flex-start;
+}
+
+.heartIcon {
+    width: 30px;
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: f.rem(30);
+
+    p {
+        flex: 1 1 auto;
+    }
+}
+
+.title {
+    width: 100%;
+    margin-bottom: f.rem(25);
+}
+
+.button {
+    @include m.button($padding: f.rem(15) f.rem(15) f.rem(15) f.rem(15),
+        $width: 100%,
+        $borderRadius: f.rem(6),
+        $border: 0px solid #0000,
+        $backgroundColor: map.get($colors, "black"),
+        $color: map.get($colors, "white"));
+    font-weight: 700;
+}

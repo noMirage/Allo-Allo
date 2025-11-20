@@ -1,0 +1,51 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@import '../../../../utils/styles/colors.scss';
+
+.wrapper {
+    &:hover {
+        transition: 0.6s linear;
+        background-color: map.get($colors, 'darkGray');
+
+        .itemIcon {
+            transition: 0.6s linear;
+            transform: rotate(12deg);
+        }
+    }
+}
+
+.itemIcon {
+    transition: 0.6s linear;
+    transform: rotate(0deg);
+}
+
+.wrapperDropDownMenu {
+    top: 100%;
+    left: 0;
+    height: 100%;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    background-color: map.get($colors, 'charCoal');
+    padding: f.rem(25);
+    margin-top: f.rem(1);
+}
+
+.item {
+    margin-bottom: f.rem(10);
+    color: map.get($colors, 'white');
+    transition: 0.4s linear;
+    display: block;
+
+    &:hover {
+        color: map.get($colors, 'gray');
+        transition: 0.4s linear;
+    }
+}
+
+.headerItem {
+    display: flex;
+    align-items: center;
+}

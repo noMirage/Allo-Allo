@@ -1,0 +1,22 @@
+@use "sass:map";
+@use "../../../../utils/styles/functions.scss" as f;
+@use "../../../../utils/styles/mixins.scss" as m;
+@import "../../../../utils/styles/colors.scss";
+
+.wrapper {
+    padding: f.rem(20) f.rem(35);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+        rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+        rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    width: 100%;
+    border-radius: f.rem(6);
+}
+
+.title {
+    text-transform: uppercase;
+    margin-bottom: f.rem(15);
+}
+
+.description {
+    max-width: f.rem(900);
+}

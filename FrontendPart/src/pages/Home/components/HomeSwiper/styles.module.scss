@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@import '../../../../utils/styles/colors.scss';
+
+.body {
+    width: 100%;
+    position: relative;
+}
+
+.bodyImageSwiper {
+    display: block;
+    width: 100%;
+    height: f.rem(600);
+    position: relative;
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+}
+
+.wrapperSwiper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    padding: f.rem(30) f.rem(50);
+    background: rgba(0, 0, 0, 0.5);
+    color: map.get($colors, 'white');
+    border-radius: f.rem(6);
+    text-align: center;
+
+    p {
+        font-weight: 900;
+    }
+}

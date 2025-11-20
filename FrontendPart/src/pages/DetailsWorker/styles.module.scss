@@ -1,0 +1,46 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@import '../../utils/styles/colors.scss';
+
+.wrapper {
+    padding: f.rem(20) 0 f.rem(50) 0;
+}
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: f.rem(30);
+}
+
+.body {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: f.rem(25);
+}
+
+.list {
+    li:first-child {
+        margin-right: f.rem(30);
+        display: flex;
+        align-items: center;
+
+        svg {
+            width: 25px;
+            margin-right: f.rem(10);
+        }
+    }
+}
+
+// .item {
+//     &::after {
+//         content: '/';
+//         margin: 0 f.rem(20);
+//     }
+
+//     &:last-child {
+//         &::after {
+//             content: '';
+//             margin: 0;
+//         }
+//     }
+// }

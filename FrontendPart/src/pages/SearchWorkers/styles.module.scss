@@ -1,0 +1,13 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@import '../../utils/styles/colors.scss';
+
+.wrapper {
+    padding: f.rem(50) 0 f.rem(50) 0;
+}
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: f.rem(30);
+}
