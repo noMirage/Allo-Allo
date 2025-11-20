@@ -1,9 +1,15 @@
 {
-  "name": "project-root",
+  "name": "projectRoot",
   "private": true,
   "scripts": {
-    "start": "concurrently \"npm run frontend\" \"npm run backend\"",
-    "frontend": "cd frontendpart && npm start",
-    "backend": "cd backendpart && npm run dev"
+    "setup": "concurrently \"npm run setup:frontend\" \"npm run setup:backend\"",
+    "setup:frontend": "cd FrontendPart && npm install",
+    "setup:backend": "cd BackendPart && composer install",
+    "start:frontend": "cd FrontendPart && npm start",
+    "start:backend": "cd BackendPart && php artisan serve",
+    "start": "npm run setup && concurrently \"npm run start:frontend\" \"npm run start:backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
   }
 }
