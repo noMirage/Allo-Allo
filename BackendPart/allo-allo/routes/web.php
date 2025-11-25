@@ -17,10 +17,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/user', [UserController::class, 'userRegister']);
-
-// Route::get('/user', function () {
-//     return ['message' => 'GET /user is working!'];
-// });
-
-// Route::post('/user', [UserController::class, 'store']);

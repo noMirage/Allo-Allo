@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Http\Request;
 use App\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
@@ -34,11 +32,60 @@ class UserController extends Controller{
 
         $user->save();
 
+        $token = $user->createToken('auth_token');
+        $tokenModel = $token->accessToken;
+        $tokenModel->expires_at = now()->addDays(7);
+        $tokenModel->save();
+
         return response()->json([
             "success" => true,
             'message' => 'Успішно створений',
             "user" => $user,
-        ], 201);
+            'token' => $token->plainTextToken
+          ], 201);
+        }
 
-    }
+    public function logIn(Request $request) {
+      $request->validate([
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+       ]);
+
+       $user = UserModel::where('email', $request->email)->first();
+
+       if(!$user || !Hash::check($request->password, $request->password)){
+          return response()->json(['message' => 'Невірні дані'], 401);
+       } else{
+        return response()->json([
+            "success" => true,
+            'message' => 'Успішний вхід',
+            "user" => $user,
+        ]);
+       }
+     }
+
+      public function logInAuto(Request $request) {
+         $plainTextToken = $request->bearerToken();
+         
+         if (!$plainTextToken) {
+               return response()->json(['message' => 'Token not provided'], 401);
+         }
+
+         $token = Sanctum::findToken($plainTextToken);
+
+         if (!$token) {
+             return response()->json(['message' => 'Invalid token'], 401);
+          }
+
+        if ($token->expires_at && $token->expires_at->isPast()) {
+            return response()->json(['message' => 'Token expired'], 401);
+         }
+
+         $user = $token->tokenable;
+
+       return response()->json([
+           'message' => 'Token is valid',
+           'user' => $user
+       ]);
+     }
 }
