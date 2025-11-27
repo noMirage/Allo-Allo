@@ -6,15 +6,9 @@ import gStyles from '../../styles/styles.module.scss';
 import { Link } from 'react-router-dom';
 import { NAVIGATION_LINKS } from '../../constants/navigationLinks';
 import { ListItemWork } from './components/ListItemWork/ListItemWork';
-import { useContext, useState } from 'react';
-import { ShowLayout } from '../../contexts/layout';
+import { REGISTER_PATH } from '../../routs/routs';
 
 export function Header() {
-
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const setDisplayLayout = useContext(ShowLayout).handleChange;
-
-    // console.log(setDisplayLayout);
 
     return (
         <header className={styles.header}>
@@ -31,10 +25,10 @@ export function Header() {
                             <img src={phone} />
                         </li>
                         <li className={styles.collab}>
-                            <button onClick={setDisplayLayout} className={gStyles.textExtraBig}><img src={email} /> Зареєструватися</button>
+                            <Link to={REGISTER_PATH} className={gStyles.textExtraBig}><img src={email} /> Зареєструватися</Link>
                         </li>
                         <li>
-                            <button className={`${styles.button} ${gStyles.textExtraBig}`} onClick={() => setIsOpen(!isOpen)}>Увійти</button>
+                            <button className={`${styles.button} ${gStyles.textExtraBig}`}>Увійти</button>
                         </li>
                     </ul>
                 </div>
