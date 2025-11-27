@@ -6,14 +6,15 @@ import gStyles from '../../styles/styles.module.scss';
 import { Link } from 'react-router-dom';
 import { NAVIGATION_LINKS } from '../../constants/navigationLinks';
 import { ListItemWork } from './components/ListItemWork/ListItemWork';
-import Portal from '../../containers/Portal/Portal';
-import { useRef, useState } from 'react';
-import { PortalSignUp } from './components/PortalSignUp/PortalSignUp';
+import { useContext, useState } from 'react';
+import { ShowLayout } from '../../contexts/layout';
 
 export function Header() {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const refBackground = useRef<HTMLDivElement | null>(null);
+    const setDisplayLayout = useContext(ShowLayout).handleChange;
+
+    // console.log(setDisplayLayout);
 
     return (
         <header className={styles.header}>
@@ -30,15 +31,11 @@ export function Header() {
                             <img src={phone} />
                         </li>
                         <li className={styles.collab}>
-                            <button className={gStyles.textExtraBig}><img src={email} /> Співпрацювати</button>
+                            <button onClick={setDisplayLayout} className={gStyles.textExtraBig}><img src={email} /> Зареєструватися</button>
                         </li>
-
                         <li>
                             <button className={`${styles.button} ${gStyles.textExtraBig}`} onClick={() => setIsOpen(!isOpen)}>Увійти</button>
                         </li>
-                        <Portal isOpen={isOpen} setIsOpen={setIsOpen}>
-                            <PortalSignUp />
-                        </Portal>
                     </ul>
                 </div>
                 <div className={styles.bodyList}>
