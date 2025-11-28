@@ -10,7 +10,7 @@ export async function utilServer<T>(
     let data = null;
 
     if (type === "post") {
-      data = await axios.post(url, dataToServer, {
+      data = await axios.post(`http://localhost:8000/api${url}`, dataToServer, {
         headers: { "Content-Type": "application/json" },
       });
     } else {

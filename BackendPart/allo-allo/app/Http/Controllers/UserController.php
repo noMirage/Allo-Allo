@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EmailVerificationMail;
 
 class UserController extends Controller{
  public function userRegister (Request $request) {
@@ -108,5 +109,5 @@ class UserController extends Controller{
            'message' => 'Token is valid',
            'user' => $user
        ]);
-     }
+      }
 }

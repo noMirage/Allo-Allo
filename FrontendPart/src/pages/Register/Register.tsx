@@ -7,20 +7,21 @@ import facebook from '../../assets/global/facebook.svg';
 import apple from '../../assets/global/apple.svg';
 import iconWork from '../../assets/global/iconWork.svg';
 import { useState } from 'react';
-import { formatPhone } from '../../utils/js/formatPhone';
+import { utilServer } from '../../utils/js/utilServer';
+import { POST_VERIFICATY_EMAIL } from '../../configs/configs';
 
 export function Register() {
-  const prefix = "+380";
-  const [value, setValue] = useState(prefix);
+  const [value, setValue] = useState<string>("");
 
   const handleChangeInputValue = (value: string) => {
 
-    let pureValue = value.replace(/\D/g, "");
-
-    if (pureValue) pureValue = pureValue.slice(3);
-
-    setValue(formatPhone(pureValue, prefix));
+    setValue(value);
   };
+
+  function handleSubmitPhone(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    utilServer(POST_VERIFICATY_EMAIL, 'post', { email: value });
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -32,8 +33,8 @@ export function Register() {
         <p className={`${gStyles.textBig} ${styles.text}`}>Увійдіть, щоб керувати розміщенням вашого резюме, відгукуватися на вакансії та отримувати пропозиції від роботодавців.</p>
         <div className={styles.body}>
           <div className={styles.form}>
-            <form>
-              <input onChange={(event) => handleChangeInputValue(event.target.value)} value={value} maxLength={16} type="tel" className={`${styles.input} ${gStyles.textBig}`} />
+            <form onSubmit={handleSubmitPhone}>
+              <input onChange={(event) => handleChangeInputValue(event.target.value)} value={value} type="email" placeholder='Електроний адрес' className={`${styles.input} ${gStyles.textBig}`} />
               <div className={styles.bodyButton}>
                 <button className={`${gStyles.textBig} ${styles.button}`}>Увійти</button>
               </div>

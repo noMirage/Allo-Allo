@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmailVerificationMailController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,4 @@ use App\Http\Controllers\UserController;
 */
 
 Route::post('/register', [UserController::class, 'userRegister']);
+Route::post('/verificatyEmail', [EmailVerificationMailController::class, 'verificatyEmail']);

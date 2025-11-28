@@ -6,7 +6,7 @@
     "setup:frontend": "cd FrontendPart && npm install",
     "setup:backend": "cd BackendPart/allo-allo && composer install",
     "start:frontend": "cd FrontendPart && npm start",
-    "start:backend": "cd BackendPart/allo-allo/artisan && php artisan serve",
+    "start:backend": "cd BackendPart/allo-allo && php artisan serve",
     "start": "npm run setup && concurrently \"npm run start:frontend\" \"npm run start:backend\""
   },
   "devDependencies": {
