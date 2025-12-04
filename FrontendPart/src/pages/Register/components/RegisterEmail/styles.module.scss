@@ -1,0 +1,71 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@use '../../../../utils/styles/mixins.scss' as m;
+@import '../../../../utils/styles/colors.scss';
+
+.body {
+    max-width: f.rem(400);
+}
+
+.input {
+    @include m.input($padding: f.rem(12) f.rem(15) f.rem(12) f.rem(15),
+        $width: 100%,
+        $borderRadius: f.rem(6),
+        $border: 1px solid map.get($colors, 'gray'),
+        $backgroundColor: map.get($colors, 'white'),
+        $color: map.get($colors, 'black'));
+    margin-bottom: f.rem(15);
+}
+
+.button {
+    @include m.button($padding: f.rem(12) f.rem(35) f.rem(12) f.rem(35),
+        $width: 100%,
+        $borderRadius: f.rem(6),
+        $border: none,
+        $backgroundColor: map.get($colors, 'sand'),
+        $color: map.get($colors, 'white'));
+    font-weight: 700;
+    margin-bottom: f.rem(15);
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    gap: f.rem(10);
+    margin-bottom: f.rem(25);
+
+    li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 33.33%;
+        border: 1px solid map.get($colors, 'gray');
+        border-radius: f.rem(6);
+        padding: f.rem(8) 0;
+
+        img {
+            width: 30px;
+            height: 30px;
+        }
+
+        button {
+            width: 100%;
+            background-color: transparent;
+        }
+    }
+}
+
+.form {
+    width: 100%;
+    border-radius: f.rem(8);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    padding: f.rem(25);
+    margin-bottom: f.rem(25);
+    background-color: map.get($colors, 'white');
+}
+
+.buttonRedirect {
+    text-align: center;
+    color: map.get($colors, 'black');
+    font-weight: 700;
+}
