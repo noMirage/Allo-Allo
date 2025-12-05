@@ -100,14 +100,15 @@
 
     button {
         flex-basis: 50%;
+        margin: 0;
     }
 }
 
 .buttonReturn {
     background-color: transparent;
     position: relative;
-    
-    &::before{
+
+    &::before {
         content: '';
         display: block;
         width: 20px;

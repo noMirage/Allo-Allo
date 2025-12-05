@@ -12,13 +12,9 @@ export function ContainerRegister() {
 
   const [valueEmail, setValueEmail] = useState<string>("");
 
-  const handleChangeInputValue = (value: string) => {
-    setValueEmail(value);
-  };
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const data = await utilServer(POST_VERIFICATY_EMAIL, 'post', { email: valueEmail });
+  async function handleSubmit(email: string) {
+    const data = await utilServer(POST_VERIFICATY_EMAIL, 'post', { email });
+    setValueEmail(email);
     if (data && typeof data === 'object' && 'message' in data) {
       setConditions(data.message as TConditionResponses);
     }
@@ -31,11 +27,11 @@ export function ContainerRegister() {
 
   if (verificationEmail) {
     return (
-      <RegisterEmail handleSubmit={handleSubmit} valueEmail={valueEmail} handleChangeValue={handleChangeInputValue} />
+      <RegisterEmail handleSubmit={handleSubmit} />
     )
   } else {
     return (
-       <VerificationEmail valueEmail={valueEmail} handleChangeVarificationEmail={handleChangeVarificationEmail} />
+      <VerificationEmail valueEmail={valueEmail} handleChangeVarificationEmail={handleChangeVarificationEmail} />
     );
   };
 }
