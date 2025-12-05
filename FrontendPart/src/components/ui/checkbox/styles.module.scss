@@ -1,0 +1,54 @@
+@use 'sass:map';
+@use '../../../utils/styles/functions.scss' as f;
+@import '../../../utils/styles/colors.scss';
+
+$colors: (
+    "darkRed": #8C0004,
+    "brightRed": #C8000A,
+    "amber": #E8A735,
+    "sand": #E2C499,
+    "charCoal": #2F2F2F,
+    "gray": #B0B0B0,
+    "black": #000,
+    "white": #fff,
+    'darkGray': rgb(79, 79, 79),
+    "lightGray": #ecebeb,
+);
+
+.checkbox {
+    min-width: f.rem(20);
+    min-height: f.rem(20);
+    max-width: f.rem(20);
+    max-height: f.rem(20);
+    border-radius: f.rem(5);
+    border: 2px solid map.get($colors, 'charCoal');
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s linear;
+
+    &::before {
+        content: '';
+        display: block;
+        width: f.rem(10);
+        height: f.rem(10);
+        border-radius: f.rem(2);
+        background-color: map.get($colors, 'darkRed');
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: 0.3s linear;
+    }
+
+}
+
+.activeCheckbox {
+    transition: 0.3s linear;
+    border: 2px solid map.get($colors, 'darkRed');
+
+    &::before {
+        content: '';
+        transform: translate(-50%, -50%) scale(1);
+        transition: 0.3s linear;
+    }
+}

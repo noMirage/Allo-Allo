@@ -1,0 +1,41 @@
+@use 'sass:map';
+@use '../../../utils/styles/functions.scss' as f;
+@use '../../../utils/styles/mixins.scss' as m;
+@import '../../../utils/styles/colors.scss';
+
+.header {
+    @include m.input(f.rem(12) f.rem(20) f.rem(12) f.rem(20),
+        100%,
+        f.rem(10),
+        1px solid map.get($colors, 'black'),
+        map.get($colors, 'white'),
+        map.get($colors, 'black'));
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    p {
+        flex: 1 1 auto;
+    }
+
+    svg {
+        transform: rotate(-90deg);
+        transition: 0.3s linear;
+        width: 20px;
+        height: 20px;
+    }
+
+}
+
+.activeSelect {
+    transition: 0.3s linear;
+
+    .header {
+        border-radius: 10px 10px 0 0;
+    }
+
+    svg {
+        transform: rotate(90deg);
+        transition: 0.3s linear;
+    }
+}

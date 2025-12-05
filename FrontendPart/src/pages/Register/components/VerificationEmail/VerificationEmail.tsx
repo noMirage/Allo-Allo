@@ -4,6 +4,7 @@ import gStyles from '../../../../styles/styles.module.scss';
 import { POST_CONFIRM_EMAIL } from '../../../../configs/configs';
 import { utilServer } from '../../../../utils/js/utilServer';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface IProps {
   valueEmail: string;
@@ -12,6 +13,7 @@ interface IProps {
 
 export function VerificationEmail(props: IProps) {
   const { valueEmail, handleChangeVarificationEmail } = props;
+  const navigate = useNavigate();
 
   const [value, setValue] = useState<string>("");
 
@@ -19,9 +21,12 @@ export function VerificationEmail(props: IProps) {
     setValue(value);
   };
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    utilServer(POST_CONFIRM_EMAIL, 'post', { email: valueEmail, code: value });
+    const data = await utilServer(POST_CONFIRM_EMAIL, 'post', { email: valueEmail, code: value });
+    if (data && typeof data === 'object' && 'success' in data) {
+      navigate('/');
+    }
   }
 
   return (

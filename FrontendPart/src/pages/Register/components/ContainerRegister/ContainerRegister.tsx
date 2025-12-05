@@ -35,9 +35,7 @@ export function ContainerRegister() {
     )
   } else {
     return (
-      conditions === 'Код підтвердження надіслано на email'
-        ? <VerificationEmail valueEmail={valueEmail} handleChangeVarificationEmail={handleChangeVarificationEmail} />
-        : <></>
+       <VerificationEmail valueEmail={valueEmail} handleChangeVarificationEmail={handleChangeVarificationEmail} />
     );
   };
 }

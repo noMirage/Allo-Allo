@@ -6,3 +6,11 @@ export interface IBaseinfoWorkers {
   rating: number;
   reviews: number;
 }
+
+export type TMajors =
+  | "сантехнік"
+  | "зварювальник"
+  | "будівельник"
+  | "електрик"
+  | "перевізник"
+  | "мебельник";

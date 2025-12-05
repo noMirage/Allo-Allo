@@ -1,14 +1,8 @@
+import { TMajors } from "../../../interfaces/works";
+
 export type TConditionResponses =
   | "Користувача знайдено"
   | "Код підтвердження надіслано на email";
-
-export type TMajors =
-  | "сантехнік"
-  | "зварювальник"
-  | "будівельник"
-  | "електрик"
-  | "перевізник"
-  | "мебельник";
 
 export interface IFieldUser {
   name: string;

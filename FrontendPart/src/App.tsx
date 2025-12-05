@@ -10,7 +10,6 @@ import { AboutUs } from './pages/AboutUs/AboutUs';
 import { Contacts } from './pages/Contacts/Contacts';
 import { Register } from './pages/Register/Register';
 
-
 function App() {
   const location = useLocation();
   const hideLayout = PAGES_WITHOUT_LAYOUT.includes(location.pathname)

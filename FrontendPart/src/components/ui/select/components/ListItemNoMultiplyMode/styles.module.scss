@@ -1,0 +1,26 @@
+@use 'sass:map';
+@use '../../../../../utils/styles/functions.scss' as f;
+@use '../../../../../utils/styles/mixins.scss' as m;
+@import '../../../../../utils/styles/colors.scss';
+
+.select {
+    transition: 0.3s linear;
+}
+
+.list {
+    overflow: hidden;
+    transition: 0.3s linear;
+}
+
+.item {
+    transition: 0.3s;
+    padding: f.rem(11) f.rem(50) f.rem(11) f.rem(50);
+    background-color: map.get($colors, 'white');
+    cursor: pointer;
+
+    &:hover {
+        transition: 0.3s;
+        background-color: map.get($colors, 'darkRed');
+        color: map.get($colors, 'white');
+    }
+}
