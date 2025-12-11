@@ -1,0 +1,75 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@use '../../utils/styles/mixins.scss' as m;
+@import '../../utils/styles/colors.scss';
+
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: map.get($colors, 'lightGray');
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    margin: f.rem(50) 0 f.rem(50) 0;
+
+    img {
+        width: 300px;
+    }
+}
+
+.title {
+    font-weight: 700;
+    margin-bottom: f.rem(15);
+}
+
+.text {
+    max-width: f.rem(500);
+    text-align: center;
+    line-height: f.rem(30);
+    margin-bottom: f.rem(25);
+}
+
+.condition {
+    text-align: center;
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+
+    line-height: f.rem(25);
+}
+
+.bodyExtraFunction {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        margin: 0 f.rem(10) 0 0;
+        width: 25px;
+        height: 25px;
+    }
+}
+
+// !!!!!!!!!!!!!!!!!!!!!
+
+.bodyForm {
+    max-width: f.rem(800);
+    width: 100%;
+    padding: f.rem(40) f.rem(40) f.rem(30) f.rem(40);
+    border-radius: f.rem(16);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+    background-color: #fff;
+}

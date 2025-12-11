@@ -1,0 +1,24 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@use '../../../../utils/styles/mixins.scss' as m;
+@import '../../../../utils/styles/colors.scss';
+
+.wrapper {
+    margin-bottom: f.rem(25);
+}
+
+.list {
+    display: flex;
+}
+
+.bullet {
+    margin-right: f.rem(15);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: map.get($colors, 'sand');
+}
+
+.activeBullet {
+    background-color: map.get($colors, 'amber');
+}

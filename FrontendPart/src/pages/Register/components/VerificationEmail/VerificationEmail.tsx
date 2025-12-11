@@ -6,6 +6,7 @@ import { utilServer } from '../../../../utils/js/utilServer';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { validateBaseField } from '../../../../utils/js/validates';
+import { DETAIL_REGISTER } from '../../../../routs/routs';
 
 interface IProps {
   valueEmail: string;
@@ -24,7 +25,7 @@ export function VerificationEmail(props: IProps) {
           onSubmit={async (values) => {
             const data = await utilServer(POST_CONFIRM_EMAIL, 'post', { email: valueEmail, code: values.code });
             if (data && typeof data === 'object' && 'success' in data) {
-              navigate('/');
+              navigate(DETAIL_REGISTER);
             }
           }}
         >

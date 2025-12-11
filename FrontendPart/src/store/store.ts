@@ -12,17 +12,23 @@ import {
   getVacanciesReducer,
   IinitialStateGetVacancies,
 } from "../servers/vacancies";
+import {
+  IinitialStateUkraineLocations,
+  UkraineLocationsReducer,
+} from "../servers/UkraineLocations";
 
 interface IReducer {
   searchWorkers: Reducer<IinitialStateSearchWorkers>;
   detailsWorkerReducer: Reducer<IinitialStateDetailsWorker>;
   getVacanciesReducer: Reducer<IinitialStateGetVacancies>;
+  getUkraineLocations: Reducer<IinitialStateUkraineLocations>;
 }
 
 const reducer: IReducer = {
   searchWorkers: searchWorkersReducer,
   detailsWorkerReducer: detailsWorkerReducer,
   getVacanciesReducer: getVacanciesReducer,
+  getUkraineLocations: UkraineLocationsReducer,
 };
 
 export const store = configureStore({
