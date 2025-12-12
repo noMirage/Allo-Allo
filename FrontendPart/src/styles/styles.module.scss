@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../utils/styles/functions.scss' as f;
 @import '../utils/styles/colors.scss';
 @import '../utils/styles/null.scss';
@@ -51,6 +52,16 @@
     line-height: f.em(21, 14);
 }
 
-.errorField {
-    border: 1px solid red !important;
+.bodyInput {
+    position: relative;
+    display: block;
+}
+
+.inputWrong {
+    border: 1.5px solid map.get($colors, 'brightRed') !important;
+}
+
+.warningMessage {
+    font-size: f.rem(16);
+    margin: 0 0 0 0;
 }

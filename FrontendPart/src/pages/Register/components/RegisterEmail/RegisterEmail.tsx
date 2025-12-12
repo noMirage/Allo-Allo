@@ -13,7 +13,7 @@ interface IProps {
 }
 
 export function RegisterEmail(props: IProps) {
-  const { handleSubmit} = props;
+  const { handleSubmit } = props;
 
   return (
     <div className={styles.body}>
@@ -25,9 +25,10 @@ export function RegisterEmail(props: IProps) {
           }}
         >
           {({
+            errors
           }) => (
             <Form>
-              <Field className={`${styles.input} ${gStyles.textBig}`} placeholder='Електроний адрес' type="email" name="email" validate={validateEmail} />
+              <Field className={`${styles.input} ${gStyles.textBig} ${errors.email && gStyles.inputWrong}`} placeholder='Електроний адрес' type="email" name="email" validate={validateEmail} />
               <ErrorMessage name="email" component="div" />
               <div className={styles.bodyButton}>
                 <button className={`${gStyles.textBig} ${styles.button}`}>Увійти</button>

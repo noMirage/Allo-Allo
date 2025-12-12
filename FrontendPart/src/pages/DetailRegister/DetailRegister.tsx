@@ -1,9 +1,8 @@
 import logo from '../../assets/Header/logo.svg';
 import styles from './styles.module.scss';
-import gStyles from '../../styles/styles.module.scss';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { TRoutes } from './types/types';
+import { IUserInfo, TRoutes } from './types/types';
 import { ProgressBar } from './components/ProgressBar/ProgressBar';
 import { RegisterStepOne } from './components/RegisterStepOne/RegisterStepOne';
 import { useAppDispatch, useAppSelector } from '../../hooks/AppRedux';
@@ -20,19 +19,15 @@ const ROUTES: TRoutes[] = [
     path: "/registerStepSecond",
     element: "",
   },
-  {
-    path: "",
-    element: "",
-  },
-  {
-    path: "",
-    element: "",
-  },
 ];
 
 export function DetailRegister() {
 
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState<IUserInfo>({
+    fullName: '',
+    phone: "",
+    email: JSON.parse(sessionStorage.getItem("email") || "") || null,
+  });
 
   const dispatch = useAppDispatch();
   const UkraineLocations = useAppSelector((state) => state.getUkraineLocations.data);
@@ -49,8 +44,8 @@ export function DetailRegister() {
         </div>
         <ProgressBar routes={ROUTES} />
         <Routes>
-          <Route path={'*'} element={<RegisterStepOne routeToGo={`${DETAIL_REGISTER}${ROUTES[1].path}`} />} />
-          <Route path={ROUTES[1].path} element={<RegisterStepSecond UkraineLocations={UkraineLocations} routeToBack={`${DETAIL_REGISTER}${ROUTES[0].path}`} />} />
+          <Route path={ROUTES[0].path} element={<RegisterStepOne setUserInfo={setUserInfo} routeToGo={`${DETAIL_REGISTER}/registerStepSecond`} routeItSelf={ROUTES[0].path} />} />
+          <Route path={ROUTES[1].path} element={<RegisterStepSecond userInfo={userInfo} UkraineLocations={UkraineLocations} routeToBack={`${DETAIL_REGISTER}${ROUTES[0].path}`} />} />
         </Routes>
       </div>
     </div>

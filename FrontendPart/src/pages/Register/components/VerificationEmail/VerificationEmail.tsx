@@ -25,15 +25,16 @@ export function VerificationEmail(props: IProps) {
           onSubmit={async (values) => {
             const data = await utilServer(POST_CONFIRM_EMAIL, 'post', { email: valueEmail, code: values.code });
             if (data && typeof data === 'object' && 'success' in data) {
-              navigate(DETAIL_REGISTER);
+              navigate(`${DETAIL_REGISTER}/registerStepOne`);
+              sessionStorage.setItem("email", JSON.stringify(valueEmail));
             }
           }}
         >
-          {({
+          {({errors
           }) => (
             <Form>
               <p className={`${gStyles.textBig} ${styles.text}`}>Код відправлений на ваш Email <span>{valueEmail}</span></p>
-              <Field placeholder='Код' className={`${styles.input} ${gStyles.textBig}`} type="text" name="code" validate={validateBaseField} />
+              <Field placeholder='Код' className={`${styles.input} ${gStyles.textBig} ${errors.code && gStyles.inputWrong}`} type="text" name="code" validate={validateBaseField} />
               <ErrorMessage name="code" component="div" />
               <div className={styles.bodyButton}>
                 <button type='button' className={`${gStyles.textBig} ${styles.buttonReturn}`} onClick={handleChangeVarificationEmail}>Назад</button>
