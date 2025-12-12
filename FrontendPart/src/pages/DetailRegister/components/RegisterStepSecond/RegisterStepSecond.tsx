@@ -11,6 +11,7 @@ import "simplebar-react/dist/simplebar.min.css";
 import "./simpleBarCustom.scss";
 import { IUserInfo } from '../../types/types';
 import { utilServer } from '../../../../utils/js/utilServer';
+import { POST_USER_REGISTER } from '../../../../configs/configs';
 
 interface IProps {
     routeToBack: string;
@@ -61,7 +62,7 @@ export function RegisterStepSecond(props: IProps) {
                     formData.append('phone', userInfo.phone);
                     formData.append('email', userInfo.email || '');
                     formData.append('location', location);
-                    utilServer('/', 'post', formData);
+                    utilServer(POST_USER_REGISTER, 'post', formData);
                 }}
             >
                 {({ submitForm, errors }) => (

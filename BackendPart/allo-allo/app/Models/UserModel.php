@@ -15,17 +15,12 @@ class UserModel extends Model
   
    protected $fillable = [
     "id",
-    'name',
-    'surname',
+    'full_name',
     'email',
-    'password',
-    "age",
+    "location",
     "phone",
+    "age",
     "avatar",
     "description", 
    ];
-
-    protected $hidden = [
-        'password',
-    ];
 }

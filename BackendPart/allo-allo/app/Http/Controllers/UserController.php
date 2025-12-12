@@ -8,34 +8,26 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailVerificationMail;
 
 class UserController extends Controller{
- public function userRegister (Request $request) {
+ public function register (Request $request) {
        $request->validate([
-            'name' => 'required|string|max:255',
-            "surname" => 'required|string|max:255',
+            'fullName' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            "age" => 'nullable|integer',
-            "avatar" => "nullable",
             "phone" => "nullable|max:16|alpha_num",
-            "description" => "nullable|string",
+            "location" => 'required|string',
         ]);
 
         $user = new UserModel();
 
-        $user->name = $request->input('name');
-        $user->surname = $request->input('surname');
+        $user->full_Name = $request->input('fullName');
         $user->email = $request->input('email');
-        $user->password = Hash::make($request['password']);
-        $user->age = $request->input('age');
-        $user->avatar = $request->input('avatar');
         $user->phone = $request->input('phone');
-        $user->description = $request->input('description');
+        $user->location = $request->input('location');
 
         $user->save();
 
         $token = $user->createToken('auth_token');
         $tokenModel = $token->accessToken;
-        $tokenModel->expires_at = now()->addDays(7);
+        $tokenModel->expires_at = now()->addDays(30);
         $tokenModel->save();
 
         return response()->json([

@@ -17,6 +17,6 @@ use App\Http\Controllers\EmailVerificationMailController;
 |
 */
 
-Route::post('/register', [UserController::class, 'userRegister']);
+Route::post('/register', [UserController::class, 'register']);
 Route::post('/verificatyEmail', [EmailVerificationMailController::class, 'verificatyEmail']);
 Route::post('/confirmEmail', [EmailVerificationMailController::class, 'confirmEmail']);
