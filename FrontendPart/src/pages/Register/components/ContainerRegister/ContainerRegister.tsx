@@ -12,13 +12,15 @@ export function ContainerRegister() {
 
   const [valueEmail, setValueEmail] = useState<string>("");
 
-  async function handleSubmit(email: string) {
+  async function handleSubmit(email: string, isSwitch: boolean = true) {
     const data = await utilServer(POST_VERIFICATY_EMAIL, 'post', { email });
     setValueEmail(email);
     if (data && typeof data === 'object' && 'message' in data) {
       setConditions(data.message as TConditionResponses);
     }
-    setVerificationEmail(!verificationEmail);
+    if (isSwitch) {
+      setVerificationEmail(!verificationEmail);
+    }
   }
 
   function handleChangeVarificationEmail() {
@@ -31,7 +33,7 @@ export function ContainerRegister() {
     )
   } else {
     return (
-      <VerificationEmail valueEmail={valueEmail} handleChangeVarificationEmail={handleChangeVarificationEmail} />
+      <VerificationEmail handleSubmit={handleSubmit} valueEmail={valueEmail} handleChangeVarificationEmail={handleChangeVarificationEmail} />
     );
   };
 }

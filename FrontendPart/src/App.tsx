@@ -24,7 +24,6 @@ function App() {
     dispatch(getUser());
   }, []);
 
-
   return (
     <>
       {!hideLayout && <Layout>
