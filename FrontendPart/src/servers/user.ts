@@ -1,0 +1,47 @@
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { GET_USER } from "../configs/configs";
+import { utilServer } from "../utils/js/utilServer";
+import { TLoading } from "../interfaces/typeReduxThunk";
+import { IUser } from "../interfaces/user";
+
+export interface IinitialStateUser {
+  loading: TLoading;
+  data: {};
+}
+
+export const getUser = createAsyncThunk(
+  "getUser",
+  async (_, { rejectWithValue }) => {
+    const dataServer = await utilServer(GET_USER, "get", {}, rejectWithValue);
+    console.log(dataServer);
+    return dataServer ? dataServer : {};
+  }
+);
+
+const initialState: IinitialStateUser = {
+  loading: "idle",
+  data: {},
+};
+
+const user = createSlice({
+  name: "user",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getUser.pending, (state: IinitialStateUser) => {
+      state.loading = "pending";
+    });
+    builder.addCase(getUser.rejected, (state: IinitialStateUser, action) => {
+      state.loading = "failed";
+    });
+    builder.addCase(
+      getUser.fulfilled,
+      (state: IinitialStateUser, action: PayloadAction<IUser | {}>) => {
+        state.loading = "succeeded";
+        state.data = action.payload;
+      }
+    );
+  },
+});
+
+export const userReducer = user.reducer;

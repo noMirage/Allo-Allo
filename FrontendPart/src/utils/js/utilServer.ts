@@ -12,9 +12,11 @@ export async function utilServer<T>(
     if (type === "post") {
       data = await axios.post(`http://localhost:8000/api${url}`, dataToServer, {
         headers: { "Content-Type": "application/json" },
+        withCredentials: true,
       });
+      return data.data;
     } else {
-      data = await axios.get(url);
+      data = await axios.get(`http://localhost:8000/api${url}`, {withCredentials: true});
     }
 
     if (data.status !== 200) throw Error("something wrong");

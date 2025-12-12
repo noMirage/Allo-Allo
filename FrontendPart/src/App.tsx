@@ -10,10 +10,20 @@ import { AboutUs } from './pages/AboutUs/AboutUs';
 import { Contacts } from './pages/Contacts/Contacts';
 import { Register } from './pages/Register/Register';
 import { DetailRegister } from './pages/DetailRegister/DetailRegister';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from './hooks/AppRedux';
+import { getUser } from './servers/user';
 
 function App() {
   const location = useLocation();
-  const hideLayout = PAGES_WITHOUT_LAYOUT.includes(location.pathname)
+  const hideLayout = PAGES_WITHOUT_LAYOUT.includes(location.pathname);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+
 
   return (
     <>

@@ -18,6 +18,13 @@ class UserController extends Controller{
 
         $user = new UserModel();
 
+       if(UserModel::where('email', $request->email)->first()){
+         return response()->json([
+            "success" => false,
+            'message' => 'Такий Email вже зареєстрований!',
+          ], 201);
+       };
+
         $user->full_Name = $request->input('fullName');
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
@@ -26,16 +33,20 @@ class UserController extends Controller{
         $user->save();
 
         $token = $user->createToken('auth_token');
-        $tokenModel = $token->accessToken;
-        $tokenModel->expires_at = now()->addDays(30);
-        $tokenModel->save();
+        $cookie = cookie(
+             'token', 
+              $token->plainTextToken,       
+              60*24*30,     
+              null,      
+              null,       
+              true,        
+              true
+         );
 
         return response()->json([
             "success" => true,
             'message' => 'Успішно створений',
-            "user" => $user,
-            'token' => $token->plainTextToken
-          ], 201);
+          ], 201)->withCookie($cookie);
         }
 
     public function logIn(Request $request) {
@@ -78,28 +89,27 @@ class UserController extends Controller{
        }
      }
 
-      public function logInAuto(Request $request) {
-         $plainTextToken = $request->bearerToken();
-         
-         if (!$plainTextToken) {
-               return response()->json(['message' => 'Token not provided'], 401);
-         }
+      public function logInAuto(Request $request){
+       $token = $request->cookie('token');
+       if (!$token) {
+           return response()->json(['message' => 'Unauthorized'], 401);
+        }
 
-         $token = Sanctum::findToken($plainTextToken);
+        [$id, $plain] = explode('|', $token);
+   
 
-         if (!$token) {
-             return response()->json(['message' => 'Invalid token'], 401);
-          }
+        $tokenModel = PersonalAccessToken::find($id);
 
-        if ($token->expires_at && $token->expires_at->isPast()) {
-            return response()->json(['message' => 'Token expired'], 401);
-         }
+        if (!$tokenModel) {
+          return response()->json(['message' => 'Unauthorized'], 401);
+        }
 
-         $user = $token->tokenable;
+        if (!hash_equals($tokenModel->token, hash('sha256', $plain))) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
 
-       return response()->json([
-           'message' => 'Token is valid',
-           'user' => $user
-       ]);
-      }
+       $user = $tokenModel->tokenable;
+
+       return response()->json($user);
+  }
 }

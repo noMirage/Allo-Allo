@@ -3,7 +3,7 @@ import pStyles from '../../styles.module.scss';
 import gStyles from '../../../../styles/styles.module.scss';
 import { ErrorMessage, Field, Formik, Form } from 'formik';
 import { validateBaseField } from '../../../../utils/js/validates';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IUkraineLocation } from '../../../../interfaces/UkraineLocations';
 import { useEffect, useState } from 'react';
 import SimpleBar from "simplebar-react";
@@ -12,6 +12,7 @@ import "./simpleBarCustom.scss";
 import { IUserInfo } from '../../types/types';
 import { utilServer } from '../../../../utils/js/utilServer';
 import { POST_USER_REGISTER } from '../../../../configs/configs';
+import { HOME_PATH } from '../../../../routs/routs';
 
 interface IProps {
     routeToBack: string;
@@ -24,6 +25,8 @@ export function RegisterStepSecond(props: IProps) {
 
     const [location, setLocation] = useState<string>("");
     const [debouncedLocation, setDebouncedLocation] = useState("");
+
+    const navigation = useNavigate();
 
     useEffect(() => {
         const handler = setTimeout(() => setDebouncedLocation(location), 200);
@@ -55,14 +58,19 @@ export function RegisterStepSecond(props: IProps) {
         <div className={`${styles.wrapper}`}>
             <Formik
                 initialValues={{ location: '' }}
-                onSubmit={(values) => {
-                    console.log('12312312');
+                onSubmit={async (values) => {
+
                     const formData = new FormData();
                     formData.append('fullName', userInfo.fullName);
                     formData.append('phone', userInfo.phone);
                     formData.append('email', userInfo.email || '');
                     formData.append('location', location);
-                    utilServer(POST_USER_REGISTER, 'post', formData);
+                    const data = await utilServer(POST_USER_REGISTER, 'post', formData);
+
+                    if (data && typeof data === 'object') {
+                        navigation(HOME_PATH);
+                    }
+
                 }}
             >
                 {({ submitForm, errors }) => (
@@ -73,7 +81,7 @@ export function RegisterStepSecond(props: IProps) {
                                 <div className={styles.container}>
 
                                     <Field name='location' validate={validateBaseField}>
-                                        {({ field, form }: any) => {
+                                        {({ _, form }: any) => {
                                             return <input onBlur={() => form.setFieldTouched("location", true)} onChange={(event) => {
                                                 setLocation(event.target.value); form.setFieldValue('location', event.target.value); form.setFieldTouched('location', true);
                                             }} placeholder="Локація" type="text" className={`${styles.input} ${gStyles.textExtraBig} ${errors.location && gStyles.inputWrong}`} value={location} />;
