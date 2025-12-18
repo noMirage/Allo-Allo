@@ -35,16 +35,13 @@
     margin-bottom: f.rem(25);
 }
 
-.condition {
+
+.buttonRedirect {
     text-align: center;
-
-    a {
-        color: inherit;
-        text-decoration: underline;
-    }
-
-    line-height: f.rem(25);
+    color: map.get($colors, 'black');
+    font-weight: 700;
 }
+
 
 .bodyExtraFunction {
     display: flex;

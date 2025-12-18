@@ -1,13 +1,12 @@
 
+import { Formik } from 'formik';
 import styles from './styles.module.scss';
-import gStyles from '../../../../styles/styles.module.scss';
-import { POST_CONFIRM_EMAIL } from '../../../../configs/configs';
-import { utilServer } from '../../../../utils/js/utilServer';
-import { useNavigate } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { validateBaseField } from '../../../../utils/js/validates';
-import { DETAIL_REGISTER } from '../../../../routs/routs';
 import { useEffect, useState } from 'react';
+import { POST_CONFIRM_EMAIL } from '../../../../configs/configs';
+import { DETAIL_REGISTER } from '../../../../routs/routs';
+import { useNavigate } from 'react-router-dom';
+import { utilServer } from '../../../../utils/js/utilServer';
+import { FormCode } from './components/FormCode/FormCode';
 
 interface IProps {
   valueEmail: string;
@@ -18,6 +17,7 @@ interface IProps {
 export function VerificationEmail(props: IProps) {
   const { valueEmail, handleChangeVarificationEmail, handleSubmit } = props;
   const navigate = useNavigate();
+
   const [timer, setTimer] = useState<number>(60);
 
   useEffect(() => {
@@ -49,17 +49,14 @@ export function VerificationEmail(props: IProps) {
         >
           {({ errors
           }) => (
-            <Form>
-              <p
-                className={`${gStyles.textBig} ${styles.text}`}>Код відправлений на ваш Email <span>{valueEmail}</span></p>
-              <Field placeholder='Код' className={`${styles.input} ${gStyles.textBig} ${errors.code && gStyles.inputWrong}`} type="text" name="code" validate={validateBaseField} />
-              <ErrorMessage name="code" component="div" />
-              <p onClick={() => { if (timer <= 0) { handleSubmit(valueEmail, false); setTimer(60) } }} className={`${gStyles.textBig} ${styles.sendAgainCode}`}>Відправити ще раз через {timer === 0 ? "" : timer}</p>
-              <div className={styles.bodyButton}>
-                <button type='button' className={`${gStyles.textBig} ${styles.buttonReturn}`} onClick={handleChangeVarificationEmail}>Назад</button>
-                <button className={`${gStyles.textBig} ${styles.button}`}>Продовжити</button>
-              </div>
-            </Form>
+            <FormCode
+              handleChangeVarificationEmail={handleChangeVarificationEmail}
+              handleSubmit={handleSubmit}
+              valueEmail={valueEmail}
+              timer={timer}
+              setTimer={setTimer}
+              errors={errors}
+            />
           )}
         </Formik>
       </div>

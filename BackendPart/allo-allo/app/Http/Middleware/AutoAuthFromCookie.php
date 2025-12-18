@@ -24,17 +24,13 @@ class AutoAuthFromCookie
 
         $tokenModel = \Laravel\Sanctum\PersonalAccessToken::find($tokenId);
 
-        if (!$tokenModel || !hash_equals($tokenModel->token, hash('sha256', $tokenSecret))) {
-            return response()->json(['message' => 'Unauthorized'], 401)
-                             ->withCookie(cookie()->forget('token'));
+        if ($tokenModel && hash_equals($tokenModel->token, hash('sha256', $tokenSecret)) && $tokenModel->tokenable) {
+            Auth::login($tokenModel->tokenable);
         }
 
-        if ($tokenModel->expires_at && $tokenModel->expires_at->isPast()) {
-            return response()->json(['message' => 'Token expired'], 401)
-                             ->withCookie(cookie()->forget('token'));
+        else {
+            cookie()->queue(cookie()->forget('token'));
         }
-
-        Auth::login($tokenModel->tokenable);
     }
 
     return $next($request);

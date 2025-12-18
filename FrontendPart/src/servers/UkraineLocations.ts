@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GET_UKRAINE_LOCATIONS } from "../configs/configs";
-import { utilServer } from "../utils/js/utilServer";
 import { TLoading } from "../interfaces/typeReduxThunk";
 import { IUkraineLocation } from "../interfaces/UkraineLocations";
+import axios from "axios";
 
 export interface IinitialStateUkraineLocations {
   loading: TLoading;
@@ -11,14 +11,10 @@ export interface IinitialStateUkraineLocations {
 
 export const getUkraineLocations = createAsyncThunk(
   "getUkraineLocations",
-  async (data, { rejectWithValue }) => {
-    const dataServer = await utilServer<IUkraineLocation[]>(
-      GET_UKRAINE_LOCATIONS,
-      "get",
-      {},
-      rejectWithValue
-    );
-    return dataServer ? dataServer : [];
+  async () => {
+    const responseServer = await axios.get(GET_UKRAINE_LOCATIONS);
+    const dataServer: IUkraineLocation[] = responseServer.data;
+    return dataServer;
   }
 );
 
@@ -48,7 +44,9 @@ const UkraineLocations = createSlice({
       getUkraineLocations.fulfilled,
       (state: IinitialStateUkraineLocations, action) => {
         state.loading = "succeeded";
-        state.data = action.payload;
+        if (Array.isArray(action.payload) && action.payload.length > 0) {
+          state.data = action.payload;
+        }
       }
     );
   },

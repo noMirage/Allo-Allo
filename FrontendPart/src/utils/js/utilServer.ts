@@ -4,7 +4,7 @@ export async function utilServer<T>(
   url: string,
   type: "post" | "get",
   dataToServer: {},
-  functionRejectWithValue?: (error: any) => void
+  functionRejectWithValue?: (error: any) => void,
 ): Promise<T | void> {
   try {
     let data = null;
@@ -16,7 +16,9 @@ export async function utilServer<T>(
       });
       return data.data;
     } else {
-      data = await axios.get(`http://localhost:8000/api${url}`, {withCredentials: true});
+      data = await axios.get(`http://localhost:8000/api${url}`, {
+        withCredentials: true,
+      });
     }
 
     if (data.status !== 200) throw Error("something wrong");

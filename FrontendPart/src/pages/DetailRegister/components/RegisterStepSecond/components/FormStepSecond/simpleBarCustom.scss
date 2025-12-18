@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../../../utils/styles/functions.scss' as f;
-@import '../../../../utils/styles/colors.scss';
+@use '../../../../../../utils/styles/functions.scss' as f;
+@import '../../../../../../utils/styles/colors.scss';
 
 .simplebar-track.simplebar-vertical {
     margin: 0 f.rem(2);
