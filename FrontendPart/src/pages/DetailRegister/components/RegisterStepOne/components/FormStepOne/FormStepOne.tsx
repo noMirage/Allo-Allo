@@ -1,13 +1,14 @@
-import styles from "./styles.module.scss";
+import 'react-phone-input-2/lib/style.css';
 import gStyles from "../../../../../../styles/styles.module.scss";
 import { ErrorMessage, Field, Form, FormikErrors, FormikValues } from "formik";
 import { Link } from "react-router-dom";
-import { DETAIL_REGISTER, REGISTER_PATH } from "../../../../../../routs/routs";
+import { DETAIL_REGISTER } from "../../../../../../routs/routs";
 import {
     validateBaseField,
-    validatePhone,
 } from "../../../../../../utils/js/validates";
 import pStyles from '../../../../styles.module.scss';
+import styles from "./styles.module.scss";
+import { PhoneInputCustom } from './components/PhoneInputCustom/PhoneInputCustom';
 
 interface IProps {
     submitForm: (() => Promise<void>) & (() => Promise<any>);
@@ -41,6 +42,7 @@ export function FormStepOne(props: IProps) {
         return true;
     }
 
+
     return (
         <>
             <div className={`${pStyles.bodyForm} ${styles.body}`}>
@@ -61,24 +63,11 @@ export function FormStepOne(props: IProps) {
                         name="fullName"
                         component="div"
                     />
-
-                    <Field
-                        className={`${styles.input} ${gStyles.textExtraBig} ${errors.phone && gStyles.inputWrong
-                            }`}
-                        placeholder="Номер телефона"
-                        type="tel"
-                        name="phone"
-                        validate={validatePhone}
-                    />
-                    <ErrorMessage
-                        className={gStyles.warningMessage}
-                        name="phone"
-                        component="div"
-                    />
+                    <PhoneInputCustom errors={errors} />
                 </Form>
-            </div>
+            </div >
             <div className={styles.containerButtons}>
-                <Link className={`${gStyles.textBig}`} to={`${REGISTER_PATH}`}>
+                <Link className={`${gStyles.textBig}`} to={`${DETAIL_REGISTER}`}>
                     Назад
                 </Link>
                 {!checkConditions(errors, values) ? (

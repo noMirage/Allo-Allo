@@ -4,8 +4,8 @@ export async function utilServer<T>(
   url: string,
   type: "post" | "get",
   dataToServer: {},
-  functionRejectWithValue?: (error: any) => void,
-): Promise<T | void> {
+  functionRejectWithValue?: (error: any) => void
+): Promise<T | void | string> {
   try {
     let data = null;
 
@@ -14,7 +14,6 @@ export async function utilServer<T>(
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      return data.data;
     } else {
       data = await axios.get(`http://localhost:8000/api${url}`, {
         withCredentials: true,
@@ -22,13 +21,24 @@ export async function utilServer<T>(
     }
 
     if (data.status !== 200) throw Error("something wrong");
-
     return data.data;
   } catch (err) {
-    if (err instanceof Error) {
+    if (
+      err instanceof Error &&
+      "response" in err &&
+      typeof err.response === "object" &&
+      err.response &&
+      "data" in err.response &&
+      err.response.data &&
+      typeof err.response.data === "object" &&
+      "message" in err.response.data &&
+      err.response.data.message &&
+      typeof err.response.data.message === "string"
+    ) {
       if (functionRejectWithValue) {
         throw functionRejectWithValue(err.message);
       }
+      return err.response.data.message;
     }
     return;
   }

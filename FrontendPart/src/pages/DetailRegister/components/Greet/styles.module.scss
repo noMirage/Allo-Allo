@@ -1,0 +1,58 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@use '../../../../utils/styles/mixins.scss' as m;
+@import '../../../../utils/styles/colors.scss';
+
+.container {
+    margin-bottom: f.rem(25);
+}
+
+.title {
+    margin-bottom: f.rem(20);
+}
+
+.text {
+    margin-bottom: f.rem(20);
+}
+
+.containerButtons {
+    display: flex;
+    align-items: center;
+
+    a,
+    button {
+        color: map.get($colors, 'black');
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+    }
+
+    a:first-child {
+        margin-right: f.rem(50);
+
+        &::before {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 20px;
+            background: url('../../../../assets/global/singleArrow.svg') 100%/100% no-repeat;
+        }
+    }
+
+    a:last-child {
+        padding: f.rem(15) f.rem(35);
+        background-color: map.get($colors, 'amber');
+        color: map.get($colors, 'white');
+        border-radius: f.rem(12);
+
+        &::after {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 20px;
+            background: url('../../../../assets/global/singleArrowWhite.svg') 100%/100% no-repeat;
+            transform: rotate(-180deg) translate(-50%, 0);
+        }
+    }
+}

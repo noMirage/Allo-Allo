@@ -9,19 +9,18 @@ export interface IinitialStateSearchWorkers {
   data: IBaseinfoWorkers[] | [];
 }
 
-export const getWorkers = createAsyncThunk<
-  IBaseinfoWorkers[],
-  void,
-  { rejectValue: string }
->("getWorkers", async (data, { rejectWithValue }) => {
-  const dataServer = await utilServer<IBaseinfoWorkers[]>(
-    GET_WORKERS,
-    "get",
-    {},
-    rejectWithValue
-  );
-  return dataServer ? dataServer : [];
-});
+export const getWorkers = createAsyncThunk(
+  "getWorkers",
+  async (data, { rejectWithValue }) => {
+    const dataServer = await utilServer<IBaseinfoWorkers[]>(
+      GET_WORKERS,
+      "get",
+      {},
+      rejectWithValue
+    );
+    return dataServer ? dataServer : [];
+  }
+);
 
 const initialState: IinitialStateSearchWorkers = {
   loading: "idle",
@@ -46,7 +45,9 @@ const searchWorkers = createSlice({
       getWorkers.fulfilled,
       (state: IinitialStateSearchWorkers, action) => {
         state.loading = "succeeded";
-        state.data = action.payload;
+        if (Array.isArray(action.payload) && action.payload.length > 0) {
+          state.data = action.payload;
+        }
       }
     );
   },

@@ -1,22 +1,19 @@
 import styles from './styles.module.scss';
 import { Formik, } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { IUkraineLocation } from '../../../../interfaces/UkraineLocations';
 import { useState } from 'react';
 import { IUserInfo } from '../../types/types';
 import { utilServer } from '../../../../utils/js/utilServer';
 import { POST_USER_REGISTER } from '../../../../configs/configs';
 import { HOME_PATH } from '../../../../routs/routs';
 import { FormStepSecond } from './components/FormStepSecond/FormStepSecond';
-
 interface IProps {
     routeToBack: string;
-    UkraineLocations: IUkraineLocation[];
     userInfo: IUserInfo
 }
 
 export function RegisterStepSecond(props: IProps) {
-    const { routeToBack, UkraineLocations, userInfo } = props;
+    const { routeToBack, userInfo } = props;
 
     const [location, setLocation] = useState<string>("");
 
@@ -44,7 +41,6 @@ export function RegisterStepSecond(props: IProps) {
                         routeToBack={routeToBack}
                         setLocation={setLocation}
                         location={location}
-                        UkraineLocations={UkraineLocations}
                         errors={errors}
                         submitForm={submitForm}
                     />

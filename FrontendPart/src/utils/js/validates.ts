@@ -18,7 +18,7 @@ export function validateBaseField(value: string) {
 
 export function validatePhone(value: string) {
   let error;
-  if (!value || value.length < 10) {
+  if (!value || value.length <= 10) {
     error = "Заповніть поле!";
   }
   return error;

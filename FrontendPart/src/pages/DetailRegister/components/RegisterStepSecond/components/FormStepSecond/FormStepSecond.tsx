@@ -13,7 +13,6 @@ interface IProps {
     routeToBack: string;
     setLocation: React.Dispatch<React.SetStateAction<string>>;
     location: string
-    UkraineLocations: IUkraineLocation[];
     errors: FormikErrors<{
         location: string;
     }>;
@@ -21,7 +20,7 @@ interface IProps {
 }
 
 export function FormStepSecond(props: IProps) {
-    const { routeToBack, setLocation, UkraineLocations, location, errors, submitForm } = props;
+    const { routeToBack, setLocation, location, errors, submitForm } = props;
 
     return (
         <>
@@ -32,7 +31,7 @@ export function FormStepSecond(props: IProps) {
                         <div className={styles.container}>
                             <ModifiedInput location={location} setLocation={setLocation} errors={errors} />
                             <ErrorMessage className={gStyles.warningMessage} name="location" component="div" />
-                            <SeletOption UkraineLocations={UkraineLocations} setLocation={setLocation} location={location} />
+                            <SeletOption setLocation={setLocation} location={location} />
                         </div>
                     </Form>
                 </div>

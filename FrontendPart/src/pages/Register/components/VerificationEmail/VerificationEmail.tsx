@@ -18,6 +18,8 @@ export function VerificationEmail(props: IProps) {
   const { valueEmail, handleChangeVarificationEmail, handleSubmit } = props;
   const navigate = useNavigate();
 
+  const [messageError, setMessageError] = useState<{ message: string, id: string }>({ message: '', id: "" });
+
   const [timer, setTimer] = useState<number>(60);
 
   useEffect(() => {
@@ -42,8 +44,10 @@ export function VerificationEmail(props: IProps) {
           onSubmit={async (values) => {
             const data = await utilServer(POST_CONFIRM_EMAIL, 'post', { email: valueEmail, code: values.code });
             if (data && typeof data === 'object' && 'success' in data) {
-              navigate(`${DETAIL_REGISTER}/registerStepOne`);
+              navigate(`${DETAIL_REGISTER}`);
               sessionStorage.setItem("email", JSON.stringify(valueEmail));
+            } else {
+              setMessageError({ message: String(data), id: String((Math.random() * 344)) });
             }
           }}
         >
@@ -56,6 +60,7 @@ export function VerificationEmail(props: IProps) {
               timer={timer}
               setTimer={setTimer}
               errors={errors}
+              messageError={messageError}
             />
           )}
         </Formik>

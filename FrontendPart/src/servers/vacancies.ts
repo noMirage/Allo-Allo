@@ -48,7 +48,9 @@ const getVacancies = createSlice({
       getVacanciesServer.fulfilled,
       (state: IinitialStateGetVacancies, action) => {
         state.loading = "succeeded";
-        state.data = action.payload;
+        if (Array.isArray(action.payload) && action.payload.length > 0) {
+          state.data = action.payload;
+        }
       }
     );
   },
