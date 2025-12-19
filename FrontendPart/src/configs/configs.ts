@@ -1,7 +1,7 @@
 export const GET_WORKERS = "/serverSearchWorks.json";
 export const GET_DETAILS_WORKER = "/serverDetailsWorker.json";
 export const GET_VACANCIES = "/getVacancies.json";
-export const GET_UKRAINE_LOCATIONS = "/UkraineLocations.json";
+export const GET_UKRAINE_LOCATIONS = "/locations/search/?q=";
 export const GET_USER = "/logInAuto";
 
 export const POST_USER_REGISTER = "/register";

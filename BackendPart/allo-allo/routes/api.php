@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmailVerificationMailController;
+use App\Http\Controllers\LocationController;
+
 
 
 /*
@@ -20,6 +22,7 @@ use App\Http\Controllers\EmailVerificationMailController;
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/verificatyEmail', [EmailVerificationMailController::class, 'verificatyEmail']);
 Route::post('/confirmEmail', [EmailVerificationMailController::class, 'confirmEmail']);
+Route::get('/locations/search', [LocationController::class, 'search']);
 Route::get('/logInAuto', function () {
     return auth()->user();
 });

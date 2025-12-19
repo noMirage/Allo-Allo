@@ -12,17 +12,12 @@ import {
   getVacanciesReducer,
   IinitialStateGetVacancies,
 } from "../servers/vacancies";
-import {
-  IinitialStateUkraineLocations,
-  UkraineLocationsReducer,
-} from "../servers/UkraineLocations";
 import { IinitialStateUser, userReducer } from "../servers/user";
 
 interface IReducer {
   searchWorkers: Reducer<IinitialStateSearchWorkers>;
   detailsWorkerReducer: Reducer<IinitialStateDetailsWorker>;
   getVacanciesReducer: Reducer<IinitialStateGetVacancies>;
-  getUkraineLocations: Reducer<IinitialStateUkraineLocations>;
   user: Reducer<IinitialStateUser>;
 }
 
@@ -30,7 +25,6 @@ const reducer: IReducer = {
   searchWorkers: searchWorkersReducer,
   detailsWorkerReducer: detailsWorkerReducer,
   getVacanciesReducer: getVacanciesReducer,
-  getUkraineLocations: UkraineLocationsReducer,
   user: userReducer,
 };
 

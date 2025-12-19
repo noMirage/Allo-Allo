@@ -3,11 +3,11 @@ import gStyles from "../../../../../../styles/styles.module.scss";
 import { ErrorMessage, Form, FormikErrors, } from "formik";
 import { Link } from "react-router-dom";
 import pStyles from '../../../../styles.module.scss';
-import { IUkraineLocation } from "../../../../../../interfaces/UkraineLocations";
 import "simplebar-react/dist/simplebar.min.css";
 import "./simpleBarCustom.scss";
 import { ModifiedInput } from "./components/ModifiedInput/ModifiedInput";
-import { SeletOption } from "./components/ModifiedInput/SeletOption/SeletOption";
+import { SeletOption } from "./components/SeletOption/SeletOption";
+import { useState } from "react";
 
 interface IProps {
     routeToBack: string;
@@ -22,6 +22,8 @@ interface IProps {
 export function FormStepSecond(props: IProps) {
     const { routeToBack, setLocation, location, errors, submitForm } = props;
 
+    const [isShowSelect, setIsShowSelect] = useState<boolean>(true);
+
     return (
         <>
             <div>
@@ -29,9 +31,9 @@ export function FormStepSecond(props: IProps) {
                     <p className={`${gStyles.textExtraLarge} ${styles.title}`}>Вкажіть важе місце проживання для того щоб пришвидшити пошук</p>
                     <Form className={styles.formContainer}>
                         <div className={styles.container}>
-                            <ModifiedInput location={location} setLocation={setLocation} errors={errors} />
+                            <ModifiedInput setIsShowSelect={setIsShowSelect} location={location} setLocation={setLocation} errors={errors} />
                             <ErrorMessage className={gStyles.warningMessage} name="location" component="div" />
-                            <SeletOption setLocation={setLocation} location={location} />
+                            <SeletOption isShowSelect={isShowSelect} setIsShowSelect={setIsShowSelect} setLocation={setLocation} location={location} />
                         </div>
                     </Form>
                 </div>
