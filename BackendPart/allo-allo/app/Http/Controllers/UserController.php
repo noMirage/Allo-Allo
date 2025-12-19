@@ -6,6 +6,7 @@ use App\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailVerificationMail;
+require_once app_path('/Utils/createAuthCookie.php');
 
 class UserController extends Controller{
  public function register (Request $request) {
@@ -33,20 +34,12 @@ class UserController extends Controller{
         $user->save();
 
         $token = $user->createToken('auth_token');
-        $cookie = cookie(
-             'token', 
-              $token->plainTextToken,       
-              60*24*30,     
-              null,      
-              null,       
-              true,        
-              true
-         );
+        $cookie = createAuthCookie($user);
 
         return response()->json([
             "success" => true,
             'message' => 'Успішно створений',
-          ], 201)->withCookie($cookie);
+          ], 201)->withCookie($cookie);;
         }
 
     public function logIn(Request $request) {

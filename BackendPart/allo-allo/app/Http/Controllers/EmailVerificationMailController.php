@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailVerificationMail;
 use Illuminate\Support\Facades\Cache;
 use App\Models\UserModel;
+require_once app_path('/Utils/createAuthCookie.php');
 
 class EmailVerificationMailController extends Controller{
   public function verificatyEmail (Request $request) {
@@ -14,15 +15,6 @@ class EmailVerificationMailController extends Controller{
     ]);
 
      $email = $request->email;
-
-     $user = UserModel::where('email', $request->email)->first();
-
-     if($user){
-       return response()->json([
-            'success' => true,
-            'message' => 'Користувача знайдено'
-        ], 200); 
-     }
 
      if (Cache::has('email_verification_' . $email)) {
         return response()->json([
@@ -69,6 +61,18 @@ class EmailVerificationMailController extends Controller{
     }
 
     Cache::forget('email_verification_' . $email);
+
+    $user = UserModel::where('email', $request->email)->first();
+
+     if($user && $stored == $code){
+
+       $cookie = createAuthCookie($user);
+
+       return response()->json([
+            'success' => true,
+            'message' => 'Користувача знайдено',
+        ], 200)->withCookie($cookie); 
+     }
 
     return response()->json([
         'success' => true,

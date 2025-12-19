@@ -3,10 +3,13 @@ import { Formik } from 'formik';
 import styles from './styles.module.scss';
 import { useEffect, useState } from 'react';
 import { POST_CONFIRM_EMAIL } from '../../../../configs/configs';
-import { DETAIL_REGISTER } from '../../../../routs/routs';
+import { DETAIL_REGISTER, HOME_PATH } from '../../../../routs/routs';
 import { useNavigate } from 'react-router-dom';
 import { utilServer } from '../../../../utils/js/utilServer';
 import { FormCode } from './components/FormCode/FormCode';
+import { ServerMessage } from '../../../../constants/message';
+import { getUser } from '../../../../servers/user';
+import { useAppDispatch } from '../../../../hooks/AppRedux';
 
 interface IProps {
   valueEmail: string;
@@ -16,6 +19,9 @@ interface IProps {
 
 export function VerificationEmail(props: IProps) {
   const { valueEmail, handleChangeVarificationEmail, handleSubmit } = props;
+
+  const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const [messageError, setMessageError] = useState<{ message: string, id: string }>({ message: '', id: "" });
@@ -43,11 +49,16 @@ export function VerificationEmail(props: IProps) {
           initialValues={{ code: '' }}
           onSubmit={async (values) => {
             const data = await utilServer(POST_CONFIRM_EMAIL, 'post', { email: valueEmail, code: values.code });
-            if (data && typeof data === 'object' && 'success' in data) {
-              navigate(`${DETAIL_REGISTER}`);
-              sessionStorage.setItem("email", JSON.stringify(valueEmail));
+            if (data.success) {
+              if (data.message === ServerMessage.USER_EXISTS) {
+                navigate(HOME_PATH);
+                dispatch(getUser());
+              } else if (data.message === ServerMessage.EMAIL_CONFIRMED) {
+                navigate(`${DETAIL_REGISTER}`);
+                sessionStorage.setItem("email", JSON.stringify(valueEmail));
+              }
             } else {
-              setMessageError({ message: String(data), id: String((Math.random() * 344)) });
+              setMessageError({ message: String(data.error), id: String((Math.random() * 34)) });
             }
           }}
         >

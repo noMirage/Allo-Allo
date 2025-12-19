@@ -31,6 +31,10 @@ class LocationController extends Controller
 
     $results = $query->distinct()->limit(50)->get();
 
-    return response()->json($results);
+       return response()->json([
+            "success" => true,
+            'message' => 'Успіх',
+            "data" => response()->json($results)->original,
+        ]);
 }
 }

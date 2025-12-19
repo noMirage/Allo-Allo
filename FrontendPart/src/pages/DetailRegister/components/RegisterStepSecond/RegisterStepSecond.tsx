@@ -30,7 +30,7 @@ export function RegisterStepSecond(props: IProps) {
                     formData.append('email', userInfo.email || '');
                     formData.append('location', location);
                     const data = await utilServer(POST_USER_REGISTER, 'post', formData);
-                    if (data && typeof data === 'object') {
+                    if (data.success) {
                         navigation(HOME_PATH);
                     }
 

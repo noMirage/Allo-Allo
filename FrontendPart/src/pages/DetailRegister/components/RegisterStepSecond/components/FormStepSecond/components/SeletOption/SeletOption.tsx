@@ -30,9 +30,9 @@ export function SeletOption(props: IProps) {
     }, [location]);
 
     async function getDataLocations() {
-        let data = await utilServer(`${GET_UKRAINE_LOCATIONS}${debouncedLocation}`, 'get', {});
-        if (Array.isArray(data) && data.length > 0) {
-            setUkraineLocations(data);
+        let data = await utilServer(`${GET_UKRAINE_LOCATIONS}${debouncedLocation}`, 'get');
+        if (data.success && Array.isArray(data.data)) {
+            setUkraineLocations(data.data);
         }
     }
 

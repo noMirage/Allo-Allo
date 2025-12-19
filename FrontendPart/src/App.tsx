@@ -11,7 +11,7 @@ import { Contacts } from './pages/Contacts/Contacts';
 import { Register } from './pages/Register/Register';
 import { DetailRegister } from './pages/DetailRegister/DetailRegister';
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from './hooks/AppRedux';
+import { useAppDispatch } from './hooks/AppRedux';
 import { getUser } from './servers/user';
 
 function App() {

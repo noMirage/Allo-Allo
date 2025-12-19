@@ -27,11 +27,12 @@ const ROUTES: TRoutes[] = [
 
 export function DetailRegister() {
 
+  const email = sessionStorage.getItem("email") ? JSON.parse(sessionStorage.getItem("email") || "") : "";
+
   const [userInfo, setUserInfo] = useState<IUserInfo>({
     fullName: '',
     phone: "",
-    email: ""
-    // JSON.parse(sessionStorage.getItem("email") || "") || null,
+    email: email,
   });
 
   return (
