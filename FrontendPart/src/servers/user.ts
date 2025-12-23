@@ -13,7 +13,6 @@ export const getUser = createAsyncThunk(
   "getUser",
   async (_, { rejectWithValue }) => {
     const dataServer = await utilServer(GET_USER, "get", {}, rejectWithValue);
-    console.log(dataServer);
     return dataServer ? dataServer : {};
   }
 );
@@ -26,7 +25,11 @@ const initialState: IinitialStateUser = {
 const user = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logOut: (state: IinitialStateUser) => {
+      state.data = {};
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getUser.pending, (state: IinitialStateUser) => {
       state.loading = "pending";
@@ -45,3 +48,4 @@ const user = createSlice({
 });
 
 export const userReducer = user.reducer;
+export const { logOut } = user.actions;

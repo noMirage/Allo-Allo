@@ -21,6 +21,6 @@ class UserModel extends Authenticatable
     "phone",
     "age",
     "avatar",
-    "description", 
+    "description",
    ];
 }

@@ -2,7 +2,13 @@ import gStyles from '../../../../styles/styles.module.scss';
 import styles from './styles.module.scss';
 import pStyles from '../../styles.module.scss';
 import avatar from '../../../../assets/global/avatar.jpg';
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
+import { utilServer } from '../../../../utils/js/utilServer';
+import { LOGOUT_USER } from '../../../../configs/configs';
+import { useAppDispatch } from '../../../../hooks/AppRedux';
+import { logOut } from '../../../../servers/user';
+import { useNavigate } from 'react-router-dom';
+import { HOME_PATH } from '../../../../routs/routs';
 
 interface IProps {
     fullName: string;
@@ -14,6 +20,10 @@ interface IProps {
 export function HeadInfo(props: IProps) {
 
     const { fullName, phone, email, location } = props;
+
+    const dispatch = useAppDispatch();
+
+    const navigate = useNavigate();
 
     return (<div className={styles.bodyHeadInfo}>
         <div className={styles.containerHeadInfo}>
@@ -35,12 +45,16 @@ export function HeadInfo(props: IProps) {
             <Formik
                 initialValues={{ code: '' }}
                 onSubmit={async (values) => {
-
+                    utilServer(LOGOUT_USER, 'get');
+                    dispatch(logOut());
+                    navigate(HOME_PATH)
                 }}
             >
-                {({ errors
+                {({
                 }) => (
-                    <button type='button' className={`${gStyles.textBig} ${pStyles.button} ${styles.button}`}>Вийти з акаунту</button>
+                    <Form>
+                        <button className={`${gStyles.textBig} ${pStyles.button} ${styles.button}`}>Вийти з акаунту</button>
+                    </Form>
                 )}
             </Formik>
         </div>

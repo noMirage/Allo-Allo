@@ -42,46 +42,6 @@ class UserController extends Controller{
           ], 201)->withCookie($cookie);;
         }
 
-    public function logIn(Request $request) {
-      $request->validate([
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-       ]);
-
-       $user = UserModel::where('email', $request->email)->first();
-
-       if(!$user || !Hash::check($request->password, $user->password)){
-          return response()->json(['message' => 'Невірні дані'], 401);
-       } else{
-
-    $token = $user->tokens()->latest()->first();
-
-    if ($token && $token->expires_at && $token->expires_at->isPast()) {
-
-        $token->delete();
-        $newToken = $user->createToken('auth_token');
-        $tokenModel = $newToken->accessToken;
-        $tokenModel->expires_at = now()->addDays(7);
-        $tokenModel->save();
-        $plainToken = $newToken->plainTextToken;
-
-          return response()->json([
-            "success" => true,
-            'message' => 'Успішний вхід',
-            "user" => $user,
-            "token" => $plainToken,
-        ]);
-    } else {
-         return response()->json([
-            "success" => true,
-            'message' => 'Успішний вхід',
-            "user" => $user,
-            "token" => $token,
-        ]);
-        }
-       }
-     }
-
       public function logInAuto(Request $request){
        $token = $request->cookie('token');
        if (!$token) {

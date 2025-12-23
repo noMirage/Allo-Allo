@@ -26,3 +26,7 @@ Route::get('/locations/search', [LocationController::class, 'search']);
 Route::get('/logInAuto', function () {
     return auth()->user();
 });
+Route::get('/logOut', function () {
+    return response('Вийшли з акаунту')
+        ->cookie(Cookie::forget('token'));
+});
