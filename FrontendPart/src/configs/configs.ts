@@ -4,8 +4,9 @@ export const GET_VACANCIES = "/getVacancies.json";
 export const GET_UKRAINE_LOCATIONS = "/locations/search/?q=";
 export const GET_USER = "/logInAuto";
 export const LOGOUT_USER = "/logOut";
-
-
+export const MAIN_EDIT_PROFILE = "/mainEditProfile";
+export const AVATAR_PROFILE = "/avatar/Profile";
 export const POST_USER_REGISTER = "/register";
 export const POST_VERIFICATY_EMAIL = "/verificatyEmail";
 export const POST_CONFIRM_EMAIL = "/confirmEmail";
+export const PATH_TO_AVATAR = 'http://localhost:8000/storage/';

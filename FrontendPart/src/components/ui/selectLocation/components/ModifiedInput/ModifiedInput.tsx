@@ -1,8 +1,8 @@
 import styles from "./styles.module.scss";
-import gStyles from "../../../../../../../../styles/styles.module.scss";
+import gStyles from "../../../../../styles/styles.module.scss";
 import { Field, FormikErrors, } from "formik";
 import "simplebar-react/dist/simplebar.min.css";
-import { validateBaseField } from "../../../../../../../../utils/js/validates";
+import { validateBaseField } from "../../../../../utils/js/validates";
 
 interface IProps {
     errors: FormikErrors<{

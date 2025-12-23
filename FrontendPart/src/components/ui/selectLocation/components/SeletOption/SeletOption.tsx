@@ -2,9 +2,9 @@ import styles from "./styles.module.scss";
 import "simplebar-react/dist/simplebar.min.css";
 import SimpleBar from "simplebar-react";
 import { useEffect, useState } from "react";
-import { IUkraineLocation } from "../../../../../../../../interfaces/UkraineLocations";
-import { utilServer } from "../../../../../../../../utils/js/utilServer";
-import { GET_UKRAINE_LOCATIONS } from "../../../../../../../../configs/configs";
+import { IUkraineLocation } from "../../../../../interfaces/UkraineLocations";
+import { GET_UKRAINE_LOCATIONS } from "../../../../../configs/configs";
+import { utilServer } from "../../../../../utils/js/utilServer";
 
 interface IProps {
     location: string;
@@ -16,7 +16,7 @@ interface IProps {
 export function SeletOption(props: IProps) {
     const { location, setLocation, setIsShowSelect, isShowSelect } = props;
 
-    const [debouncedLocation, setDebouncedLocation] = useState("");
+    const [debouncedLocation, setDebouncedLocation] = useState("234");
 
     const [UkraineLocations, setUkraineLocations] = useState<IUkraineLocation[]>([]);
 

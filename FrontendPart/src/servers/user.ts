@@ -29,6 +29,9 @@ const user = createSlice({
     logOut: (state: IinitialStateUser) => {
       state.data = {};
     },
+    update: (state: IinitialStateUser, action: PayloadAction<IUser>) => {
+      state.data = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getUser.pending, (state: IinitialStateUser) => {
@@ -48,4 +51,4 @@ const user = createSlice({
 });
 
 export const userReducer = user.reducer;
-export const { logOut } = user.actions;
+export const { logOut, update } = user.actions;

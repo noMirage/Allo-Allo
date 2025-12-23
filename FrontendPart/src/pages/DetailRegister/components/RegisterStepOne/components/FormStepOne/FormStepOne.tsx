@@ -8,7 +8,7 @@ import {
 } from "../../../../../../utils/js/validates";
 import pStyles from '../../../../styles.module.scss';
 import styles from "./styles.module.scss";
-import { PhoneInputCustom } from './components/PhoneInputCustom/PhoneInputCustom';
+import { PhoneInputCustom } from '../../../../../../components/ui/PhoneInputCustom/PhoneInputCustom';
 
 interface IProps {
     submitForm: (() => Promise<void>) & (() => Promise<any>);

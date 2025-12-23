@@ -15,7 +15,7 @@ export function Profile() {
         return (
             <div className={gStyles.container}>
                 <div className={`${styles.wrapper}`}>
-                    <HeadInfo fullName={user.full_name} location={user.location} phone={user.phone} email={user.email} />
+                    <HeadInfo avatar={user.avatar} fullName={user.full_name} location={user.location} phone={user.phone} email={user.email} />
                     <UserResume />
                     <HistoryFinishedWorks />
                 </div>

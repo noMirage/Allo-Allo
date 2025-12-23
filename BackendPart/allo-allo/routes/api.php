@@ -23,6 +23,13 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/verificatyEmail', [EmailVerificationMailController::class, 'verificatyEmail']);
 Route::post('/confirmEmail', [EmailVerificationMailController::class, 'confirmEmail']);
 Route::get('/locations/search', [LocationController::class, 'search']);
+
+Route::middleware('auth')
+    ->patch('/mainEditProfile', [UserController::class, 'mainEditProfile']);
+
+Route::post('/avatar/Profile', [UserController::class, 'updateAvatar'])
+    ->middleware('auth:sanctum');
+
 Route::get('/logInAuto', function () {
     return auth()->user();
 });

@@ -3,15 +3,18 @@ import { ApiResult } from "../../interfaces/server";
 
 export async function utilServer<T>(
   url: string,
-  method: "post" | "get",
+  method: "post" | "get" | "patch",
   data?: unknown,
   functionRejectWithValue?: (error: any) => void
 ): Promise<ApiResult<T>> {
   try {
-    const res =
-      method === "post"
-        ? await axios.post(`http://localhost:8000/api${url}`, data, {
+    let res =
+      method !== "get"
+        ? await axios[method](`http://localhost:8000/api${url}`, data, {
             withCredentials: true,
+            headers: {
+              Accept: "application/json",
+            },
           })
         : await axios.get(`http://localhost:8000/api${url}`, {
             withCredentials: true,

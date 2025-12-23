@@ -1,9 +1,9 @@
 import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
-import gStyles from "../../../../../../../../styles/styles.module.scss";
+import gStyles from "../../../styles/styles.module.scss";
 import { ErrorMessage, Field, FormikErrors } from "formik";
 import styles from "./styles.module.scss";
-import { validatePhone } from '../../../../../../../../utils/js/validates';
+import { validatePhone } from '../../../utils/js/validates';
 import './styles.scss';
 
 interface IProps {
@@ -11,16 +11,17 @@ interface IProps {
         fullName: string;
         phone: string;
     }>;
+    className?: string;
 }
 
 export function PhoneInputCustom(props: IProps) {
-    const { errors, } = props;
+    const { errors, className } = props;
 
     return (
-        <>
+        <div className={className}>
             <Field name="phone" validate={validatePhone}>
-                {({ field, form, meta }: any) => (
-                    <div className={styles.bodyPhone}>
+                {({ field, form }: any) => (
+                    <div className={`${styles.bodyPhone}`}>
                         <PhoneInput
                             {...field}
                             country="ua"
@@ -39,6 +40,6 @@ export function PhoneInputCustom(props: IProps) {
                 name="phone"
                 component="div"
             />
-        </>
+        </div>
     );
 }

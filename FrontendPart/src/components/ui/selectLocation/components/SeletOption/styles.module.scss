@@ -1,7 +1,7 @@
 @use 'sass:map';
-@use '../../../../../../../../utils/styles/functions.scss' as f;
-@use '../../../../../../../../utils/styles/mixins.scss' as m;
-@import '../../../../../../../../utils/styles/colors.scss';
+@use '../../../../../utils/styles/functions.scss' as f;
+@use '../../../../../utils/styles/mixins.scss' as m;
+@import '../../../../../utils/styles/colors.scss';
 
 .list {
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
