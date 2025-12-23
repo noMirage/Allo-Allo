@@ -1,8 +1,8 @@
 import styles from './styles.module.scss';
 import gStyles from '../../styles/styles.module.scss';
 import logo from '../../assets/Header/logo.svg';
-import { ReactComponent as Email } from '../../assets/Header/emailWhite.svg';
-import { ReactComponent as Phone } from '../../assets/Header/phoneWhite.svg';
+import { ReactComponent as Email } from '../../assets/global/emailWhite.svg';
+import { ReactComponent as Phone } from '../../assets/global/phoneWhite.svg';
 import { Link } from 'react-router-dom';
 import { NAVIGATION_LINKS } from '../../constants/navigationLinks';
 import { HOME_PATH } from '../../routs/routs';

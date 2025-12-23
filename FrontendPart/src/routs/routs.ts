@@ -7,6 +7,7 @@ export const ABOUT_US_PATH = "/aboutUs";
 export const CONTACTS_PATH = "/contacts";
 export const REGISTER_PATH = "/register";
 export const DETAIL_REGISTER = "/detailRegister";
+export const PROFILE_PATH = "/profile";
 
 export const PAGES_WITHOUT_LAYOUT = [
   REGISTER_PATH,

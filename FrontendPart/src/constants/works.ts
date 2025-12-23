@@ -7,6 +7,14 @@ import { TMajors } from "../interfaces/works";
 import { ORDER_WORK_PATH } from "../routs/routs";
 import { TWorks } from "./types";
 
+export type TCategoryWorks =
+  | "сантехніка"
+  | "зварювання"
+  | "електрика"
+  | "перевізник"
+  | "перевізник"
+  | "збирання меблів";
+
 export const WORKS: TWorks[] = [
   { name: "сантехніка", icon: plumber, to: `${ORDER_WORK_PATH}/сантехніка` },
   { name: "зварювання", icon: welding, to: `${ORDER_WORK_PATH}/зварювання` },

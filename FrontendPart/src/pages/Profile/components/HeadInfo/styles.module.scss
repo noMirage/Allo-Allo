@@ -1,0 +1,116 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@use '../../../../utils/styles/mixins.scss' as m;
+@import '../../../../utils/styles/colors.scss';
+
+.bodyHeadInfo {
+    margin-bottom: f.rem(50);
+}
+
+.containerHeadInfo {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: f.rem(20);
+}
+
+.container {
+    width: 100%;
+    border: 2px solid map.get($colors, 'gray');
+    border-radius: f.rem(6);
+    padding: f.rem(25);
+    display: flex;
+    align-items: center;
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+}
+
+.bodyAvatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: f.rem(25);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.fullName {
+    font-size: f.rem(22);
+    font-weight: 700;
+    margin-bottom: f.rem(5);
+}
+
+.importantInfo {
+    font-style: normal;
+    margin-bottom: f.rem(5);
+}
+
+.phone {
+    position: relative;
+    width: 100%;
+    padding: 0 0 0 f.rem(30);
+
+    &::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        background: url('../../../../assets/global/phoneBlack.svg') 100%/100% no-repeat;
+    }
+}
+
+.email {
+    position: relative;
+    width: 100%;
+    padding: 0 0 0 f.rem(30);
+
+    &::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        background: url('../../../../assets/global/emailBlack.svg') 100%/100% no-repeat;
+    }
+}
+
+.location {
+    position: relative;
+    width: 100%;
+    padding: 0 0 0 f.rem(30);
+
+    &::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        background: url('../../../../assets/global/location.svg') 100%/100% no-repeat;
+    }
+}
+
+.button{
+  align-self: flex-end;
+  background-color: map.get($colors, 'brightRed');
+  max-width: f.rem(200);
+}

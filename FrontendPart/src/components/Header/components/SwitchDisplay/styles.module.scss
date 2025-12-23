@@ -1,0 +1,49 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@import '../../../../utils/styles/colors.scss';
+
+.fullName {
+    margin-right: f.rem(40);
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+}
+
+.containerAvatar {
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.collab {
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        padding: f.rem(12) f.rem(35);
+        background-color: map-get($colors, "amber");
+        font-weight: 700;
+        border-radius: f.rem(6);
+        color: map.get($colors, 'white');
+
+        img {
+            width: 30px;
+            height: 30px;
+            margin-right: f.rem(15);
+        }
+    }
+}
