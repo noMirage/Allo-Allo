@@ -2,6 +2,8 @@ import gStyles from '../../../../styles/styles.module.scss';
 import styles from './styles.module.scss';
 import warning from '../../../../assets/global/warning.svg';
 import pStyles from '../../styles.module.scss';
+import { Link } from 'react-router-dom';
+import { CREATE_RESUME } from '../../../../routs/routs';
 
 export function UserResume(props: any) {
 
@@ -15,7 +17,7 @@ export function UserResume(props: any) {
                     <img src={warning} />
                 </div>
                 <p className={`${gStyles.textLarge} ${styles.text}`}>Ви немаєте жодного створенного резюме, будь ласка створіть!</p>
-                <button className={`${gStyles.textBig} ${styles.createButton} ${pStyles.button}`}>Створити резюме</button>
+                <Link to={CREATE_RESUME} className={`${gStyles.textBig} ${styles.createButton} ${pStyles.button}`}>Створити резюме</Link>
             </div>
         </div>
     </div>

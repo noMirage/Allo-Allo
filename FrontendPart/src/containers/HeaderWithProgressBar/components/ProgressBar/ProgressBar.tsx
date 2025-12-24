@@ -1,8 +1,6 @@
 import styles from './styles.module.scss';
-import gStyles from '../../../../styles/styles.module.scss';
-import { TRoutes } from '../../types/types';
 import { useLocation } from 'react-router-dom';
-import { DETAIL_REGISTER } from '../../../../routs/routs';
+import { TRoutes } from '../../../../interfaces/global';
 
 interface IProps {
     routes: TRoutes[];
@@ -14,7 +12,7 @@ export function ProgressBar(props: IProps) {
     let cleanPath = '';
 
     if (!(location.pathname.slice().split('/'))[2]) {
-        cleanPath = DETAIL_REGISTER.slice().split('/')[1];
+        cleanPath = routes[0].path.slice().split('/')[1];
 
     } else {
         cleanPath = (location.pathname).slice().split('/')[2];

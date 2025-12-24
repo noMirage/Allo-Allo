@@ -9,10 +9,11 @@ interface IProps {
     handleSelectOption: (func: () => void) => void;
     options: string[];
     index: number;
+    handleSelect: (value: string) => void;
 }
 
 export default function ItemList(props: IProps) {
-    const { setSelectedOption, handleSelectOption, name, options, index } = props;
+    const { setSelectedOption, handleSelectOption, name, options, index, handleSelect } = props;
 
     const [isSelect, setIsSelect] = useState<boolean>(false);
 
@@ -29,7 +30,7 @@ export default function ItemList(props: IProps) {
     }
 
     return (
-        <li onClick={() => { handleSelectOption(() => { handleSelected() }); setIsSelect(!isSelect) }} key={name} className={`${styles.item} ${gStyles.textBig}`}>
+        <li onClick={() => { handleSelectOption(() => { handleSelected(); handleSelect(options[index]) }); setIsSelect(!isSelect) }} key={name} className={`${styles.item} ${gStyles.textBig}`}>
             <Checkbox className={styles.checkbox} valueCheckbox={isSelect} />
             <p>{name}</p>
         </li>

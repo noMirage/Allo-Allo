@@ -6,8 +6,3 @@ export interface IUserInfo {
   email: string | null;
   [key: string]: string | null;
 }
-
-export type TRoutes = {
-  path: string;
-  element: ReactNode;
-};

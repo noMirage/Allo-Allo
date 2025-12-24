@@ -1,0 +1,13 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@use '../../utils/styles/mixins.scss' as m;
+@import '../../utils/styles/colors.scss';
+
+.logo {
+    margin: f.rem(50) 0 f.rem(50) 0;
+    display: block;
+
+    img {
+        width: 300px;
+    }
+}
