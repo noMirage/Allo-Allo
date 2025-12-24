@@ -22,7 +22,7 @@ export function FormResume(props: IProps) {
                 setData((prevState) => {
                     const newState = { ...prevState };
                     newState.title = values.title;
-                    newState.descritpion = values.description;
+                    newState.description = values.description;
                     return newState;
                 });
             }}

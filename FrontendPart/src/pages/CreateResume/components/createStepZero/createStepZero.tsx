@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import gStyles from '../../../../styles/styles.module.scss';
 import Select from '../../../../components/ui/select/Select';
 import { Link } from 'react-router-dom';
-import { CREATE_RESUME, HOME_PATH } from '../../../../routs/routs';
+import { CREATE_RESUME, PROFILE_PATH } from '../../../../routs/routs';
 import pStyles from '../../styles.module.scss';
 import { TCategoryWorks } from '../../../../constants/works';
 import { TUserDataWResume } from '../../types/types';
@@ -39,7 +39,7 @@ export function CreateStepZero(props: IProps) {
                     <Select handleSelect={handleSelect} options={OPTIONS} firstOption={0} />
                 </div>
                 <div className={pStyles.containerButtons}>
-                    <Link className={`${gStyles.textBig}`} to={HOME_PATH}>
+                    <Link className={`${gStyles.textBig}`} to={PROFILE_PATH}>
                         Назад
                     </Link>
                     <Link

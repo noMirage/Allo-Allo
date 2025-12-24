@@ -23,4 +23,9 @@ class UserModel extends Authenticatable
     "avatar",
     "description",
    ];
+
+    public function resumes()
+{
+    return $this->hasMany(Resume::class, 'user_id', 'id');
+}
 }

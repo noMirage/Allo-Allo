@@ -1,9 +1,9 @@
-import { TCategoryWorks } from "../../../constants/works"
+import { TCategoryWorks } from "../../../constants/works";
 
 export type TUserDataWResume = {
-    category: TCategoryWorks;
-    title: string;
-    descritpion: string;
-    images: string;
-    [key: string]: TCategoryWorks | string;
-}
+  category: TCategoryWorks;
+  title: string;
+  description: string;
+  images: FileList | null;
+  [key: string]: TCategoryWorks | string | FileList | null;
+};

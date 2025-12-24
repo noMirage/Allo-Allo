@@ -36,8 +36,8 @@ export function CreateResume() {
     const [data, setData] = useState<TUserDataWResume>({
         category: "сантехніка",
         title: "",
-        descritpion: "",
-        images: ""
+        description: "",
+        images: null,
     });
 
     if (hasKeys<IUser>(user)) {
@@ -50,7 +50,7 @@ export function CreateResume() {
                     <Routes>
                         <Route path={''} element={<CreateStepZero setData={setData} pathToGo={ROUTES[1].path} />} />
                         <Route path={ROUTES[1].path} element={<CreateStepOne ahead={ROUTES[2].path} comeBack={ROUTES[0].path} setData={setData} />} />
-                        <Route path={ROUTES[2].path} element={<CreateStepSecond comeBack={ROUTES[1].path} setData={setData} />} />
+                        <Route path={ROUTES[2].path} element={<CreateStepSecond dataResume={data} comeBack={ROUTES[1].path} setData={setData} />} />
                     </Routes>
                 </div>
             </div>

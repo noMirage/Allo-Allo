@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailVerificationMail;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\PersonalAccessToken;
 require_once app_path('/Utils/createAuthCookie.php');
 
 class UserController extends Controller{
@@ -51,7 +52,6 @@ class UserController extends Controller{
 
         [$id, $plain] = explode('|', $token);
    
-
         $tokenModel = PersonalAccessToken::find($id);
 
         if (!$tokenModel) {
@@ -64,11 +64,14 @@ class UserController extends Controller{
 
        $user = $tokenModel->tokenable;
 
+       $user->load('resumes');
+
        return response()->json($user);
   }
 
+
       public function mainEditProfile(Request $request)
-{
+    {
          $data = $request->validate([
            'fullName' => 'sometimes|string|max:255',
            'phone'    => 'sometimes|nullable|string|max:16',

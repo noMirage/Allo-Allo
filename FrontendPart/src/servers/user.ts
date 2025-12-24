@@ -45,6 +45,7 @@ const user = createSlice({
       (state: IinitialStateUser, action: PayloadAction<IUser | {}>) => {
         state.loading = "succeeded";
         state.data = action.payload;
+        console.log(state.data);
       }
     );
   },
