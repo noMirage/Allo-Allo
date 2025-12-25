@@ -4,8 +4,8 @@ import Select from '../../../../components/ui/select/Select';
 import { Link } from 'react-router-dom';
 import { CREATE_RESUME, PROFILE_PATH } from '../../../../routs/routs';
 import pStyles from '../../styles.module.scss';
-import { TCategoryWorks } from '../../../../constants/works';
 import { TUserDataWResume } from '../../types/types';
+import { TCategoryWorks } from '../../../../interfaces/works';
 
 const OPTIONS = [
     "сантехніка",

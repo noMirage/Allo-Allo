@@ -7,6 +7,10 @@ import { CREATE_RESUME, PROFILE_PATH } from '../../../../routs/routs';
 import { useState } from 'react';
 import { POST_ADD_RESUME } from '../../../../configs/configs';
 import { utilServer } from '../../../../utils/js/utilServer';
+import { update } from '../../../../servers/user';
+import { hasKeys } from '../../../../utils/js/checkTypes';
+import { IUser } from '../../../../interfaces/user';
+import { useAppDispatch } from '../../../../hooks/AppRedux';
 
 interface IProps {
     comeBack: string;
@@ -20,6 +24,8 @@ export function CreateStepSecond(props: IProps) {
     const [previews, setPreviews] = useState<string[]>([]);
 
     const navigate = useNavigate();
+
+    const dispatch = useAppDispatch();
 
     function handleSelectImages(event: React.ChangeEvent<HTMLInputElement>) {
 
@@ -37,6 +43,7 @@ export function CreateStepSecond(props: IProps) {
             newState.images = files;
             return newState;
         });
+
     }
 
     async function handleSubmit() {
@@ -46,11 +53,15 @@ export function CreateStepSecond(props: IProps) {
         formData.append('title', dataResume.title);
         if (dataResume.images && dataResume.images.length > 0) {
             Array.from(dataResume.images).forEach((file) => {
-                formData.append('images[]', file);
+                if (file instanceof File) {
+                    formData.append('images[]', file);
+                }
             });
         }
-        const data = await utilServer(POST_ADD_RESUME, 'post', formData);
-        if (data.success) {
+        const data = await utilServer(POST_ADD_RESUME, 'post', formData, () => { }, false);
+
+        if (data.success && hasKeys<IUser>(data.data!)) {
+            dispatch(update(data.data));
             navigate(PROFILE_PATH);
         }
     }
@@ -62,7 +73,7 @@ export function CreateStepSecond(props: IProps) {
                     <p className={`${gStyles.textExtraLarge} ${styles.title}`} >Завантажте фотографії ваших робіт</p>
                     <div className={styles.containerInput}>
                         <p className={`${gStyles.textLarge}`}>Натисни, щоб завантажити фото</p>
-                        <input onChange={(event) => handleSelectImages(event)} className={`${styles.input}`} accept="image/*" multiple type='file' name='photos' />
+                        <input onChange={(event) => handleSelectImages(event)} className={`${styles.input}`} accept="image/*" multiple type='file' name="images[]" />
                     </div>
                 </div>
                 {previews.length > 0 &&

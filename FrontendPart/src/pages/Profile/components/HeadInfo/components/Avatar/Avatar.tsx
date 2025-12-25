@@ -34,7 +34,7 @@ export function Avatar(props: IProps) {
         const formData = new FormData();
         formData.append('avatar', file);
 
-        const data = await utilServer(AVATAR_PROFILE, 'post', formData);
+        const data = await utilServer(AVATAR_PROFILE, 'post', formData, () => {}, false);
 
         if (data.success && hasKeys<IUser>(data.data!)) {
             dispatch(update(data.data));

@@ -33,7 +33,7 @@ export function WorkList() {
                             <SwiperSlide className={styles.item}>
                                 <Link to={item.to} className={styles.itemBody}>
                                     <p className={`${styles.name} ${gStyles.textLarge}`}>
-                                        {item.name}
+                                        {item.category}
                                     </p>
                                     <div className={styles.icon}>
                                         <img src={item.icon} alt="icon" />

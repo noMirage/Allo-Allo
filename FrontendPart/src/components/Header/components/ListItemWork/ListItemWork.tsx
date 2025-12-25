@@ -45,10 +45,10 @@ export function ListItemWork(props: IProps) {
                     {WORKS.map((item, _) => (
                         <Link
                             className={`${styles.item} ${gStyles.textLarge}`}
-                            to={`${item.to}/:${item.name}`}
+                            to={`${item.to}/:${item.category}`}
                             onClick={() => setIsOpen(false)}
                         >
-                            {item.name}
+                            {item.category}
                         </Link>
                     ))}
                 </ul>

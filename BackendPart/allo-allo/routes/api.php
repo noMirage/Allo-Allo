@@ -25,7 +25,7 @@ Route::post('/verificatyEmail', [EmailVerificationMailController::class, 'verifi
 Route::post('/confirmEmail', [EmailVerificationMailController::class, 'confirmEmail']);
 Route::get('/locations/search', [LocationController::class, 'search']);
 
-Route::middleware('auth')
+Route::middleware('auth:sanctum')
     ->patch('/mainEditProfile', [UserController::class, 'mainEditProfile']);
 
 Route::post('/avatar/Profile', [UserController::class, 'updateAvatar'])
@@ -44,3 +44,4 @@ Route::middleware('auth:sanctum')->group(function() {
 });
 
 Route::get('/resumes', [ResumeController::class, 'index']);
+Route::middleware('auth:sanctum')->delete('/resumeDelete/{id}', [ResumeController::class, 'deleteResume']);

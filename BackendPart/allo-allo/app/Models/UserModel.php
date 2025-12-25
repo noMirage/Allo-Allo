@@ -11,7 +11,9 @@ class UserModel extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
-    protected $table = 'users';
+     protected $table = 'users';
+
+     protected $with = ['resumes'];
   
    protected $fillable = [
     "id",

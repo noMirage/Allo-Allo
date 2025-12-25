@@ -42,6 +42,7 @@ export function ModalEdit(props: IProps) {
                         formData.append('location', location);
                         const data = await utilServer(MAIN_EDIT_PROFILE, 'patch', formData);
                         if (data.success && hasKeys<IUser>(data.data!)) {
+                            console.log(data.data);
                             dispatch(update(data.data));
                         }
                     }}

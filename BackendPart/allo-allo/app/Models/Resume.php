@@ -10,6 +10,8 @@ class Resume extends Model
     protected $fillable = [
         'user_id', 'category_id', 'title', 'description', 'images'
     ];
+    
+    protected $with = ['category']; 
 
     protected $casts = [
         'images' => 'array',

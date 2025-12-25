@@ -64,8 +64,6 @@ class UserController extends Controller{
 
        $user = $tokenModel->tokenable;
 
-       $user->load('resumes');
-
        return response()->json($user);
   }
 
@@ -85,9 +83,10 @@ class UserController extends Controller{
           if (isset($data['phone'])) $updateData['phone'] = $data['phone'];
           if (isset($data['location'])) $updateData['location'] = $data['location'];
 
-            if (!empty($updateData)) {
-               $user->update($updateData);
-              }
+          if (!empty($updateData)) {
+              $user->update($updateData);
+              $user->refresh(); 
+           }
 
           return response()->json([
              'success' => true,

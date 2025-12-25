@@ -1,4 +1,4 @@
-import { TCategoryWorks } from "../../../constants/works";
+import { TCategoryWorks } from "../../../interfaces/works";
 
 export type TUserDataWResume = {
   category: TCategoryWorks;

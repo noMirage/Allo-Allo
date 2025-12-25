@@ -4,7 +4,7 @@ import { Navigate } from '../../components/ui/navigate/navigate';
 import { INavigate } from '../../interfaces/navigate';
 import { ABOUT_US_PATH, HOME_PATH } from '../../routs/routs';
 
-const NAV_LIST: INavigate[] = [{ name: 'Головна', to: HOME_PATH }, { name: 'Про нас', to: ABOUT_US_PATH }];
+const NAV_LIST: INavigate[] = [{ category: 'Головна', to: HOME_PATH }, { category: 'Про нас', to: ABOUT_US_PATH }];
 
 export function Contacts() {
     return (

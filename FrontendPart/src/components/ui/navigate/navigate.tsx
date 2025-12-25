@@ -18,7 +18,7 @@ export function Navigate(props: IProps) {
       {navigateList.map((item, _) => (
         <li className={styles.item}>
           <Link to={`${item.to}`} className={gStyles.textBig}>
-            {item.name}
+            {item.category}
           </Link>
         </li>
       ))}

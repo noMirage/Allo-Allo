@@ -1,26 +1,18 @@
-import gStyles from '../../../../styles/styles.module.scss';
-import styles from './styles.module.scss';
-import warning from '../../../../assets/global/warning.svg';
-import pStyles from '../../styles.module.scss';
-import { Link } from 'react-router-dom';
-import { CREATE_RESUME } from '../../../../routs/routs';
+import { TResume } from '../../../../interfaces/user';
+import { ListResumes } from './components/ListResumes/listResumes';
+import { NoResume } from './components/NoResume/NoResume';
 
-export function UserResume(props: any) {
+interface IProps {
+    resumes: TResume[] | [];
+}
 
-    const { } = props;
+export function UserResume(props: IProps) {
 
-    return (<div className={styles.resume}>
-        <h2 className={`${gStyles.textLarge} ${styles.title}`}>Резюме</h2>
-        <div className={styles.body}>
-            <div className={styles.container}>
-                <div className={`${styles.bodyImage}`}>
-                    <img src={warning} />
-                </div>
-                <p className={`${gStyles.textLarge} ${styles.text}`}>Ви немаєте жодного створенного резюме, будь ласка створіть!</p>
-                <Link to={CREATE_RESUME} className={`${gStyles.textBig} ${styles.createButton} ${pStyles.button}`}>Створити резюме</Link>
-            </div>
-        </div>
-    </div>
-    );
+    const { resumes } = props;
 
+    if (Array.isArray(resumes) && !resumes.length) {
+        return <NoResume />
+    } else {
+        return <ListResumes resumes={resumes} />
+    }
 }

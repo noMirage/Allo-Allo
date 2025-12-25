@@ -1,4 +1,4 @@
 export interface INavigate {
-    name: string;
+    category: string;
     to: string;
 }
