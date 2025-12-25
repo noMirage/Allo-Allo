@@ -1,0 +1,55 @@
+@use 'sass:map';
+@use '../../../utils/styles/functions.scss' as f;
+@use '../../../utils/styles/mixins.scss' as m;
+@import '../../../utils/styles/colors.scss';
+
+.title {
+    margin-bottom: f.rem(15);
+}
+
+.containerInput {
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.hiddenInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+
+.input {
+    @include m.input($padding: f.rem(12) f.rem(15) f.rem(12) f.rem(15),
+        $width: 100%,
+        $borderRadius: f.rem(6),
+        $border: 1px solid map.get($colors, 'gray'),
+        $backgroundColor: map.get($colors, 'white'),
+        $color: map.get($colors, 'black'));
+    margin-bottom: f.rem(15);
+    cursor: pointer;
+}
+
+
+.title {
+    margin-bottom: f.rem(15);
+}
+
+.listImages {
+    margin: f.rem(20) 0 f.rem(20) 0;
+    gap: f.rem(20);
+    display: flex;
+
+    li {
+
+        img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

@@ -5,7 +5,7 @@ import resume from '../../../../../../assets/global/resume.svg';
 import 'swiper/css';
 import { IUser, TResume } from '../../../../../../interfaces/user';
 import { Link } from 'react-router-dom';
-import { CREATE_RESUME } from '../../../../../../routs/routs';
+import { CHANGE_RESUME, CREATE_RESUME } from '../../../../../../routs/routs';
 import { DELETE_RESUME } from '../../../../../../configs/configs';
 import { utilServer } from '../../../../../../utils/js/utilServer';
 import { useAppDispatch } from '../../../../../../hooks/AppRedux';
@@ -37,7 +37,7 @@ export function ListResumes(props: IProps) {
                 <Link to={CREATE_RESUME} className={`${gStyles.textBig} ${styles.createButton} ${pStyles.button} ${styles.buttonCreate} `}>Створити резюме</Link>
             </div>
             <ul className={styles.list}>
-                {resumes.map((item, _) => {
+                {resumes.map((item, index) => {
                     const work = WORKS.find(
                         work => work.category === item.category.name
                     );
@@ -51,7 +51,7 @@ export function ListResumes(props: IProps) {
                                 <h3 className={gStyles.textLarge}>{item.title}</h3>
                             </div>
                             <div className={styles.containerButtons}>
-                                <Link to='' className={`${gStyles.textBig} ${styles.buttonChange}`}>Змінити</Link>
+                                <Link to={`${CHANGE_RESUME}/${index}`} className={`${gStyles.textBig} ${styles.buttonChange}`}>Змінити</Link>
                                 <button onClick={() => handleSubmit(item.id)} className={`${gStyles.textBig} ${styles.buttonRemove}`}>Видалити</button>
                             </div>
                         </li>

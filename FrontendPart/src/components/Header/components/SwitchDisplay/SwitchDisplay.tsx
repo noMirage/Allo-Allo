@@ -7,7 +7,7 @@ import { useAppSelector } from "../../../../hooks/AppRedux";
 import { PROFILE_PATH, REGISTER_PATH } from "../../../../routs/routs";
 import { IUser } from "../../../../interfaces/user";
 import { hasKeys } from "../../../../utils/js/checkTypes";
-import { PATH_TO_AVATAR } from "../../../../configs/configs";
+import { PATH_TO_STORE } from "../../../../configs/configs";
 
 export function SwitchDisplay() {
     const user: IUser | {} = useAppSelector((state) => state.user.data);
@@ -16,7 +16,7 @@ export function SwitchDisplay() {
         return (
             <li className={styles.profile}>
                 <p className={`${gStyles.textLarge} ${styles.fullName}`}>{user.full_name}</p>
-                <Link to={PROFILE_PATH} className={`${styles.containerAvatar}`}><img src={user.avatar ? `${PATH_TO_AVATAR}${user.avatar}` : defaultAvatar} alt="" /></Link>
+                <Link to={PROFILE_PATH} className={`${styles.containerAvatar}`}><img src={user.avatar ? `${PATH_TO_STORE}${user.avatar}` : defaultAvatar} alt="" /></Link>
             </li>
         )
     } else {

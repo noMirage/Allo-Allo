@@ -1,9 +1,9 @@
-import { TMajors } from "./works";
+import { TCategoryWorks } from "./works";
 
 export type TCategory = {
   created_at: string;
   id: number;
-  name: TMajors;
+  name: TCategoryWorks;
   slug: string;
   updated_at: string;
 };

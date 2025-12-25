@@ -1,8 +1,8 @@
 import styles from './styles.module.scss';
 import defaultAvatar from '../../../../../../assets/global/avatar.jpg';
 import { utilServer } from '../../../../../../utils/js/utilServer';
-import { AVATAR_PROFILE, PATH_TO_AVATAR } from '../../../../../../configs/configs';
-import { useAppDispatch, useAppSelector } from '../../../../../../hooks/AppRedux';
+import { AVATAR_PROFILE, PATH_TO_STORE } from '../../../../../../configs/configs';
+import { useAppDispatch } from '../../../../../../hooks/AppRedux';
 import { update } from '../../../../../../servers/user';
 import { hasKeys } from '../../../../../../utils/js/checkTypes';
 import { IUser } from '../../../../../../interfaces/user';
@@ -43,7 +43,7 @@ export function Avatar(props: IProps) {
 
     return (
         <div className={`${styles.bodyAvatar}`}>
-            <img src={avatar ? `${PATH_TO_AVATAR}${avatar}` : defaultAvatar} alt="" />
+            <img src={avatar ? `${PATH_TO_STORE}${avatar}` : defaultAvatar} alt="" />
             <input name='avatar' accept='image/*' type='file' onChange={handleAvatarChange} />
         </div>
     );

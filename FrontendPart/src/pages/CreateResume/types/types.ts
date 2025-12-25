@@ -4,6 +4,6 @@ export type TUserDataWResume = {
   category: TCategoryWorks;
   title: string;
   description: string;
-  images: FileList | null;
-  [key: string]: TCategoryWorks | string | FileList | null;
+  images: FileList | string[];
+  [key: string]: TCategoryWorks | string | FileList | string[];
 };

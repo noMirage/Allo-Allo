@@ -9,13 +9,11 @@ export const REGISTER_PATH = "/register";
 export const DETAIL_REGISTER = "/detailRegister";
 export const PROFILE_PATH = "/profile";
 export const CREATE_RESUME = "/createResume";
+export const CHANGE_RESUME = "/changeResume";
 
 export const PAGES_WITHOUT_LAYOUT = [
   REGISTER_PATH,
   DETAIL_REGISTER,
   CREATE_RESUME,
-  `${DETAIL_REGISTER}/registerStepOne`,
-  `${DETAIL_REGISTER}/registerStepSecond`,
-  `${CREATE_RESUME}/createStepOne`,
-  `${CREATE_RESUME}/createStepSecond`,
+  CHANGE_RESUME,
 ];

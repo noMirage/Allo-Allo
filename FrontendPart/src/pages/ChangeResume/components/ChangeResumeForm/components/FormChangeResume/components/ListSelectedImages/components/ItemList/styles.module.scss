@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '../../../../../../../../../../utils/styles/functions.scss' as f;
+@use '../../../../../../../../../../utils/styles/mixins.scss' as m;
+@import '../../../../../../../../../../utils/styles/colors.scss';
+
+.body {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+
+    img {
+        max-width: 20px;
+        max-height: 20px;
+    }
+}

@@ -11,6 +11,8 @@ import { update } from '../../../../servers/user';
 import { hasKeys } from '../../../../utils/js/checkTypes';
 import { IUser } from '../../../../interfaces/user';
 import { useAppDispatch } from '../../../../hooks/AppRedux';
+import { SelectImage } from '../../../../components/ui/selectImage/selectImage';
+import { TPreviews } from '../../../../interfaces/global';
 
 interface IProps {
     comeBack: string;
@@ -21,30 +23,11 @@ interface IProps {
 export function CreateStepSecond(props: IProps) {
     const { setData, comeBack, dataResume } = props;
 
-    const [previews, setPreviews] = useState<string[]>([]);
+    const [previews, setPreviews] = useState<TPreviews[]>([]);
 
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
-
-    function handleSelectImages(event: React.ChangeEvent<HTMLInputElement>) {
-
-        const files = event.target.files;
-        if (!files) return;
-
-        const urls = Array.from(files).map(file =>
-            URL.createObjectURL(file)
-        );
-
-        setPreviews(urls);
-
-        setData((prevState) => {
-            const newState = { ...prevState };
-            newState.images = files;
-            return newState;
-        });
-
-    }
 
     async function handleSubmit() {
         const formData = new FormData();
@@ -52,7 +35,7 @@ export function CreateStepSecond(props: IProps) {
         formData.append('description', dataResume.description);
         formData.append('title', dataResume.title);
         if (dataResume.images && dataResume.images.length > 0) {
-            Array.from(dataResume.images).forEach((file) => {
+            Array.from([dataResume.images]).forEach((file) => {
                 if (file instanceof File) {
                     formData.append('images[]', file);
                 }
@@ -71,19 +54,19 @@ export function CreateStepSecond(props: IProps) {
             <div className={styles.container}>
                 <div className={`${styles.body}`}>
                     <p className={`${gStyles.textExtraLarge} ${styles.title}`} >Завантажте фотографії ваших робіт</p>
-                    <div className={styles.containerInput}>
-                        <p className={`${gStyles.textLarge}`}>Натисни, щоб завантажити фото</p>
-                        <input onChange={(event) => handleSelectImages(event)} className={`${styles.input}`} accept="image/*" multiple type='file' name="images[]" />
-                    </div>
+                    <SelectImage previews={previews} setPreviews={setPreviews} setData={setData}>
+                        {
+                            previews.length > 0 &&
+                            <ul className={`${styles.listImages}`}>
+                                {previews.map((src) => (
+                                    <li key={src.url}>
+                                        <img src={src.url} />
+                                    </li>
+                                ))}
+                            </ul>
+                        }
+                    </SelectImage>
                 </div>
-                {previews.length > 0 &&
-                    <ul className={styles.listImages}>
-                        {previews.map((src) => (
-                            <li key={src}>
-                                <img src={src} />
-                            </li>
-                        ))}
-                    </ul>}
                 <div className={pStyles.containerButtons}>
                     <Link className={`${gStyles.textBig}`} to={`${CREATE_RESUME}${comeBack}`}>
                         Назад

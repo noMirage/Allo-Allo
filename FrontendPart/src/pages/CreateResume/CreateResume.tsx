@@ -37,7 +37,7 @@ export function CreateResume() {
         category: "сантехніка",
         title: "",
         description: "",
-        images: null,
+        images: [],
     });
 
     if (hasKeys<IUser>(user)) {
