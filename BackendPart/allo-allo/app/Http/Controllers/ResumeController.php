@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Resume;
 use App\Models\ResumeCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ResumeController extends Controller
 {
@@ -99,4 +100,58 @@ class ResumeController extends Controller
             "data" => auth()->user()->fresh(),
         ], 200);
     }
+    
+public function updateResume(Request $request, $id){
+    $request->merge([
+        'category_id' => intval($request->input('category_id')),
+     ]);
+
+    $resume = Resume::where('id', $id)
+                    ->where('user_id', auth()->id())
+                    ->firstOrFail();
+
+    $data = $request->validate([
+        'category_id' => 'required|integer|exists:resume_categories,id',
+        'title'       => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'images'      => 'nullable|array',
+        'images.*'    => 'file|image|max:5120',
+        'existing_images'   => 'nullable|array',
+        'existing_images.*' => 'string',
+    ]);
+
+    $resume->update([
+        'title'       => $data['title'],
+        'description' => $data['description'] ?? '',
+        'category_id' => $data['category_id'],
+    ]);
+
+    $oldImages = is_array($resume->images) ? $resume->images : [];
+    $keepImages = $data['existing_images'] ?? [];
+
+    foreach ($oldImages as $img) {
+        if (!in_array($img, $keepImages)) {
+            Storage::disk('public')->delete($img);
+        }
+    }
+
+    $finalImages = $keepImages;
+
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $file) {
+            $finalImages[] = $file->store(
+                "resumes/{$resume->user_id}/{$resume->id}",
+                'public'
+            );
+        }
+    }
+
+    $resume->update(['images' => $finalImages]);
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Резюме оновлено',
+        "data" => auth()->user()->fresh(),
+    ]);
+}
 }

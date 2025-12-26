@@ -40,9 +40,8 @@ export function ModalEdit(props: IProps) {
                         formData.append('fullName', values.fullName);
                         formData.append('phone', values.phone);
                         formData.append('location', location);
-                        const data = await utilServer(MAIN_EDIT_PROFILE, 'patch', formData);
+                        const data = await utilServer(MAIN_EDIT_PROFILE, 'patch', formData, () => {}, true);
                         if (data.success && hasKeys<IUser>(data.data!)) {
-                            console.log(data.data);
                             dispatch(update(data.data));
                         }
                     }}

@@ -43,5 +43,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/myResumes', [ResumeController::class, 'myResumes']);
 });
 
+Route::post('/updateResume/{id}', [ResumeController::class, 'updateResume']);
+
 Route::get('/resumes', [ResumeController::class, 'index']);
 Route::middleware('auth:sanctum')->delete('/resumeDelete/{id}', [ResumeController::class, 'deleteResume']);

@@ -32,6 +32,8 @@
         background-color: map.get($colors, 'amber');
         color: map.get($colors, 'white');
         border-radius: f.rem(12);
+        display: flex;
+        align-items: center;
 
         &::after {
             content: "";

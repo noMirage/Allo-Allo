@@ -13,7 +13,7 @@ interface IProps {
 }
 
 export function SelectImage(props: IProps) {
-    const { setPreviews, setData, className = '', children } = props;
+    const { setPreviews, setData, className = '', children, previews } = props;
 
     function handleSelectImages(event: React.ChangeEvent<HTMLInputElement>) {
 
@@ -29,7 +29,7 @@ export function SelectImage(props: IProps) {
 
         setData((prevState: any) => {
             const newState = { ...prevState };
-            newState.images = files;
+            newState.images = previews;
             return newState;
         });
 

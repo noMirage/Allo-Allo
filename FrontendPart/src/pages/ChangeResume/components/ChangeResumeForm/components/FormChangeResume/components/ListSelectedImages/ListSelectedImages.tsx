@@ -1,8 +1,8 @@
 import styles from './styles.module.scss';
 import { SelectImage } from "../../../../../../../../components/ui/selectImage/selectImage";
 import { TUserDataWResumeWithoutCategory } from "../../../../types/types";
-import { ItemList } from "./components/ItemList/ItemList";
 import { TPreviews } from '../../../../../../../../interfaces/global';
+import { ItemSelectedImage } from '../../../../../../../../components/ItemSelectedImage/ItemSelectedImage';
 
 
 interface IProps {
@@ -22,7 +22,7 @@ export function ListSelectedImages(props: IProps) {
                 <ul className={`${styles.listImages}`}>
                     {previews.map((src, index) => {
                         return (
-                            <ItemList setPreviews={setPreviews} src={src.url} index={index} />
+                            <ItemSelectedImage key={src.url} setPreviews={setPreviews} src={src.url} index={index} />
                         )
                     })}
                 </ul>

@@ -13,6 +13,7 @@ import { IUser } from '../../../../interfaces/user';
 import { useAppDispatch } from '../../../../hooks/AppRedux';
 import { SelectImage } from '../../../../components/ui/selectImage/selectImage';
 import { TPreviews } from '../../../../interfaces/global';
+import { ItemSelectedImage } from '../../../../components/ItemSelectedImage/ItemSelectedImage';
 
 interface IProps {
     comeBack: string;
@@ -34,13 +35,8 @@ export function CreateStepSecond(props: IProps) {
         formData.append('category', dataResume.category);
         formData.append('description', dataResume.description);
         formData.append('title', dataResume.title);
-        if (dataResume.images && dataResume.images.length > 0) {
-            Array.from([dataResume.images]).forEach((file) => {
-                if (file instanceof File) {
-                    formData.append('images[]', file);
-                }
-            });
-        }
+        previews.filter((img): img is { url: string; file: File } => img.file instanceof File).forEach(img => formData.append('images[]', img.file));
+
         const data = await utilServer(POST_ADD_RESUME, 'post', formData, () => { }, false);
 
         if (data.success && hasKeys<IUser>(data.data!)) {
@@ -58,11 +54,9 @@ export function CreateStepSecond(props: IProps) {
                         {
                             previews.length > 0 &&
                             <ul className={`${styles.listImages}`}>
-                                {previews.map((src) => (
-                                    <li key={src.url}>
-                                        <img src={src.url} />
-                                    </li>
-                                ))}
+                                {previews.map((src, index) =>
+                                    <ItemSelectedImage key={src.url} setPreviews={setPreviews} src={src.url} index={index} />
+                                )}
                             </ul>
                         }
                     </SelectImage>

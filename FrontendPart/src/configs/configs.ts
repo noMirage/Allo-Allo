@@ -11,4 +11,5 @@ export const POST_VERIFICATY_EMAIL = "/verificatyEmail";
 export const POST_CONFIRM_EMAIL = "/confirmEmail";
 export const POST_ADD_RESUME = "/addResumes";
 export const DELETE_RESUME = "/resumeDelete/";
+export const UPDATE_RESUME = "/updateResume/";
 export const PATH_TO_STORE = 'http://localhost:8000/storage/';

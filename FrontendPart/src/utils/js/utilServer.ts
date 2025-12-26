@@ -11,8 +11,8 @@ export async function utilServer<T>(
   options: boolean = true
 ): Promise<ApiResult<T>> {
   const headers = options
-    ? { "Content-Type": "application/json", Accept: "application/json" }
-    : { Accept: "application/json" };
+    ? { "Content-Type": "application/json", Accept: "application/json"  }
+    : { Accept: "application/json", 'Content-Type': 'multipart/form-data' };
 
   try {
     const res = await axios.request({

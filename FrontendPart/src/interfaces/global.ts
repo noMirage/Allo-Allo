@@ -7,5 +7,5 @@ export type TRoutes = {
 
 export type TPreviews = {
   url: string;
-  files?: File;
+  file?: File;
 };

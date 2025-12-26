@@ -1,9 +1,8 @@
 import { useState } from "react";
 import styles from './styles.module.scss';
-import { PATH_TO_STORE } from "../../../../../../../../../../configs/configs";
-import iconDelete from '../../../../../../../../../../assets/global/delete.svg';
-import { TUserDataWResumeWithoutCategory } from "../../../../../../types/types";
-import { TPreviews } from "../../../../../../../../../../interfaces/global";
+import { PATH_TO_STORE } from "../../configs/configs";
+import iconDelete from '../../assets/global/delete.svg';
+import { TPreviews } from "../../interfaces/global";
 
 
 interface IProps {
@@ -12,7 +11,7 @@ interface IProps {
     setPreviews: React.Dispatch<React.SetStateAction<TPreviews[]>>;
 }
 
-export function ItemList(props: IProps) {
+export function ItemSelectedImage(props: IProps) {
 
     const { src, index, setPreviews } = props;
 
@@ -27,7 +26,7 @@ export function ItemList(props: IProps) {
     }
 
     return (
-        <li key={src} onMouseLeave={() => setIsShowDeleteIcon(false)} onMouseEnter={() => setIsShowDeleteIcon(true)}>
+        <li onMouseLeave={() => setIsShowDeleteIcon(false)} onMouseEnter={() => setIsShowDeleteIcon(true)}>
             <div className={styles.body}>
                 {isShowDeleteIcon && <div onClick={() => handleDeleteImage()} className={styles.icon}><img src={iconDelete} alt="" /></div>}
                 {src.startsWith('blob:') ? <img src={src} /> : <img src={`${PATH_TO_STORE}${src}`} />}
