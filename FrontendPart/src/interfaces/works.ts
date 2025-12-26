@@ -1,11 +1,12 @@
-export interface IBaseinfoWorkers {
+import { IUser } from "./user";
+
+export type TCategory = {
+  created_at: string;
   id: number;
-  title: string;
-  text: string;
-  logo: string;
-  rating: number;
-  reviews: number;
-}
+  name: TCategoryWorks;
+  slug: string;
+  updated_at: string;
+};
 
 export type TCategoryWorks =
   | "сантехніка"

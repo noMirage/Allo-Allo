@@ -1,8 +1,4 @@
 import { configureStore, Reducer } from "@reduxjs/toolkit";
-import {
-  IinitialStateSearchWorkers,
-  searchWorkersReducer,
-} from "../servers/searchWorkers";
 import { TypedUseSelectorHook } from "react-redux";
 import {
   detailsWorkerReducer,
@@ -15,14 +11,12 @@ import {
 import { IinitialStateUser, userReducer } from "../servers/user";
 
 interface IReducer {
-  searchWorkers: Reducer<IinitialStateSearchWorkers>;
   detailsWorkerReducer: Reducer<IinitialStateDetailsWorker>;
   getVacanciesReducer: Reducer<IinitialStateGetVacancies>;
   user: Reducer<IinitialStateUser>;
 }
 
 const reducer: IReducer = {
-  searchWorkers: searchWorkersReducer,
   detailsWorkerReducer: detailsWorkerReducer,
   getVacanciesReducer: getVacanciesReducer,
   user: userReducer,

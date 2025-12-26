@@ -12,21 +12,17 @@ import { ORDER_WORK_PATH } from "../../routs/routs";
 import { WORKS } from "../../constants/works";
 import { ReactComponent as Arrow } from '../../assets/global/singleArrow.svg';
 import { Navigate } from "../../components/ui/navigate/navigate";
+import { useResume } from "../../hooks/useResume";
+import { IResume } from "../../interfaces/resume";
+import { GET_SELECTED_RESUME } from "../../configs/configs";
+import { hasKeys } from "../../utils/js/checkTypes";
 
 export function DetailsWorker() {
-    const { id, title, prevLocation } = useParams();
+    const { id, prevLocation, title } = useParams();
 
-    const dispatch = useAppDispatch();
+    const [data] = useResume<IResume>(`${GET_SELECTED_RESUME}${id || 0}`,);
 
-    useEffect(() => {
-        if (id) {
-            dispatch(getDetailsWorker(Number(id)));
-        }
-    }, [id]);
-
-    const data = useAppSelector((state) => state.detailsWorkerReducer.data);
-
-    if (data && "gallery" in data && Array.isArray(data.gallery) && title && prevLocation) {
+    if (data && hasKeys<IResume>(data) && title) {
         return (
             <section className={styles.wrapper}>
                 <div className={`${gStyles.container}`}>
@@ -37,8 +33,8 @@ export function DetailsWorker() {
                         </li>
                     </Navigate>
                     <div className={styles.body}>
-                        <Gallery dataGallery={data.gallery} />
-                        <Contact date={data.date} title={title} />
+                        <Gallery dataGallery={data.images} />
+                        <Contact fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} title={title} />
                     </div>
                     <Description description={data.description} />
                 </div>

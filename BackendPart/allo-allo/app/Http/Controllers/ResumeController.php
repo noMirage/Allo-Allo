@@ -154,4 +154,42 @@ public function updateResume(Request $request, $id){
         "data" => auth()->user()->fresh(),
     ]);
 }
+public function getAllByCategory(string $category)
+{
+    $categoryModel = ResumeCategory::where('name', $category)->first();
+
+    if (!$categoryModel) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Категорія не знайдена',
+        ], 404);
+    }
+
+    $resumes = Resume::where('category_id', $categoryModel->id)
+        ->with('user:id,full_name,avatar,phone,email,location') 
+        ->latest()
+        ->paginate(50);
+
+    return response()->json([
+        'success' => true,
+        'data' => $resumes->items(),
+    ]);
+}
+public function getResumeById($id)
+{
+    $resume = Resume::with('user:id,full_name,avatar,phone,email,location') 
+                    ->find($id);
+
+    if (!$resume) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Резюме не знайдено',
+        ], 404);
+    }
+
+    return response()->json([
+        'success' => true,
+        'data' => $resume,
+    ]);
+}
 }

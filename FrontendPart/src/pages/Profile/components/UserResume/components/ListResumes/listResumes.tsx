@@ -5,7 +5,7 @@ import resume from '../../../../../../assets/global/resume.svg';
 import 'swiper/css';
 import { IUser, TResume } from '../../../../../../interfaces/user';
 import { Link } from 'react-router-dom';
-import { CHANGE_RESUME, CREATE_RESUME } from '../../../../../../routs/routs';
+import { CHANGE_RESUME, CREATE_RESUME, DETAILS_WORKER_PATH } from '../../../../../../routs/routs';
 import { DELETE_RESUME } from '../../../../../../configs/configs';
 import { utilServer } from '../../../../../../utils/js/utilServer';
 import { useAppDispatch } from '../../../../../../hooks/AppRedux';
@@ -43,13 +43,15 @@ export function ListResumes(props: IProps) {
                     );
                     return (
                         <li className={styles.container}>
-                            <div className={styles.bodyImage}>
-                                <img src={work?.icon ? work.icon : resume} alt="" />
-                            </div>
-                            <div className={styles.bodyInfo}>
-                                <h2 className={gStyles.textLarge}>{item.category.name}</h2>
-                                <h3 className={gStyles.textLarge}>{item.title}</h3>
-                            </div>
+                            <Link className={styles.bodyItem} to={`${DETAILS_WORKER_PATH}/${item.id}/${item.title}/${item.category.name}`}>
+                                <div className={styles.bodyImage}>
+                                    <img src={work?.icon ? work.icon : resume} alt="" />
+                                </div>
+                                <div className={styles.bodyInfo}>
+                                    <h2 className={gStyles.textLarge}>{item.category.name}</h2>
+                                    <h3 className={gStyles.textLarge}>{item.title}</h3>
+                                </div>
+                            </Link>
                             <div className={styles.containerButtons}>
                                 <Link to={`${CHANGE_RESUME}/${index}`} className={`${gStyles.textBig} ${styles.buttonChange}`}>Змінити</Link>
                                 <button onClick={() => handleSubmit(item.id)} className={`${gStyles.textBig} ${styles.buttonRemove}`}>Видалити</button>

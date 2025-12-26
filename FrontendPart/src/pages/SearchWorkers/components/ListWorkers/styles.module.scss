@@ -55,34 +55,10 @@
     }
 }
 
-.star {
-    display: flex;
-    align-items: center;
-    flex: 1 1 auto;
-
-    p {
-        font-weight: 700;
-    }
-
-    img {
-        max-width: 40px;
-        margin-right: f.rem(10);
-    }
-}
 
 .bodyInfo {
     padding: f.rem(20) 0 0 0;
     border-top: f.rem(2) solid map.get($colors, 'black');
     display: flex;
     align-items: center;
-}
-
-.reviews {
-    display: flex;
-    align-items: center;
-
-    img {
-        max-width: 40px;
-        margin-right: f.rem(10);
-    }
 }

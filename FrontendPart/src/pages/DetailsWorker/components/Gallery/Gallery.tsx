@@ -2,6 +2,7 @@ import styles from './styles.module.scss';
 import './styles.scss';
 import Fancybox from '../../../../containers/Fancybox/Fancybox';
 import Carousel from '../../../../containers/Carousel/Carousel';
+import { PATH_TO_STORE } from '../../../../configs/configs';
 
 interface IProps {
     dataGallery: string[];
@@ -30,8 +31,8 @@ export function Gallery(props: IProps) {
                     >
                         {dataGallery.map((item, _) => (
                             <a data-fancybox="gallery" className={`${styles.itemGallery} log f-carousel__slide`}
-                                href="https://t3.ftcdn.net/jpg/01/79/28/02/360_F_179280204_Yu8ysrTC8ep7Ikl6AjPSaSQoQ9aSGzif.jpg">
-                                <img src='https://t3.ftcdn.net/jpg/01/79/28/02/360_F_179280204_Yu8ysrTC8ep7Ikl6AjPSaSQoQ9aSGzif.jpg' />
+                                href={item ? `${PATH_TO_STORE}${item}` : ""}>
+                                <img src={item ? `${PATH_TO_STORE}${item}` : ""} />
                             </a>
                         ))}
                     </Carousel>

@@ -1,12 +1,4 @@
-import { TCategoryWorks } from "./works";
-
-export type TCategory = {
-  created_at: string;
-  id: number;
-  name: TCategoryWorks;
-  slug: string;
-  updated_at: string;
-};
+import { TCategory } from "./works";
 
 export type TResume = {
   category: TCategory;
