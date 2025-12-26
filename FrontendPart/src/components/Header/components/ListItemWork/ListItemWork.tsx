@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import gStyles from "../../../../styles/styles.module.scss";
 import pStyles from "../../styles.module.scss";
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DropDownMenu } from "../../../../containers/DropDownMenu/DropDownMenu";
 import { WORKS } from "../../../../constants/works";
 
@@ -19,6 +19,20 @@ export function ListItemWork(props: IProps) {
     const refWorks = useRef<HTMLAnchorElement | null>(null);
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    function handleTrackClick() {
+        document.addEventListener("click", (event) => {
+            if (event.target instanceof HTMLElement && !event.target.closest(`.${pStyles.listName}`)) {
+                setIsOpen(false);
+            }
+
+        });
+    }
+
+    useEffect(() => {
+        handleTrackClick();
+        return () => handleTrackClick();
+    }, []);
 
     return (
         <li
@@ -45,10 +59,10 @@ export function ListItemWork(props: IProps) {
                     {WORKS.map((item, _) => (
                         <Link
                             className={`${styles.item} ${gStyles.textLarge}`}
-                            to={`${item.to}/:${item.name}`}
+                            to={`${item.to}/:${item.category}`}
                             onClick={() => setIsOpen(false)}
                         >
-                            {item.name}
+                            {item.category}
                         </Link>
                     ))}
                 </ul>

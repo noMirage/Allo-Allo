@@ -29,9 +29,46 @@
     }
 }
 
-.title {
+.category {
+    margin-bottom: f.rem(15);
+}
+
+.name {
     width: 100%;
+    margin-bottom: f.rem(10);
+    position: relative;
+    padding: 0 0 0 f.rem(30);
+
+    &::before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: url('../../../../assets/global/user.svg') 100%/100% no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(0, 25%);
+    }
+}
+
+.description {
     margin-bottom: f.rem(25);
+    text-transform: lowercase;
+    position: relative;
+    padding: 0 0 0 f.rem(30);
+
+    &::before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: url('../../../../assets/global/location.svg') 100%/100% no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(0, 50%);
+    }
 }
 
 .button {

@@ -1,7 +1,28 @@
+import { TCategory } from "./works";
+
+export type TUserRole = "jobSeeker" | "employer";
+
+export type TResume = {
+  category: TCategory;
+  category_id: number;
+  created_at: string;
+  description: string;
+  id: number;
+  images: string[];
+  title: string;
+  updated_at: string;
+  user_id: number;
+};
 export interface IUser {
-    fullName: string;
-    phone: string;
-    email: string;
-    location: string;
-    age?: number;
+  id: number;
+  role: TUserRole;
+  full_name: string;
+  phone: string;
+  email: string;
+  location: string;
+  age?: number;
+  avatar: string | null;
+  resumes: TResume[];
+  created_at: string;
+  updated_at: string;
 }

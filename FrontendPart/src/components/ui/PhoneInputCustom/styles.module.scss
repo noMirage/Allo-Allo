@@ -1,0 +1,66 @@
+@use 'sass:map';
+@use '../../../utils/styles/functions.scss' as f;
+@use '../../../utils/styles/mixins.scss' as m;
+@import '../../../utils/styles/colors.scss';
+
+
+.inputPhoneButton {
+    background-color: transparent !important;
+    max-width: f.rem(50) !important;
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bodyPhone :global(.form-control) {
+    width: 50%;
+    font-size: f.rem(18);
+    line-height: f.em(27, 18);
+    padding: f.rem(25) f.rem(60);
+    border: 1px solid map.get($colors, 'gray');
+    color: map.get($colors, 'black');
+    border-radius: f.rem(6);
+}
+
+.bodyPhone :global(.flag-dropdown) {
+    border: 0;
+    height: 90%;
+    transform: translateY(5%);
+}
+
+.containerCountries {
+    top: 100% !important;
+    left: 0%;
+}
+
+.bodyPhone :global(.react-tel-input .country) {
+    padding: f.rem(12) f.rem(15);
+
+    &:hover {
+        background-color: map.get($colors, 'gray');
+
+        .dial-code {
+            color: #fff !important;
+        }
+    }
+}
+
+.bodyPhone :global(.react-tel-input .flag) {
+    transform: scale(1.5);
+}
+
+.bodyPhone :global(.react-tel-input .country.highlight) {
+    background-color: map.get($colors, 'gray') !important;
+}
+
+.bodyPhone :global(.phoneDropdown) {
+    max-height: 220px;
+    overflow-y: auto;
+    border-radius: 12px;
+}
+
+
+.bodyPhone :global(.react-tel-input .country-list) {
+    overflow-y: auto;
+}

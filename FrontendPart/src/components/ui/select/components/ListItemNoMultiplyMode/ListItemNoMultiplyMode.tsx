@@ -12,10 +12,11 @@ interface IProps {
     handleSelectOption: (func: () => void) => void;
     className: string;
     firstOption: number | null;
+    handleSelect: (value: string) => void;
 }
 
 export default function ListItemNoMultiplyMode(props: IProps) {
-    const { refSelect, options, handleOpenOptions, refContent, handleSelectOption, className, firstOption } = props;
+    const { refSelect, options, handleOpenOptions, refContent, handleSelectOption, className, firstOption, handleSelect } = props;
 
     const [selectedOption, setSelectedOption] = useState<string>(firstOption === null ? options[0] : options[firstOption]);
 
@@ -29,7 +30,7 @@ export default function ListItemNoMultiplyMode(props: IProps) {
                 {options.map((item, index) => {
                     if (item !== selectedOption) {
                         return (
-                            <li onClick={() => handleSelectOption(() => {setSelectedOption(options[index])})} key={item} className={`${styles.item} ${gStyles.textBig}`}>{item}</li>
+                            <li onClick={() => handleSelectOption(() => { setSelectedOption(options[index]); handleSelect(options[index]) })} key={item} className={`${styles.item} ${gStyles.textBig}`}>{item}</li>
                         )
                     }
                 })}

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, useSearchParams } from "react-router-dom"
 import styles from './styles.module.scss';
 import gStyles from '../../styles/styles.module.scss';
 import { useAppDispatch, useAppSelector } from "../../hooks/AppRedux";
@@ -12,21 +12,22 @@ import { ORDER_WORK_PATH } from "../../routs/routs";
 import { WORKS } from "../../constants/works";
 import { ReactComponent as Arrow } from '../../assets/global/singleArrow.svg';
 import { Navigate } from "../../components/ui/navigate/navigate";
+import { useResume } from "../../hooks/useResume";
+import { IResume } from "../../interfaces/resume";
+import { GET_SELECTED_RESUME, POST_INCREMENT_VIEW } from "../../configs/configs";
+import { hasKeys } from "../../utils/js/checkTypes";
+import { utilServer } from "../../utils/js/utilServer";
 
 export function DetailsWorker() {
     const { id, title, prevLocation } = useParams();
 
-    const dispatch = useAppDispatch();
+    const [data] = useResume<IResume>(`${GET_SELECTED_RESUME}${id || 0}`);
 
     useEffect(() => {
-        if (id) {
-            dispatch(getDetailsWorker(Number(id)));
-        }
-    }, [id]);
+        utilServer(`${POST_INCREMENT_VIEW}${id}`, 'post');
+    }, []);
 
-    const data = useAppSelector((state) => state.detailsWorkerReducer.data);
-
-    if (data && "gallery" in data && Array.isArray(data.gallery) && title && prevLocation) {
+    if (data && hasKeys<IResume>(data) && title) {
         return (
             <section className={styles.wrapper}>
                 <div className={`${gStyles.container}`}>
@@ -37,8 +38,8 @@ export function DetailsWorker() {
                         </li>
                     </Navigate>
                     <div className={styles.body}>
-                        <Gallery dataGallery={data.gallery} />
-                        <Contact date={data.date} title={title} />
+                        <Gallery dataGallery={data.images || []} />
+                        <Contact location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
                     </div>
                     <Description description={data.description} />
                 </div>

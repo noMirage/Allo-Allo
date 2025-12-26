@@ -1,0 +1,11 @@
+@use 'sass:map';
+@use '../../../../../../utils/styles/functions.scss' as f;
+@import '../../../../../../utils/styles/colors.scss';
+
+.bodyText {
+    flex: 1 1 auto;
+
+    h3 {
+        margin-bottom: f.rem(10);
+    }
+}

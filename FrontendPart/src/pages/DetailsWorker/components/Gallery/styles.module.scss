@@ -14,18 +14,6 @@
     margin-bottom: f.rem(30);
 }
 
-.itemGallery {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    img {
-        min-width: 100%;
-        max-height: f.rem(500);
-        object-fit: cover;
-    }
-}
-
 .wrapper {
     max-width: f.rem(950);
     height: 100%;

@@ -1,12 +1,11 @@
 import styles from './styles.module.scss';
 import logo from '../../assets/Header/logo.svg';
-import phone from '../../assets/Header/phoneBlack.svg';
-import email from '../../assets/Header/emailBlack.svg';
+import phone from '../../assets/global/phoneBlack.svg';
 import gStyles from '../../styles/styles.module.scss';
 import { Link } from 'react-router-dom';
 import { NAVIGATION_LINKS } from '../../constants/navigationLinks';
 import { ListItemWork } from './components/ListItemWork/ListItemWork';
-import { REGISTER_PATH } from '../../routs/routs';
+import { SwitchDisplay } from './components/SwitchDisplay/SwitchDisplay';
 
 export function Header() {
 
@@ -24,12 +23,7 @@ export function Header() {
                             <address className={gStyles.textLarge}>+ 380 954 944 9333</address>
                             <img src={phone} />
                         </li>
-                        <li className={styles.collab}>
-                            <Link to={REGISTER_PATH} className={gStyles.textExtraBig}><img src={email} /> Зареєструватися</Link>
-                        </li>
-                        <li>
-                            <button className={`${styles.button} ${gStyles.textExtraBig}`}>Увійти</button>
-                        </li>
+                        <SwitchDisplay />
                     </ul>
                 </div>
                 <div className={styles.bodyList}>

@@ -11,7 +11,9 @@ class UserModel extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
-    protected $table = 'users';
+     protected $table = 'users';
+
+     protected $with = ['resumes'];
   
    protected $fillable = [
     "id",
@@ -21,6 +23,15 @@ class UserModel extends Authenticatable
     "phone",
     "age",
     "avatar",
-    "description", 
+    "description",
    ];
+
+    public function resumes()
+{
+    return $this->hasMany(Resume::class, 'user_id', 'id');
+}
+   public function resumeViews()
+    {
+     return $this->hasMany(ResumeView::class);
+    }
 }

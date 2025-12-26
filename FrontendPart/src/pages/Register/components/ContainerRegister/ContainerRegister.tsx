@@ -28,7 +28,7 @@ export function ContainerRegister() {
 
   if (verificationEmail) {
     return (
-      <RegisterEmail handleSubmit={handleSubmit} />
+      <RegisterEmail setVerificationEmail={setVerificationEmail} handleSubmit={handleSubmit} />
     )
   } else {
     return (

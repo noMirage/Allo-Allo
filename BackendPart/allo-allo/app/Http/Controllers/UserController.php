@@ -6,6 +6,8 @@ use App\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailVerificationMail;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\PersonalAccessToken;
 require_once app_path('/Utils/createAuthCookie.php');
 
 class UserController extends Controller{
@@ -42,46 +44,6 @@ class UserController extends Controller{
           ], 201)->withCookie($cookie);;
         }
 
-    public function logIn(Request $request) {
-      $request->validate([
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-       ]);
-
-       $user = UserModel::where('email', $request->email)->first();
-
-       if(!$user || !Hash::check($request->password, $user->password)){
-          return response()->json(['message' => 'Невірні дані'], 401);
-       } else{
-
-    $token = $user->tokens()->latest()->first();
-
-    if ($token && $token->expires_at && $token->expires_at->isPast()) {
-
-        $token->delete();
-        $newToken = $user->createToken('auth_token');
-        $tokenModel = $newToken->accessToken;
-        $tokenModel->expires_at = now()->addDays(7);
-        $tokenModel->save();
-        $plainToken = $newToken->plainTextToken;
-
-          return response()->json([
-            "success" => true,
-            'message' => 'Успішний вхід',
-            "user" => $user,
-            "token" => $plainToken,
-        ]);
-    } else {
-         return response()->json([
-            "success" => true,
-            'message' => 'Успішний вхід',
-            "user" => $user,
-            "token" => $token,
-        ]);
-        }
-       }
-     }
-
       public function logInAuto(Request $request){
        $token = $request->cookie('token');
        if (!$token) {
@@ -90,7 +52,6 @@ class UserController extends Controller{
 
         [$id, $plain] = explode('|', $token);
    
-
         $tokenModel = PersonalAccessToken::find($id);
 
         if (!$tokenModel) {
@@ -105,4 +66,60 @@ class UserController extends Controller{
 
        return response()->json($user);
   }
+
+
+      public function mainEditProfile(Request $request)
+    {
+         $data = $request->validate([
+           'fullName' => 'sometimes|string|max:255',
+           'phone'    => 'sometimes|nullable|string|max:16',
+           'location' => 'sometimes|string',
+        ]);
+
+        $user = UserModel::findOrFail(auth()->id());
+
+          $updateData = [];
+          if (isset($data['fullName'])) $updateData['full_name'] = $data['fullName'];
+          if (isset($data['phone'])) $updateData['phone'] = $data['phone'];
+          if (isset($data['location'])) $updateData['location'] = $data['location'];
+
+          if (!empty($updateData)) {
+              $user->update($updateData);
+              $user->refresh(); 
+           }
+
+          return response()->json([
+             'success' => true,
+             'message' => 'Дані успішно змінені!',
+             'data' => $user,
+         ]);
+     }
+
+      public function updateAvatar(Request $request) {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+        ]);
+
+        $user = auth()->user();
+
+        if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+            Storage::disk('public')->delete($user->avatar);
+        }
+
+        $path = $request->file('avatar')->store(
+            'avatars/users/' . $user->id,
+            'public'
+        );
+
+        $user->update([
+            'avatar' => $path,
+        ]);
+
+        return response()->json([
+             'success' => true,
+             'message' => 'Дані успішно змінені!',
+             'data' => $user,
+         ]);
+    }
 }
+

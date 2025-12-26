@@ -12,10 +12,11 @@ interface IProps {
     refContent: React.RefObject<HTMLUListElement | null>;
     handleSelectOption: (func: () => void) => void;
     className: string;
+    handleSelect: (value: string) => void;
 }
 
 export default function ListItemMultiplyMode(props: IProps) {
-    const { refSelect, options, handleOpenOptions, refContent, handleSelectOption, className } = props;
+    const { refSelect, options, handleOpenOptions, refContent, handleSelectOption, className, handleSelect } = props;
 
     const [selectedOption, setSelectedOption] = useState<string[]>([]);
 
@@ -34,6 +35,7 @@ export default function ListItemMultiplyMode(props: IProps) {
                                 handleSelectOption={handleSelectOption}
                                 options={options}
                                 index={index}
+                                handleSelect={handleSelect}
                             />
                         )
                 })}

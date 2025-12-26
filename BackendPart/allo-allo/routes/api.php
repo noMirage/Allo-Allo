@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmailVerificationMailController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\ResumeController;
 
 
 
@@ -23,6 +24,29 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/verificatyEmail', [EmailVerificationMailController::class, 'verificatyEmail']);
 Route::post('/confirmEmail', [EmailVerificationMailController::class, 'confirmEmail']);
 Route::get('/locations/search', [LocationController::class, 'search']);
-Route::get('/logInAuto', function () {
-    return auth()->user();
+
+Route::middleware('auth:sanctum')
+    ->patch('/mainEditProfile', [UserController::class, 'mainEditProfile']);
+
+Route::post('/avatar/Profile', [UserController::class, 'updateAvatar'])
+    ->middleware('auth:sanctum');
+
+Route::get('/logInAuto', [UserController::class, 'logInAuto'])->middleware('auth:sanctum');
+
+Route::get('/logOut', function () {
+    return response('Вийшли з акаунту')
+        ->cookie(Cookie::forget('token'));
 });
+
+Route::middleware('auth:sanctum')->group(function() {
+    Route::post('/addResumes', [ResumeController::class, 'store']);
+    Route::get('/myResumes', [ResumeController::class, 'myResumes']);
+});
+
+Route::post('/updateResume/{id}', [ResumeController::class, 'updateResume']);
+
+Route::get('/resumes', [ResumeController::class, 'index']);
+Route::middleware('auth:sanctum')->delete('/resumeDelete/{id}', [ResumeController::class, 'deleteResume']);
+Route::get('/resumes/category/{category}', [ResumeController::class, 'getAllByCategory']);
+Route::get('/resume/{id}', [ResumeController::class, 'getResumeById']);
+Route::post('/resumes/incrementView/{id}', [ResumeController::class, 'incrementViews']);

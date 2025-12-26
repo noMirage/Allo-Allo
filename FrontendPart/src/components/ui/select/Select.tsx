@@ -8,11 +8,12 @@ interface IProps {
     firstOption?: number;
     className?: string;
     multiplyMode?: boolean;
+    handleSelect: (value: string) => void;
 }
 
 export default function Select(props: IProps) {
 
-    const { options, firstOption = null, className = '', multiplyMode } = props;
+    const { options, firstOption = null, className = '', multiplyMode, handleSelect } = props;
 
     const [saveHeight, setSaveHeight] = useState<number>(0);
 
@@ -49,13 +50,14 @@ export default function Select(props: IProps) {
 
     if (multiplyMode) {
         return (
-            <ListItemMultiplyMode 
+            <ListItemMultiplyMode
                 className={className}
                 options={options}
                 handleOpenOptions={handleOpenOptions}
                 refContent={refContent}
                 refSelect={refSelect}
                 handleSelectOption={handleSelectOption}
+                handleSelect={handleSelect}
             />
         );
     } else {
@@ -67,6 +69,7 @@ export default function Select(props: IProps) {
                 refContent={refContent}
                 refSelect={refSelect}
                 handleSelectOption={handleSelectOption}
+                handleSelect={handleSelect}
                 firstOption={firstOption}
             />
         );

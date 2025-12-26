@@ -2,11 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GET_DETAILS_WORKER } from "../configs/configs";
 import { utilServer } from "../utils/js/utilServer";
 import { TLoading } from "../interfaces/typeReduxThunk";
-import { IDetailsWorker } from "../interfaces/detailsWorker";
+import { IResume } from "../interfaces/resume";
 
 export interface IinitialStateDetailsWorker {
   loading: TLoading;
-  data: IDetailsWorker | {};
+  data: IResume | {};
 }
 
 export const getDetailsWorker = createAsyncThunk(
@@ -14,7 +14,7 @@ export const getDetailsWorker = createAsyncThunk(
   async (id: number, { rejectWithValue }) => {
     const dataForm = new FormData();
     dataForm.append("id", JSON.stringify(id));
-    const dataServer = await utilServer<IDetailsWorker>(
+    const dataServer = await utilServer<IResume>(
       GET_DETAILS_WORKER,
       "get",
       dataForm,
