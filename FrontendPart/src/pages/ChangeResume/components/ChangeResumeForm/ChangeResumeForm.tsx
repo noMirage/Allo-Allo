@@ -80,7 +80,7 @@ export function ChangeResumeForm(props: IProps) {
                             errors, submitForm
                         }) => (
                             <div>
-                                <FormChangeResume setPreviews={setPreviews} previews={previews} setData={setData} errors={errors} category={resume.category.name} images={resume.images} />
+                                <FormChangeResume description={data.description as string} setPreviews={setPreviews} previews={previews} setData={setData} errors={errors} category={resume.category.name} images={resume.images} />
                                 <ContainerButtons submitForm={submitForm} />
                             </div>
                         )}

@@ -8,6 +8,7 @@ import { TCategoryWorks } from "../../../../../../interfaces/works";
 import { TUserDataWResumeWithoutCategory } from "../../types/types";
 import { ListSelectedImages } from "./components/ListSelectedImages/ListSelectedImages";
 import { TPreviews } from "../../../../../../interfaces/global";
+import { DescriptionField } from "../../../../../../components/ui/DescriptionField/descriptionField";
 
 interface IProps {
     errors: FormikErrors<{
@@ -20,11 +21,12 @@ interface IProps {
     setData: React.Dispatch<React.SetStateAction<TUserDataWResumeWithoutCategory>>;
     setPreviews: React.Dispatch<React.SetStateAction<TPreviews[]>>;
     previews: TPreviews[];
+    description: string;
 }
 
 export function FormChangeResume(props: IProps) {
 
-    const { errors, previews, setPreviews, category, setData } = props;
+    const { errors, previews, setPreviews, category, setData, description } = props;
 
     return (
         <div className={`${styles.form} ${styles.body}`}>
@@ -43,15 +45,7 @@ export function FormChangeResume(props: IProps) {
                     name="title"
                     component="div"
                 />
-                <Field
-                    className={`${pStyles.input} ${gStyles.textExtraBig} ${styles.textarea} ${errors.description && gStyles.inputWrong
-                        }`}
-                    placeholder="Опис"
-                    type="text"
-                    name="description"
-                    validate={validateBaseField}
-                    component="textarea"
-                />
+                <DescriptionField description={description} error={errors.description} />
                 <ErrorMessage
                     className={gStyles.warningMessage}
                     name="description"

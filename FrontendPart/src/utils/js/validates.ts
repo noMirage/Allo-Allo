@@ -1,3 +1,5 @@
+import { EditorState } from "draft-js";
+
 export function validateEmail(value: string) {
   let error;
   if (!value) {
@@ -21,5 +23,12 @@ export function validatePhone(value: string) {
   if (!value || value.length <= 10) {
     error = "Заповніть поле!";
   }
+  return error;
+}
+
+export function validateDescription(editorState: EditorState) {
+  let error;
+  const plainText = editorState.getCurrentContent().getPlainText().trim();
+  if (!plainText) return "Заповніть поле!";
   return error;
 }

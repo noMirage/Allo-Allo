@@ -4,7 +4,8 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { validateBaseField } from '../../../../../../utils/js/validates';
 import { ControllButtons } from './componenets/ControllButtons/ControllButtons';
 import { TUserDataWResume } from '../../../../types/types';
-
+import { useState } from 'react';
+import { DescriptionField } from '../../../../../../components/ui/DescriptionField/descriptionField';
 
 interface IProps {
     ahead: string;
@@ -47,15 +48,7 @@ export function FormResume(props: IProps) {
                                     name="title"
                                     component="div"
                                 />
-                                <Field
-                                    className={`${styles.input} ${gStyles.textExtraBig} ${styles.textarea} ${errors.description && gStyles.inputWrong
-                                        }`}
-                                    placeholder="Опис"
-                                    type="text"
-                                    name="description"
-                                    validate={validateBaseField}
-                                    component="textarea"
-                                />
+                                <DescriptionField error={errors.description} />
                                 <ErrorMessage
                                     className={gStyles.warningMessage}
                                     name="description"

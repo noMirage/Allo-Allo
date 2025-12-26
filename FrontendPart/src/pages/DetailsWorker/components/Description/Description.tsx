@@ -12,7 +12,7 @@ export function Description(props: IProps) {
         <section className={styles.wrapper}>
             <h2 className={`${styles.title} ${gStyles.textLarge}`}>Опис</h2>
             <div style={{ whiteSpace: 'pre-wrap' }}>
-                {description}
+              <div dangerouslySetInnerHTML={{ __html: description }} />
             </div>
         </section>
     );
