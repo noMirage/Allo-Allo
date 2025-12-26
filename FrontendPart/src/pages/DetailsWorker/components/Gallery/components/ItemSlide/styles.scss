@@ -1,0 +1,73 @@
+.gallery-carousel .f-button.is-next {
+    svg {
+        display: none !important;
+    }
+
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        background: url('../../../../../../assets/global/arrow.svg') no-repeat;
+        background-size: 40px;
+    }
+}
+
+.gallery-carousel .f-button.is-prev {
+    svg {
+        display: none !important;
+    }
+
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        background: url('../../../../../../assets/global/arrow.svg') no-repeat;
+        background-size: 40px;
+        transform: rotate(-180deg);
+    }
+}
+
+.gallery-prev-button {
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        background: url('../../../../../../assets/global/arrow.svg') no-repeat;
+        background-size: 40px;
+        transform: rotate(-180deg);
+    }
+}
+
+.gallery-next-button {
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        background: url('../../../../../../assets/global/arrow.svg') no-repeat;
+        background-size: 40px;
+    }
+}

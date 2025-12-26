@@ -2,14 +2,15 @@ import styles from './styles.module.scss';
 import './styles.scss';
 import Fancybox from '../../../../containers/Fancybox/Fancybox';
 import Carousel from '../../../../containers/Carousel/Carousel';
-import { PATH_TO_STORE } from '../../../../configs/configs';
+import { ItemSlide } from './components/ItemSlide/ItemSlide';
 
 interface IProps {
     dataGallery: string[];
 }
 
 export function Gallery(props: IProps) {
-    const { dataGallery } = props;
+    const { dataGallery = [] } = props;
+
     return (
         <section className={styles.wrapper}>
             <div className={`${styles.container}`}>
@@ -29,12 +30,7 @@ export function Gallery(props: IProps) {
                         options={{ infinite: true }}
                         className="gallery-carousel"
                     >
-                        {dataGallery.map((item, _) => (
-                            <a data-fancybox="gallery" className={`${styles.itemGallery} log f-carousel__slide`}
-                                href={item ? `${PATH_TO_STORE}${item}` : ""}>
-                                <img src={item ? `${PATH_TO_STORE}${item}` : ""} />
-                            </a>
-                        ))}
+                        <ItemSlide dataGallery={dataGallery} />
                     </Carousel>
                 </Fancybox>
             </div>

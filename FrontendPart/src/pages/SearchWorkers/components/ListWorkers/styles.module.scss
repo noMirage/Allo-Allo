@@ -6,10 +6,12 @@
 .bodyLogo {
     display: inline-block;
     margin-right: f.rem(30);
+    width: 80px;
+    height: 80px;
 
     img {
-        max-width: 80px;
-        max-height: 80px;
+        min-width: 100%;
+        height: 100%;
         object-fit: cover;
     }
 }
@@ -50,6 +52,8 @@
 }
 
 .bodyText {
+    flex: 1 1 auto;
+
     h3 {
         margin-bottom: f.rem(10);
     }

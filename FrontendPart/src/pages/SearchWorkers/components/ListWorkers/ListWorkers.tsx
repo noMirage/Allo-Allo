@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 import gStyles from '../../../../styles/styles.module.scss';
 import { Link } from 'react-router-dom';
-import defaultAvatar from '../../../../assets/global/logowork.jpg';
+import defaultAvatar from '../../../../assets/global/avatar.jpg';
 import { DETAILS_WORKER_PATH } from '../../../../routs/routs';
 import { PATH_TO_STORE } from '../../../../configs/configs';
 import { IResume } from '../../../../interfaces/resume';

@@ -1,0 +1,18 @@
+@use 'sass:map';
+@use '../../../../../../utils/styles/functions.scss' as f;
+@import '../../../../../../utils/styles/colors.scss';
+
+
+.itemGallery {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
+    min-height: 100%;
+
+    img {
+        min-width: 100%;
+        max-height: f.rem(500);
+        object-fit: cover;
+    }
+}

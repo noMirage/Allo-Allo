@@ -14,20 +14,6 @@
     margin-bottom: f.rem(30);
 }
 
-.itemGallery {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 100%;
-    min-height: 100%;
-
-    img {
-        min-width: 100%;
-        max-height: f.rem(500);
-        object-fit: cover;
-    }
-}
-
 .wrapper {
     max-width: f.rem(950);
     height: 100%;
