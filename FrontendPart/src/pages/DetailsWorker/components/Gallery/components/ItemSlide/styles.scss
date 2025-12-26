@@ -3,7 +3,6 @@
         display: none !important;
     }
 
-    position: relative;
 
     &::before {
         content: '';
@@ -23,7 +22,6 @@
         display: none !important;
     }
 
-    position: relative;
 
     &::before {
         content: '';
@@ -31,7 +29,7 @@
         width: 40px;
         height: 40px;
         position: absolute;
-        top: 0;
+        top: 50%;
         left: 10px;
         background: url('../../../../../../assets/global/arrow.svg') no-repeat;
         background-size: 40px;
@@ -40,7 +38,6 @@
 }
 
 .gallery-prev-button {
-    position: relative;
 
     &::before {
         content: '';
@@ -57,7 +54,6 @@
 }
 
 .gallery-next-button {
-    position: relative;
 
     &::before {
         content: '';
