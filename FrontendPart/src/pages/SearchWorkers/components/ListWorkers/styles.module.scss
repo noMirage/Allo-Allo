@@ -69,3 +69,16 @@
     margin: 0;
     padding: 0;
 }
+
+.bodyImage {
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+
+    img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        margin-right: f.rem(10);
+    }
+}

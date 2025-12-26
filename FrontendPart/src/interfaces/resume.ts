@@ -12,4 +12,5 @@ export interface IResume {
   updated_at: string;
   user: Omit<IUser, "resumes" | "created_at" | "updated_at">;
   user_id: number;
+  views: number;
 }

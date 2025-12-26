@@ -20,6 +20,7 @@ return new class extends Migration
             $table->json('images')->nullable();
             $table->text('description');
             $table->string('title');
+            $table->unsignedBigInteger('views')->default(0);
             $table->integer('experience_years');
             $table->timestamps();
         });

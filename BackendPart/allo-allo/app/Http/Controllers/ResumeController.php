@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Resume;
 use App\Models\ResumeCategory;
+use App\Models\ResumeView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -191,5 +192,32 @@ public function getResumeById($id)
         'success' => true,
         'data' => $resume,
     ]);
+}
+  public function incrementViews(int $id)
+{
+    $resume = Resume::findOrFail($id);
+    $userId = auth()->id();
+
+    if (!$userId) {
+        return response()->json(['status' => 'Гість']);
+    }
+
+    try {
+        ResumeView::create([
+            'resume_id' => $resume->id,
+            'user_id' => $userId,
+        ]);
+
+        $resume->increment('views');
+
+    } catch (QueryException $e) {
+
+    }
+
+    return response()->json([
+        'status' => 'ok',
+        "message" => 'Успіх',
+        "data" => '',
+    ],200);
 }
 }

@@ -49,3 +49,4 @@ Route::get('/resumes', [ResumeController::class, 'index']);
 Route::middleware('auth:sanctum')->delete('/resumeDelete/{id}', [ResumeController::class, 'deleteResume']);
 Route::get('/resumes/category/{category}', [ResumeController::class, 'getAllByCategory']);
 Route::get('/resume/{id}', [ResumeController::class, 'getResumeById']);
+Route::post('/resumes/incrementView/{id}', [ResumeController::class, 'incrementViews']);

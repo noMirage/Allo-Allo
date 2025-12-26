@@ -6,6 +6,7 @@ import { DETAILS_WORKER_PATH } from '../../../../routs/routs';
 import { PATH_TO_STORE } from '../../../../configs/configs';
 import { IResume } from '../../../../interfaces/resume';
 import { TCategoryWorks } from '../../../../interfaces/works';
+import view from '../../../../assets/global/reviewsIcon.svg';
 
 interface IProps {
     data: IResume[];
@@ -41,6 +42,10 @@ export function ListWorkers(props: IProps) {
                                 <div className={styles.bodyText}>
                                     <h3 className={`${gStyles.textLarge}`}>{item.title}</h3>
                                     <div className={gStyles.textExtraBig} dangerouslySetInnerHTML={{ __html: handleLimitSymbols(item.description.replace(/<\/?[^>]+(>|$)/g, " ")) }} />
+                                </div>
+                                <div className={styles.bodyImage}>
+                                    <img src={view} alt="" />
+                                    <p>{item.views || 0}</p>
                                 </div>
                             </div>
                         </Link>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Resume extends Model
 {
     protected $fillable = [
-        'user_id', 'category_id', 'title', 'description', 'images'
+        'user_id', 'category_id', 'title', 'description', 'images', "views"
     ];
     
     protected $with = ['category']; 
@@ -23,5 +23,9 @@ class Resume extends Model
 
     public function category() {
         return $this->belongsTo(ResumeCategory::class);
+    }
+    public function views()
+    {
+        return $this->hasMany(ResumeView::class);
     }
 }

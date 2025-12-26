@@ -30,4 +30,8 @@ class UserModel extends Authenticatable
 {
     return $this->hasMany(Resume::class, 'user_id', 'id');
 }
+   public function resumeViews()
+    {
+     return $this->hasMany(ResumeView::class);
+    }
 }
