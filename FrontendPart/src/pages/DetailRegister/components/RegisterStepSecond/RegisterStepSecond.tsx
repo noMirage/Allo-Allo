@@ -29,6 +29,7 @@ export function RegisterStepSecond(props: IProps) {
                     formData.append('phone', userInfo.phone);
                     formData.append('email', userInfo.email || '');
                     formData.append('location', location);
+                    formData.append('role', sessionStorage.getItem('userRole') || '');
                     const data = await utilServer(POST_USER_REGISTER, 'post', formData);
                     if (data.success) {
                         navigation(HOME_PATH);
@@ -46,6 +47,6 @@ export function RegisterStepSecond(props: IProps) {
                     />
                 )}
             </Formik>
-        </div>
+        </div >
     );
 }

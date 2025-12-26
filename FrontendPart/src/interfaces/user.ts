@@ -1,5 +1,7 @@
 import { TCategory } from "./works";
 
+export type TUserRole = "jobSeeker" | "employer";
+
 export type TResume = {
   category: TCategory;
   category_id: number;
@@ -13,6 +15,7 @@ export type TResume = {
 };
 export interface IUser {
   id: number;
+  role: TUserRole;
   full_name: string;
   phone: string;
   email: string;
