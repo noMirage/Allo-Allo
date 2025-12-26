@@ -17,7 +17,7 @@ export function Profile() {
                 <div className={`${styles.wrapper}`}>
                     <HeadInfo avatar={user.avatar} fullName={user.full_name} location={user.location} phone={user.phone} email={user.email} />
                     <UserResume resumes={user.resumes} />
-                    <HistoryFinishedWorks />
+                    {/* <HistoryFinishedWorks /> */}
                 </div>
             </div>
         );

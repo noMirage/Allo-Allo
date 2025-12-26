@@ -21,7 +21,7 @@ export function SearchWorkers() {
             <section className={styles.wrapper}>
                 <div className={gStyles.container}>
                     <h2 className={`${gStyles.textExtraLarge} ${styles.title}`}>{nameWork}</h2>
-                    <ListWorkers data={data} sectionName={nameWork} />
+                    <ListWorkers data={data} sectionName={nameWork as TCategoryWorks || 'зварювання'} />
                     <Pagination setCurrentValue={setCurrentValue} countPagination={Math.ceil(data.length / 12)} currentNumber={currentValue} className={styles.pagination} />
                 </div>
             </section>

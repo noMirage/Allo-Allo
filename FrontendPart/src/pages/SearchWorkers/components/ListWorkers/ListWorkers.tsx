@@ -5,10 +5,11 @@ import defaultAvatar from '../../../../assets/global/logowork.jpg';
 import { DETAILS_WORKER_PATH } from '../../../../routs/routs';
 import { PATH_TO_STORE } from '../../../../configs/configs';
 import { IResume } from '../../../../interfaces/resume';
+import { TCategoryWorks } from '../../../../interfaces/works';
 
 interface IProps {
     data: IResume[];
-    sectionName: string;
+    sectionName: TCategoryWorks;
 }
 
 export function ListWorkers(props: IProps) {
@@ -32,7 +33,7 @@ export function ListWorkers(props: IProps) {
             {data.map((item, _) => {
                 return (
                     <li>
-                        <Link className={styles.itemBody} to={`${DETAILS_WORKER_PATH}/${item.id}/${item.title}/${sectionName}`}>
+                        <Link className={styles.itemBody} to={`${DETAILS_WORKER_PATH}/${item.id}/${`${item.title.replace(/\//g, " ")}`}/${sectionName}`}>
                             <div className={styles.wrapper}>
                                 <div className={styles.bodyLogo}>
                                     <img src={item.user.avatar ? `${PATH_TO_STORE}${item.user.avatar}` : defaultAvatar} alt='logo' />

@@ -6,12 +6,13 @@ import { useState } from "react";
 interface IProps {
     phone: string;
     published: string;
-    title: string;
+    category: string;
     fullName: string;
+    location: string;
 }
 
 export function Contact(props: IProps) {
-    const { phone, title, published, fullName } = props;
+    const { phone, category, published, fullName, location } = props;
 
     const date = new Date(published);
 
@@ -35,9 +36,10 @@ export function Contact(props: IProps) {
                 <p className={gStyles.textBig}>Опубліковано {formatted}</p>
                 <Heart className={styles.heartIcon} />
             </div>
-            <h1 className={`${gStyles.textLarge} ${styles.title}`}>{fullName}</h1>
-            <h2 className={`${gStyles.textLarge} ${styles.title}`}>
-                {title}
+            <h1 className={`${gStyles.textLarge} ${styles.name}`}>{fullName}</h1>
+            <h2 className={`${gStyles.textLarge} ${styles.description}`}>{location}</h2>
+            <h2 className={`${gStyles.textLarge} ${styles.category}`}>
+                {category}
             </h2>
             <button onClick={handleChangeValue} className={`${styles.button} ${gStyles.textMedium}`}>
                 {isShowPhone ? `+${phone}` : "Показати телефон"}

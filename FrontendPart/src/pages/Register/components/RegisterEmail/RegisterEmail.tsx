@@ -5,14 +5,15 @@ import { AlternativeLogIn } from './components/AlternativeLogIn/AlternativeLogIn
 
 interface IProps {
   handleSubmit: (email: string) => void;
+  setVerificationEmail: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export function RegisterEmail(props: IProps) {
-  const { handleSubmit } = props;
+  const { handleSubmit, setVerificationEmail } = props;
 
   return (
     <div className={styles.body}>
-      <FormEmail handleSubmit={handleSubmit} />
+      <FormEmail setVerificationEmail={setVerificationEmail} handleSubmit={handleSubmit} />
       <AlternativeLogIn />
     </div>
   );

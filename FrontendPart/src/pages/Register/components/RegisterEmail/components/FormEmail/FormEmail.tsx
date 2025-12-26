@@ -7,16 +7,18 @@ import { validateEmail } from '../../../../../../utils/js/validates';
 
 interface IProps {
   handleSubmit: (email: string) => void;
+  setVerificationEmail: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export function FormEmail(props: IProps) {
-  const { handleSubmit } = props;
+  const { handleSubmit, setVerificationEmail } = props;
 
   return (
     <div className={styles.form}>
       <Formik
         initialValues={{ email: '' }}
         onSubmit={(values) => {
+          setVerificationEmail(true);
           handleSubmit(values.email);
         }}
       >

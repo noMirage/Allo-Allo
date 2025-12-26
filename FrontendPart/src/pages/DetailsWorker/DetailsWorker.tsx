@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, useSearchParams } from "react-router-dom"
 import styles from './styles.module.scss';
 import gStyles from '../../styles/styles.module.scss';
 import { useAppDispatch, useAppSelector } from "../../hooks/AppRedux";
@@ -18,9 +18,9 @@ import { GET_SELECTED_RESUME } from "../../configs/configs";
 import { hasKeys } from "../../utils/js/checkTypes";
 
 export function DetailsWorker() {
-    const { id, prevLocation, title } = useParams();
+    const { id, title, prevLocation } = useParams();
 
-    const [data] = useResume<IResume>(`${GET_SELECTED_RESUME}${id || 0}`,);
+    const [data] = useResume<IResume>(`${GET_SELECTED_RESUME}${id || 0}`);
 
     if (data && hasKeys<IResume>(data) && title) {
         return (
@@ -34,7 +34,7 @@ export function DetailsWorker() {
                     </Navigate>
                     <div className={styles.body}>
                         <Gallery dataGallery={data.images} />
-                        <Contact fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} title={title} />
+                        <Contact location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
                     </div>
                     <Description description={data.description} />
                 </div>
