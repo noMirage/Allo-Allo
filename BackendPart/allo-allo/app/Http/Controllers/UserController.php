@@ -17,6 +17,7 @@ class UserController extends Controller{
             'email' => 'required|string|email|max:255|unique:users',
             "phone" => "nullable|max:16|alpha_num",
             "location" => 'required|string',
+            "role" => 'required',
         ]);
 
         $user = new UserModel();
@@ -32,6 +33,7 @@ class UserController extends Controller{
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
         $user->location = $request->input('location');
+        $user->role = $request->input('role');
 
         $user->save();
 
@@ -41,6 +43,7 @@ class UserController extends Controller{
         return response()->json([
             "success" => true,
             'message' => 'Успішно створений',
+            "data" => $user
           ], 201)->withCookie($cookie);;
         }
 

@@ -7,6 +7,8 @@ import { utilServer } from '../../../../utils/js/utilServer';
 import { POST_USER_REGISTER } from '../../../../configs/configs';
 import { HOME_PATH } from '../../../../routs/routs';
 import { FormStepSecond } from './components/FormStepSecond/FormStepSecond';
+import { hasKeys } from '../../../../utils/js/checkTypes';
+import { IUser } from '../../../../interfaces/user';
 interface IProps {
     routeToBack: string;
     userInfo: IUserInfo
@@ -31,8 +33,9 @@ export function RegisterStepSecond(props: IProps) {
                     formData.append('location', location);
                     formData.append('role', sessionStorage.getItem('userRole') || '');
                     const data = await utilServer(POST_USER_REGISTER, 'post', formData);
-                    if (data.success) {
+                    if (data.success && hasKeys<IUser>(data.data!)) {
                         navigation(HOME_PATH);
+                        window.location.reload();
                     }
 
                 }}

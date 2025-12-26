@@ -1,6 +1,6 @@
 import { TCategory } from "./works";
 
-export type TUserRole = "jobSeeker" | "employer";
+export type TUserRole = "job_seeker" | "employer";
 
 export type TResume = {
   category: TCategory;

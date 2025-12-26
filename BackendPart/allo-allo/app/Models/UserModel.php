@@ -24,6 +24,7 @@ class UserModel extends Authenticatable
     "age",
     "avatar",
     "description",
+    'role'
    ];
 
     public function resumes()

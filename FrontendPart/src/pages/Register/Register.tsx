@@ -9,7 +9,7 @@ import { TUserRole } from '../../interfaces/user';
 
 export function Register() {
 
-  const [loginAsA, setLoginAsA] = useState<TUserRole>("jobSeeker");
+  const [loginAsA, setLoginAsA] = useState<TUserRole>("job_seeker");
 
   useEffect(() => {
     sessionStorage.setItem('userRole', loginAsA);
@@ -26,8 +26,8 @@ export function Register() {
         <ContainerRegister />
         <div className={styles.bodyExtraFunction}>
           <div><img src={iconWork} alt="" /></div>
-          {loginAsA === "jobSeeker" ? <button onClick={() => setLoginAsA("employer")} className={`${styles.buttonRedirect} ${gStyles.textBig}`}>Увійти як роботодавець</button>
-            : <button onClick={() => setLoginAsA("jobSeeker")} className={`${styles.buttonRedirect} ${gStyles.textBig}`}>Увійти як шукач роботи</button>
+          {loginAsA === "job_seeker" ? <button onClick={() => setLoginAsA("employer")} className={`${styles.buttonRedirect} ${gStyles.textBig}`}>Увійти як роботодавець</button>
+            : <button onClick={() => setLoginAsA("job_seeker")} className={`${styles.buttonRedirect} ${gStyles.textBig}`}>Увійти як шукач роботи</button>
           }
         </div>
       </div>
