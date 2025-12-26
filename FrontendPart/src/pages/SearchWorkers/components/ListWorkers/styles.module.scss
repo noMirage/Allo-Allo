@@ -51,14 +51,6 @@
     }
 }
 
-.bodyText {
-    flex: 1 1 auto;
-
-    h3 {
-        margin-bottom: f.rem(10);
-    }
-}
-
 
 .bodyInfo {
     padding: f.rem(20) 0 0 0;
@@ -85,4 +77,8 @@
         object-fit: contain;
         margin-right: f.rem(10);
     }
+}
+
+.itemList {
+    position: relative;
 }
