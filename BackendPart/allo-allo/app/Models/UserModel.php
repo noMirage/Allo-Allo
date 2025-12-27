@@ -13,8 +13,6 @@ class UserModel extends Authenticatable
 
      protected $table = 'users';
 
-     protected $with = ['resumes'];
-  
    protected $fillable = [
     "id",
     'full_name',
@@ -34,5 +32,19 @@ class UserModel extends Authenticatable
    public function resumeViews()
     {
      return $this->hasMany(ResumeView::class);
+    }
+
+ public function employerProfile()
+{
+    return $this->hasOne(EmployerProfile::class, 'user_id', 'id');
+}
+     public function isEmployer(): bool
+    {
+        return $this->role === 'employer';
+    }
+
+     public function isJobSeeker(): bool
+    {
+        return $this->role === 'job_seeker';
     }
 }

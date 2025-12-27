@@ -8,44 +8,46 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailVerificationMail;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\PersonalAccessToken;
+use App\Models\EmployerProfile;
+use App\Http\Resources\UserResource;
 require_once app_path('/Utils/createAuthCookie.php');
 
 class UserController extends Controller{
- public function register (Request $request) {
-       $request->validate([
-            'fullName' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            "phone" => "nullable|max:16|alpha_num",
-            "location" => 'required|string',
-            "role" => 'required',
+public function register(Request $request)
+{
+    $request->validate([
+        'fullName' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email',
+        'phone' => 'nullable|max:16|alpha_num',
+        'location' => 'required|string',
+        'role' => 'required|in:job_seeker,employer',
+        'organization' => 'required_if:role,employer|string|max:255',
+    ]);
+
+    $user = UserModel::create([
+        'full_name' => $request->fullName,
+        'email' => $request->email,
+        'phone' => $request->phone,
+        'location' => $request->location,
+        'role' => $request->role,
+    ]);
+
+    if ($user->isEmployer()) {
+        EmployerProfile::create([
+            'user_id' => $user->id,
+            'organization' => $request->organization,
         ]);
+    }
 
-        $user = new UserModel();
+    $token = $user->createToken('auth_token')->plainTextToken;
+    $cookie = createAuthCookie($user);
 
-       if(UserModel::where('email', $request->email)->first()){
-         return response()->json([
-            "success" => false,
-            'message' => 'Такий Email вже зареєстрований!',
-          ], 201);
-       };
-
-        $user->full_Name = $request->input('fullName');
-        $user->email = $request->input('email');
-        $user->phone = $request->input('phone');
-        $user->location = $request->input('location');
-        $user->role = $request->input('role');
-
-        $user->save();
-
-        $token = $user->createToken('auth_token');
-        $cookie = createAuthCookie($user);
-
-        return response()->json([
-            "success" => true,
-            'message' => 'Успішно створений',
-            "data" => $user
-          ], 201)->withCookie($cookie);;
-        }
+    return response()->json([
+        'success' => true,
+        'message' => 'Успішно створений',
+        'data' => new UserResource($user),
+    ], 201)->withCookie($cookie);
+}
 
       public function logInAuto(Request $request){
        $token = $request->cookie('token');
@@ -67,7 +69,7 @@ class UserController extends Controller{
 
        $user = $tokenModel->tokenable;
 
-       return response()->json($user);
+       return response()->json(new UserResource($user));
   }
 
 
@@ -94,7 +96,7 @@ class UserController extends Controller{
           return response()->json([
              'success' => true,
              'message' => 'Дані успішно змінені!',
-             'data' => $user,
+             'data' => new UserResource($user),
          ]);
      }
 
@@ -121,7 +123,7 @@ class UserController extends Controller{
         return response()->json([
              'success' => true,
              'message' => 'Дані успішно змінені!',
-             'data' => $user,
+             'data' => new UserResource($user),
          ]);
     }
 }

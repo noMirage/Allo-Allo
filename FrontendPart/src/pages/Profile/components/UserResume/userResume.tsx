@@ -10,7 +10,7 @@ export function UserResume(props: IProps) {
 
     const { resumes } = props;
 
-    if (Array.isArray(resumes) && !resumes.length) {
+    if (resumes === undefined || Array.isArray(resumes) && !resumes.length) {
         return <NoResume />
     } else {
         return <ListResumes resumes={resumes} />

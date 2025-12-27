@@ -37,7 +37,7 @@ export function ListResumes(props: IProps) {
                 <Link to={CREATE_RESUME} className={`${gStyles.textBig} ${styles.createButton} ${pStyles.button} ${styles.buttonCreate} `}>Створити резюме</Link>
             </div>
             <ul className={styles.list}>
-                {resumes.map((item, index) => {
+                {Array.isArray(resumes) && resumes.length > 0 && resumes.map((item, index) => {
                     const work = WORKS.find(
                         work => work.category === item.category.name
                     );
