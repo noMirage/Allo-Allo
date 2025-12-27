@@ -17,7 +17,7 @@ interface IProps {
     resumes: TResume[]
 }
 
-export function ListResumes(props: IProps) {
+export function ListResume(props: IProps) {
 
     const { resumes } = props;
 

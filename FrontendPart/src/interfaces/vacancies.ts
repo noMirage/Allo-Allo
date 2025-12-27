@@ -4,7 +4,6 @@ export interface IVacancies {
   price: string;
   date: string;
   located: string;
-  advantages: string[];
   organisation: string;
   description: string;
   logo: string;
