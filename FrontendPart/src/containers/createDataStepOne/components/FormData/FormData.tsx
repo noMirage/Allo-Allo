@@ -1,20 +1,21 @@
 import styles from './styles.module.scss';
-import gStyles from '../../../../../../styles/styles.module.scss';
+import gStyles from '../../../../styles/styles.module.scss';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { validateBaseField } from '../../../../../../utils/js/validates';
 import { ControllButtons } from './componenets/ControllButtons/ControllButtons';
-import { TUserDataWResume } from '../../../../types/types';
-import { useState } from 'react';
-import { DescriptionField } from '../../../../../../components/ui/DescriptionField/descriptionField';
+import { DescriptionField } from '../../../../components/ui/DescriptionField/descriptionField';
+import { validateBaseField } from '../../../../utils/js/validates';
 
-interface IProps {
-    ahead: string;
-    comeBack: string;
-    setData: React.Dispatch<React.SetStateAction<TUserDataWResume>>;
+
+interface IProps<T> {
+    returnPath: string;
+    continuePath: string;
+    parentPath: string;
+    title: string;
+    setData: React.Dispatch<React.SetStateAction<T>>;
 }
 
-export function FormResume(props: IProps) {
-    const { setData, ahead, comeBack } = props;
+export function FormData<T extends { title: string, description: string }>(props: IProps<T>) {
+    const { setData, continuePath, parentPath, returnPath, title } = props;
 
     return (
         <Formik
@@ -33,7 +34,7 @@ export function FormResume(props: IProps) {
                 return (
                     <>
                         <div className={`${styles.body}`}>
-                            <p className={`${gStyles.textExtraLarge} ${styles.title}`}>Вкажіть Заголовок та опис нашого резюме</p>
+                            <p className={`${gStyles.textExtraLarge} ${styles.title}`}>{title}</p>
                             <Form className={styles.formContainer}>
                                 <Field
                                     className={`${styles.input} ${gStyles.textExtraBig} ${errors.title && gStyles.inputWrong
@@ -56,7 +57,7 @@ export function FormResume(props: IProps) {
                                 />
                             </Form>
                         </div>
-                        <ControllButtons submitForm={submitForm} values={values} ahead={ahead} comeBack={comeBack} errors={errors} />
+                        <ControllButtons submitForm={submitForm} parentPath={parentPath} values={values} continuePath={continuePath} returnPath={returnPath} errors={errors} />
                     </>
                 )
             }}

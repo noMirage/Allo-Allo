@@ -1,14 +1,13 @@
+import gStyles from '../../../../../../styles/styles.module.scss';
 import styles from './styles.module.scss';
-import gStyles from '../../../../../../../../styles/styles.module.scss';
 import { Link } from 'react-router-dom';
-import pStyles from '../../../../../../styles.module.scss';
 import { FormikErrors, FormikValues } from 'formik';
-import { CREATE_RESUME } from '../../../../../../../../routs/routs';
 
 
 interface IProps {
-    ahead: string;
-    comeBack: string;
+    continuePath: string;
+    returnPath: string;
+    parentPath: string;
     errors: FormikErrors<{
         title: string;
         description: string;
@@ -21,7 +20,7 @@ interface IProps {
 }
 
 export function ControllButtons(props: IProps) {
-    const { ahead, comeBack, errors, values, submitForm } = props;
+    const { continuePath, returnPath, parentPath, errors, values, submitForm } = props;
 
     function checkConditions(
         errors: FormikErrors<FormikValues>,
@@ -40,8 +39,8 @@ export function ControllButtons(props: IProps) {
 
 
     return (
-        <div className={pStyles.containerButtons}>
-            <Link className={`${gStyles.textBig}`} to={`${comeBack}`}>
+        <div className={styles.containerButtons}>
+            <Link className={`${gStyles.textBig}`} to={`${returnPath}`}>
                 Назад
             </Link>
             {!checkConditions(errors, values) ? (
@@ -54,7 +53,7 @@ export function ControllButtons(props: IProps) {
                 </Link>
             ) : (
                 <Link
-                    to={`${CREATE_RESUME}${ahead}`}
+                    to={`${parentPath}${continuePath}`}
                     onClick={submitForm}
                     className={`${gStyles.textBig}`}
                 >

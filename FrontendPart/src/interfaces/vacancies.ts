@@ -6,6 +6,5 @@ export interface IVacancies {
   located: string;
   organisation: string;
   description: string;
-  logo: string;
   reviews: number;
 }

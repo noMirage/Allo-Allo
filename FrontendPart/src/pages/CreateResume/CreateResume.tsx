@@ -6,12 +6,12 @@ import styles from './styles.module.scss';
 import { HeaderWithProgressBar } from '../../containers/HeaderWithProgressBar/HeaderWithProgressBar';
 import { TRoutes } from '../../interfaces/global';
 import { Route, Routes } from 'react-router-dom';
-import { CreateStepZero } from './components/createStepZero/createStepZero';
-import { CREATE_RESUME } from '../../routs/routs';
+import { CREATE_RESUME, PROFILE_PATH } from '../../routs/routs';
 import { useState } from 'react';
 import { TUserDataWResume } from './types/types';
-import { CreateStepOne } from './components/createStepOne/createStepOne';
 import { CreateStepSecond } from './components/createStepSecond/createStepSecond';
+import { CreateDataStepZero } from '../../containers/createDataStepZero/createDataStepZero';
+import { CreateDataStepOne } from '../../containers/createDataStepOne/createDataStepOne';
 
 const ROUTES: TRoutes[] = [
     {
@@ -48,8 +48,8 @@ export function CreateResume() {
                         <HeaderWithProgressBar routes={ROUTES} />
                     </div>
                     <Routes>
-                        <Route path={''} element={<CreateStepZero setData={setData} pathToGo={ROUTES[1].path} />} />
-                        <Route path={ROUTES[1].path} element={<CreateStepOne ahead={ROUTES[2].path} comeBack={ROUTES[0].path} setData={setData} />} />
+                        <Route path={''} element={<CreateDataStepZero parentPath={CREATE_RESUME} returnPath={PROFILE_PATH} continuePath={ROUTES[1].path} title="Вкажіть категорію вашого резюме" setData={setData} />} />
+                        <Route path={ROUTES[1].path} element={<CreateDataStepOne title="Вкажіть Заголовок та опис вашого резюме" parentPath={CREATE_RESUME} continuePath={ROUTES[2].path} returnPath={ROUTES[0].path} setData={setData} />} />
                         <Route path={ROUTES[2].path} element={<CreateStepSecond dataResume={data} comeBack={ROUTES[1].path} setData={setData} />} />
                     </Routes>
                 </div>

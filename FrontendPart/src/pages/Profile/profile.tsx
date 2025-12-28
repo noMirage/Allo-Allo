@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 import { HeadInfo } from "./components/HeadInfo/headInfo";
 import { HistoryFinishedWorks } from "./components/HistoryFinishedWorks/historyFinishedWorks";
 import { UserCreateData } from "./components/UserCreateData/UserCreateData";
-import { CREATE_RESUME } from "../../routs/routs";
+import { CREATE_RESUME, CREATE_VACANCY } from "../../routs/routs";
 
 export function Profile() {
     const user: IUser | {} = useAppSelector((state) => state.user.data);
@@ -35,7 +35,7 @@ export function Profile() {
                             data={(user as IUserEmployer).vacancies}
                             title="Вакансії"
                             description="Ви немаєте жодної створеної вакансії, будь ласка створіть!"
-                            redirect={{ url: CREATE_RESUME, name: "Створити вакансію" }}
+                            redirect={{ url: CREATE_VACANCY, name: "Створити вакансію" }}
                             role={user.role}
                         />
                     )}

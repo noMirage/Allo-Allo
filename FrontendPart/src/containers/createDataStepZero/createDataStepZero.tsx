@@ -1,11 +1,8 @@
 import styles from './styles.module.scss';
-import gStyles from '../../../../styles/styles.module.scss';
-import Select from '../../../../components/ui/select/Select';
+import gStyles from '../../styles/styles.module.scss';
 import { Link } from 'react-router-dom';
-import { CREATE_RESUME, PROFILE_PATH } from '../../../../routs/routs';
-import pStyles from '../../styles.module.scss';
-import { TUserDataWResume } from '../../types/types';
-import { TCategoryWorks } from '../../../../interfaces/works';
+import { TCategoryWorks } from '../../interfaces/works';
+import Select from '../../components/ui/select/Select';
 
 const OPTIONS = [
     "сантехніка",
@@ -15,13 +12,16 @@ const OPTIONS = [
     "збирання меблів"
 ];
 
-interface IProps {
-    pathToGo: string;
-    setData: React.Dispatch<React.SetStateAction<TUserDataWResume>>;
+interface IProps<T> {
+    setData: React.Dispatch<React.SetStateAction<T>>;
+    returnPath: string;
+    continuePath: string;
+    parentPath: string;
+    title: string;
 }
 
-export function CreateStepZero(props: IProps) {
-    const { pathToGo, setData } = props;
+export function CreateDataStepZero<T extends { category: TCategoryWorks }>(props: IProps<T>) {
+    const { setData, returnPath, continuePath, parentPath, title } = props;
 
     function handleSelect(value: string | TCategoryWorks) {
         setData((prevState) => {
@@ -35,16 +35,16 @@ export function CreateStepZero(props: IProps) {
         <div className={`${styles.wrapper}`}>
             <div className={styles.container}>
                 <div className={`${styles.body}`}>
-                    <p className={`${gStyles.textExtraLarge} ${styles.title}`}>Вкажіть категорію в якій ви хочете створити резюме</p>
+                    <p className={`${gStyles.textExtraLarge} ${styles.title}`}>{title}</p>
                     <Select handleSelect={handleSelect} options={OPTIONS} firstOption={0} />
                 </div>
-                <div className={pStyles.containerButtons}>
-                    <Link className={`${gStyles.textBig}`} to={PROFILE_PATH}>
+                <div className={styles.containerButtons}>
+                    <Link className={`${gStyles.textBig}`} to={returnPath}>
                         Назад
                     </Link>
                     <Link
                         className={`${gStyles.textBig}`}
-                        to={`${CREATE_RESUME}${pathToGo}`}
+                        to={`${parentPath}${continuePath}`}
                     >
                         Далі
                     </Link>
