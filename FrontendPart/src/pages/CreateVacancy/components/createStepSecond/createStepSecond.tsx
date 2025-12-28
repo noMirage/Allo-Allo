@@ -15,6 +15,7 @@ import { useAppDispatch } from '../../../../hooks/AppRedux';
 import { useNavigate } from 'react-router-dom';
 import { PROFILE_PATH } from '../../../../routs/routs';
 import { update } from '../../../../servers/user';
+import { POST_ADD_VACANCY } from '../../../../configs/configs';
 
 interface IProps {
     returnPath: string;
@@ -47,10 +48,10 @@ export function CreateStepSecond(props: IProps) {
                         formData.append('title', title);
                         formData.append('location', location);
                         formData.append('price', values.price);
-
-                        previews.filter((img): img is { url: string; file: File } => img.file instanceof File).forEach(img => formData.append('images[]', img.file));
-
-                        const data = await utilServer("", 'post', formData, () => { }, false);
+                        if (previews[0].file) {
+                            formData.append('logo', previews[0].file);
+                        }
+                        const data = await utilServer(POST_ADD_VACANCY, 'post', formData, () => { }, false);
 
                         if (data.success && hasKeys<IUserEmployer>(data.data!)) {
                             dispatch(update(data.data));

@@ -41,10 +41,16 @@ class UserModel extends Authenticatable
      public function isEmployer(): bool
     {
         return $this->role === 'employer';
+        
     }
+    public function vacancies()
+{
+    return $this->hasMany(Vacancy::class, 'user_id', 'id');
+}
 
      public function isJobSeeker(): bool
     {
         return $this->role === 'job_seeker';
     }
+    
 }

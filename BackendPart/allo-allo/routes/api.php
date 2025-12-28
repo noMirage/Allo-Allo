@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmailVerificationMailController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\VacancyController;
 
 
 
@@ -19,6 +20,11 @@ use App\Http\Controllers\ResumeController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::middleware('auth:sanctum')->group(function() {
+    Route::post('/addVacancy', [VacancyController::class, 'store']);
+});
+
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/verificatyEmail', [EmailVerificationMailController::class, 'verificatyEmail']);

@@ -29,12 +29,16 @@ class UserResource extends JsonResource
 
             'organization' => $this->when(
                 $this->isEmployer(),
-                fn () => $this->employerProfile?->organization
+                fn () => $this->employerProfile?->organization,
             ),
 
             'resumes' => $this->when(
             $this->isJobSeeker(),
             fn () => $this->resumes
+        ),
+         'vacancies' => $this->when(
+            $this->isEmployer(),
+            fn () => $this->vacancies
         ),
         ];
     }
