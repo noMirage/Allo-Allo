@@ -16,7 +16,7 @@ export function HeaderWithProgressBar(props: Props) {
     return (
         <>
             <Link to={HOME_PATH} className={styles.logo}>
-                <img src={logo} alt="" />
+                <img className={styles.logoImage} src={logo} alt="" />
             </Link>
             <ProgressBar routes={routes} />
         </>

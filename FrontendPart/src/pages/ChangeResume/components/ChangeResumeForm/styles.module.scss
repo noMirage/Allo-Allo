@@ -5,12 +5,17 @@
 
 .wrapper {
     width: 100%;
+    padding-bottom: f.rem(50);
 }
 
 .logo {
     display: flex;
     justify-content: center;
     margin: f.rem(50) 0;
+
+    img {
+        max-width: 320px;
+    }
 }
 
 .input {

@@ -5,6 +5,8 @@ import iconWork from '../../assets/global/iconWork.svg';
 import { ContainerRegister } from './components/ContainerRegister/ContainerRegister';
 import { useEffect, useState } from 'react';
 import { TUserRole } from '../../interfaces/user';
+import { Link } from 'react-router-dom';
+import { HOME_PATH } from '../../routs/routs';
 
 
 export function Register() {
@@ -18,9 +20,9 @@ export function Register() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <div className={styles.logo}>
+        <Link to={HOME_PATH} className={styles.logo}>
           <img src={logo} alt="" />
-        </div>
+        </Link>
         <h1 className={`${gStyles.textExtraLarge} ${styles.title}`}>Вхід або реєстрація шукача</h1>
         <p className={`${gStyles.textBig} ${styles.text}`}>Увійдіть, щоб керувати розміщенням вашого резюме, відгукуватися на вакансії та отримувати пропозиції від роботодавців.</p>
         <ContainerRegister />

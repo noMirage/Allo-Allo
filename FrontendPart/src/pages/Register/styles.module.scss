@@ -11,6 +11,7 @@
     justify-content: center;
     flex-direction: column;
     background-color: map.get($colors, 'lightGray');
+    padding-bottom: f.rem(50);
 }
 
 .container {
@@ -20,7 +21,13 @@
 }
 
 .logo {
-    margin: f.rem(25) 0 f.rem(25);
+    display: flex;
+    justify-content: center;
+    margin: f.rem(50) 0;
+
+    img {
+        max-width: 320px;
+    }
 }
 
 .title {
