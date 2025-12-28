@@ -10,10 +10,14 @@ export const DETAIL_REGISTER = "/detailRegister";
 export const PROFILE_PATH = "/profile";
 export const CREATE_RESUME = "/createResume";
 export const CHANGE_RESUME = "/changeResume";
+export const CREATE_VACANCY = "/createVacancy";
+export const CHANGE_VACANCY = "/ChangeVacancy";
 
 export const PAGES_WITHOUT_LAYOUT = [
   REGISTER_PATH,
   DETAIL_REGISTER,
   CREATE_RESUME,
   CHANGE_RESUME,
+  CREATE_VACANCY,
+  CHANGE_VACANCY,
 ];

@@ -1,0 +1,66 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@use '../../utils/styles/mixins.scss' as m;
+@import '../../utils/styles/colors.scss';
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.body {
+    max-width: f.rem(800);
+    width: 100%;
+    padding: f.rem(40) f.rem(40) f.rem(30) f.rem(40);
+    border-radius: f.rem(16);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+    background-color: #fff;
+    margin-bottom: f.rem(25);
+}
+
+.title {
+    margin-bottom: f.rem(15);
+}
+
+.containerButtons {
+    display: flex;
+    align-items: center;
+
+    a {
+        color: map.get($colors, 'black');
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+    }
+
+    a:first-child {
+        margin-right: f.rem(50);
+
+        &::before {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 20px;
+            background: url('../../assets/global/singleArrow.svg') 100%/100% no-repeat;
+        }
+    }
+
+    a:last-child {
+        padding: f.rem(15) f.rem(35);
+        background-color: map.get($colors, 'amber');
+        color: map.get($colors, 'white');
+        border-radius: f.rem(12);
+
+        &::after {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 20px;
+            background: url('../../assets/global/singleArrowWhite.svg') 100%/100% no-repeat;
+            transform: rotate(-180deg) translate(-50%, 0);
+        }
+    }
+}

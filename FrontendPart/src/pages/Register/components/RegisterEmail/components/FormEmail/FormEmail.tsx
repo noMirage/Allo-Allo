@@ -18,7 +18,6 @@ export function FormEmail(props: IProps) {
       <Formik
         initialValues={{ email: '' }}
         onSubmit={(values) => {
-          setVerificationEmail(true);
           handleSubmit(values.email);
         }}
       >

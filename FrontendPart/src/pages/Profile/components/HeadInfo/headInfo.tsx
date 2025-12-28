@@ -10,33 +10,38 @@ import { useNavigate } from 'react-router-dom';
 import { HOME_PATH } from '../../../../routs/routs';
 import { EditProfile } from './components/EditProfile/EditProfile';
 import { Avatar } from './components/Avatar/Avatar';
+import { TUserRole } from '../../../../interfaces/user';
 
 interface IProps {
     fullName: string;
     phone: string;
     email: string;
-    location: string;
+    location?: string;
     avatar: string | null;
+    role: TUserRole;
+    organization?: string;
 }
 
 export function HeadInfo(props: IProps) {
 
-    const { fullName, phone, email, location, avatar } = props;
+    const { fullName, phone, email, location = '', avatar, role, organization = '' } = props;
 
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
 
     return (<div className={styles.bodyHeadInfo}>
-        <EditProfile fullName={fullName} phone={phone} location={location} />
+        <EditProfile role={role} fullName={fullName} organization={organization} phone={phone} location={location} />
         <div className={styles.container}>
             <div className={styles.body}>
-                <Avatar avatar={avatar}/>
+                <Avatar avatar={avatar} />
                 <div className={styles.mainInfo}>
                     <h2 className={`${gStyles.textExtraBig} ${styles.fullName}`}>{fullName}</h2>
                     <address className={`${gStyles.textExtraBig} ${styles.importantInfo} ${styles.phone}`}>+{phone}</address>
                     <address className={`${gStyles.textExtraBig} ${styles.importantInfo} ${styles.email}`}>{email}</address>
-                    <address className={`${gStyles.textExtraBig} ${styles.importantInfo} ${styles.location}`}>{location}</address>
+                    {role === 'job_seeker' && <address className={`${gStyles.textExtraBig} ${styles.importantInfo} ${styles.location}`}>{location}</address>}
+                    {role === 'employer' && <address className={`${gStyles.textExtraBig} ${styles.importantInfo} ${styles.organization}`}>{organization}</address>}
+
                 </div>
             </div>
             <Formik

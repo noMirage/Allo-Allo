@@ -8,41 +8,46 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailVerificationMail;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\PersonalAccessToken;
+use App\Models\EmployerProfile;
+use App\Http\Resources\UserResource;
 require_once app_path('/Utils/createAuthCookie.php');
 
 class UserController extends Controller{
- public function register (Request $request) {
-       $request->validate([
-            'fullName' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            "phone" => "nullable|max:16|alpha_num",
-            "location" => 'required|string',
+public function register(Request $request)
+{
+    $request->validate([
+        'fullName' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email',
+        'phone' => 'nullable|max:16|alpha_num',
+        'location' => 'required_if:role,job_seeker|string',
+        'role' => 'required|in:job_seeker,employer',
+        'organization' => 'required_if:role,employer|string|max:255',
+    ]);
+
+    $user = UserModel::create([
+        'full_name' => $request->fullName,
+        'email' => $request->email,
+        'phone' => $request->phone,
+        'location' => $request->location,
+        'role' => $request->role,
+    ]);
+
+    if ($user->isEmployer()) {
+        EmployerProfile::create([
+            'user_id' => $user->id,
+            'organization' => $request->organization,
         ]);
+    }
 
-        $user = new UserModel();
+    $token = $user->createToken('auth_token')->plainTextToken;
+    $cookie = createAuthCookie($user);
 
-       if(UserModel::where('email', $request->email)->first()){
-         return response()->json([
-            "success" => false,
-            'message' => 'Такий Email вже зареєстрований!',
-          ], 201);
-       };
-
-        $user->full_Name = $request->input('fullName');
-        $user->email = $request->input('email');
-        $user->phone = $request->input('phone');
-        $user->location = $request->input('location');
-
-        $user->save();
-
-        $token = $user->createToken('auth_token');
-        $cookie = createAuthCookie($user);
-
-        return response()->json([
-            "success" => true,
-            'message' => 'Успішно створений',
-          ], 201)->withCookie($cookie);;
-        }
+    return response()->json([
+        'success' => true,
+        'message' => 'Успішно створений',
+        'data' => new UserResource($user),
+    ], 201)->withCookie($cookie);
+}
 
       public function logInAuto(Request $request){
        $token = $request->cookie('token');
@@ -64,37 +69,44 @@ class UserController extends Controller{
 
        $user = $tokenModel->tokenable;
 
-       return response()->json($user);
+       return response()->json(new UserResource($user));
   }
 
 
-      public function mainEditProfile(Request $request)
-    {
-         $data = $request->validate([
-           'fullName' => 'sometimes|string|max:255',
-           'phone'    => 'sometimes|nullable|string|max:16',
-           'location' => 'sometimes|string',
-        ]);
+  public function mainEditProfile(Request $request)
+{
+    $data = $request->validate([
+       'fullName' => 'sometimes|string|max:255',
+       'phone'    => 'sometimes|nullable|string|max:16',
+       'location' => 'required_if:role,job_seeker|string',
+       'role' => 'required|in:job_seeker,employer',
+       'organization' => 'required_if:role,employer|string|max:255',
+    ]);
 
-        $user = UserModel::findOrFail(auth()->id());
+    $user = UserModel::findOrFail(auth()->id());
 
-          $updateData = [];
-          if (isset($data['fullName'])) $updateData['full_name'] = $data['fullName'];
-          if (isset($data['phone'])) $updateData['phone'] = $data['phone'];
-          if (isset($data['location'])) $updateData['location'] = $data['location'];
+    if (isset($data['fullName'])) $user->full_name = $data['fullName'];
+    if (isset($data['phone'])) $user->phone = $data['phone'];
 
-          if (!empty($updateData)) {
-              $user->update($updateData);
-              $user->refresh(); 
-           }
+    if ($user->isJobSeeker() && isset($data['location'])) {
+        $user->location = $data['location'];
+    }
 
-          return response()->json([
-             'success' => true,
-             'message' => 'Дані успішно змінені!',
-             'data' => $user,
-         ]);
-     }
+    if ($user->isEmployer() && isset($data['organization'])) {
+        $user->employerProfile()->updateOrCreate(
+            ['user_id' => $user->id],
+            ['organization' => $data['organization']]
+        );
+    }
 
+    $user->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Дані успішно змінені!',
+        'data' => new UserResource($user),
+    ]);
+}
       public function updateAvatar(Request $request) {
         $request->validate([
             'avatar' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
@@ -118,7 +130,7 @@ class UserController extends Controller{
         return response()->json([
              'success' => true,
              'message' => 'Дані успішно змінені!',
-             'data' => $user,
+             'data' => new UserResource($user),
          ]);
     }
 }

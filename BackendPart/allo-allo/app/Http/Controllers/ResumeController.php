@@ -5,6 +5,7 @@ use App\Models\Resume;
 use App\Models\ResumeCategory;
 use App\Models\ResumeView;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Storage;
 
 class ResumeController extends Controller
@@ -59,8 +60,8 @@ class ResumeController extends Controller
      return response()->json([
             'success' => true,
             'message' => 'Резюме створено',
-            'data' => auth()->user()->fresh(),
-        ], 200);
+            'data' => new UserResource(auth()->user()->fresh()),
+    ], 200);
 }
     public function index()
     {
@@ -98,7 +99,7 @@ class ResumeController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Резюме видалено',
-            "data" => auth()->user()->fresh(),
+            "data" => new UserResource(auth()->user()->fresh()),
         ], 200);
     }
     
@@ -152,7 +153,7 @@ public function updateResume(Request $request, $id){
     return response()->json([
         'success' => true,
         'message' => 'Резюме оновлено',
-        "data" => auth()->user()->fresh(),
+        "data" => new UserResource(auth()->user()->fresh()),
     ]);
 }
 public function getAllByCategory(string $category)

@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmailVerificationMailController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\VacancyController;
 
 
 
@@ -50,3 +51,11 @@ Route::middleware('auth:sanctum')->delete('/resumeDelete/{id}', [ResumeControlle
 Route::get('/resumes/category/{category}', [ResumeController::class, 'getAllByCategory']);
 Route::get('/resume/{id}', [ResumeController::class, 'getResumeById']);
 Route::post('/resumes/incrementView/{id}', [ResumeController::class, 'incrementViews']);
+
+Route::middleware('auth:sanctum')->group(function() {
+    Route::post('/addVacancy', [VacancyController::class, 'store']);
+});
+
+Route::middleware('auth:sanctum')->delete('/vacancyDelete/{id}', [VacancyController::class, 'deleteVacancy']);
+Route::post('/updateVacancy/{id}', [VacancyController::class, 'updateVacancy']);
+Route::get('/getVacancies', [VacancyController::class, 'getVacancies']);

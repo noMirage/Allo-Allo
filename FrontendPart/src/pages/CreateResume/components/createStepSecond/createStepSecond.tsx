@@ -24,7 +24,7 @@ interface IProps {
 export function CreateStepSecond(props: IProps) {
     const { setData, comeBack, dataResume } = props;
 
-    const [previews, setPreviews] = useState<TPreviews[]>([]);
+    const [previews, setPreviews] = useState<TPreviews[] | TPreviews>([]);
 
     const navigate = useNavigate();
 
@@ -35,8 +35,9 @@ export function CreateStepSecond(props: IProps) {
         formData.append('category', dataResume.category);
         formData.append('description', dataResume.description);
         formData.append('title', dataResume.title);
-        previews.filter((img): img is { url: string; file: File } => img.file instanceof File).forEach(img => formData.append('images[]', img.file));
-
+        if (Array.isArray(previews)) {
+            previews.filter((img): img is { url: string; file: File } => img.file instanceof File).forEach(img => formData.append('images[]', img.file));
+        }
         const data = await utilServer(POST_ADD_RESUME, 'post', formData, () => { }, false);
 
         if (data.success && hasKeys<IUser>(data.data!)) {
@@ -52,10 +53,10 @@ export function CreateStepSecond(props: IProps) {
                     <p className={`${gStyles.textExtraLarge} ${styles.title}`} >Завантажте фотографії ваших робіт</p>
                     <SelectImage previews={previews} setPreviews={setPreviews} setData={setData}>
                         {
-                            previews.length > 0 &&
+                            Array.isArray(previews) && previews.length > 0 &&
                             <ul className={`${styles.listImages}`}>
                                 {previews.map((src, index) =>
-                                    <ItemSelectedImage key={src.url} setPreviews={setPreviews} src={src.url} index={index} />
+                                    <ItemSelectedImage key={src.url} setPreviews={setPreviews} src={src.url || ""} index={index} />
                                 )}
                             </ul>
                         }

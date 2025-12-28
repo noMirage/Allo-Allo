@@ -87,6 +87,24 @@
     }
 }
 
+.organization{
+     position: relative;
+    width: 100%;
+    padding: 0 0 0 f.rem(30);
+
+    &::before {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-3px, -50%);
+        background: url('../../../../assets/global/organization.svg') 100%/100% no-repeat;
+    }
+}
+
 .button {
     align-self: flex-end;
     background-color: map.get($colors, 'brightRed');

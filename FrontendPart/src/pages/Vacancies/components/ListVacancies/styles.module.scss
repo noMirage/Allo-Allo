@@ -21,6 +21,7 @@
     display: flex;
     align-items: center;
     margin-bottom: f.rem(0);
+    justify-content: flex-end;
 }
 
 .list {
@@ -42,8 +43,8 @@
     flex: 1 1 auto;
 }
 
-.price {
-    margin-bottom: f.rem(5);
+.salary {
+    margin-bottom: f.rem(10);
 }
 
 
@@ -79,4 +80,44 @@
 
 .date {
     flex: 1 1 auto;
+}
+
+.container {
+    position: relative;
+}
+
+.wrapperInfo {
+    display: flex;
+    align-items: center;
+
+    img {
+        max-width: f.rem(80);
+        max-height: f.rem(80);
+        margin-right: f.rem(25);
+        object-fit: contain;
+    }
+}
+
+.date {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.viewes {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.location {
+    text-transform: lowercase;
+}
+
+.mainInfo {
+    display: flex;
+
+    p {
+        margin-right: f.rem(20);
+    }
 }

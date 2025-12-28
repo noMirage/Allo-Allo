@@ -6,6 +6,6 @@ export type TRoutes = {
 };
 
 export type TPreviews = {
-  url: string;
+  url: string | null;
   file?: File;
 };

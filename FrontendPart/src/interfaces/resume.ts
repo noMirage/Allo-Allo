@@ -1,4 +1,4 @@
-import { IUser } from "./user";
+import { IUser, IUserJobSeeker } from "./user";
 import { TCategory } from "./works";
 
 export interface IResume {
@@ -10,7 +10,7 @@ export interface IResume {
   images: string[];
   title: string;
   updated_at: string;
-  user: Omit<IUser, "resumes" | "created_at" | "updated_at">;
+  user: IUserJobSeeker;
   user_id: number;
   views: number;
 }

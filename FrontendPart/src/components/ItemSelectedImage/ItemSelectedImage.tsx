@@ -8,7 +8,7 @@ import { TPreviews } from "../../interfaces/global";
 interface IProps {
     src: string;
     index: number;
-    setPreviews: React.Dispatch<React.SetStateAction<TPreviews[]>>;
+    setPreviews: React.Dispatch<React.SetStateAction<TPreviews[] | TPreviews>>;
 }
 
 export function ItemSelectedImage(props: IProps) {
@@ -19,9 +19,15 @@ export function ItemSelectedImage(props: IProps) {
 
     function handleDeleteImage() {
         setPreviews((prevState) => {
-            let newState = [...prevState];
-            newState = newState.filter((item, secondIndex) => secondIndex !== index);
-            return newState;
+            if (Array.isArray(prevState)) {
+                let newState = [...prevState];
+                newState = newState.filter((item, secondIndex) => secondIndex !== index);
+                return newState;
+            } else {
+                let newState = { ...prevState };
+                newState = {url: null};
+                return newState;
+            }
         });
     }
 

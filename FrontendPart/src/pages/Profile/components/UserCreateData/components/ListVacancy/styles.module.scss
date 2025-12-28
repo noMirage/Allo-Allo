@@ -1,0 +1,30 @@
+@use 'sass:map';
+@use '../../../../../../utils/styles/functions.scss' as f;
+@use '../../../../../../utils/styles/mixins.scss' as m;
+@import '../../../../../../utils/styles/colors.scss';
+
+
+.body {
+    width: 100%;
+    border: 2px solid map.get($colors, 'gray');
+    border-radius: f.rem(6);
+    padding: f.rem(25);
+    margin-bottom: f.rem(50);
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    margin-bottom: f.rem(25);
+
+    p {
+        flex: 1 1 auto;
+    }
+}
+
+
+.buttonCreate {
+    max-width: f.rem(250);
+    text-align: center;
+    background-color: rgb(58, 176, 58);
+}
