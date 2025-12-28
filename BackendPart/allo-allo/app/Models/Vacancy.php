@@ -26,9 +26,9 @@ class Vacancy extends Model
     {
         return $this->belongsTo(VacancyCategory::class);
     }
-
-    public function employer()
-    {
-        return $this->belongsTo(UserModel::class, 'user_id');
-    }
+public function employer()
+{
+    return $this->belongsTo(UserModel::class, 'user_id');
+}
+    
 }

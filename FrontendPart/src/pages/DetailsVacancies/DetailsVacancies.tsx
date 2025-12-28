@@ -2,8 +2,6 @@ import { useParams } from "react-router-dom"
 import styles from './styles.module.scss';
 import gStyles from '../../styles/styles.module.scss';
 import { useAppDispatch, useAppSelector } from "../../hooks/AppRedux";
-import { filterById } from "../../servers/filterById";
-import { getVacanciesServer } from "../../servers/vacancies";
 import { useEffect } from "react";
 import { ReactComponent as Arrow } from '../../assets/global/singleArrow.svg';
 import { Link } from "react-router-dom";

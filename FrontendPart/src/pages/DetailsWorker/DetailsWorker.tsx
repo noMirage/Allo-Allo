@@ -3,7 +3,6 @@ import styles from './styles.module.scss';
 import gStyles from '../../styles/styles.module.scss';
 import { useAppDispatch, useAppSelector } from "../../hooks/AppRedux";
 import { useEffect } from "react";
-import { getDetailsWorker } from "../../servers/detailsWorker";
 import { Gallery } from "./components/Gallery/Gallery";
 import { Contact } from "./components/Contact/Contact";
 import { Description } from "./components/Description/Description";

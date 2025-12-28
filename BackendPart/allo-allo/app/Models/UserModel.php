@@ -22,7 +22,8 @@ class UserModel extends Authenticatable
     "age",
     "avatar",
     "description",
-    'role'
+    'role',
+    'organization',
    ];
 
     public function resumes()
@@ -52,5 +53,4 @@ class UserModel extends Authenticatable
     {
         return $this->role === 'job_seeker';
     }
-    
 }

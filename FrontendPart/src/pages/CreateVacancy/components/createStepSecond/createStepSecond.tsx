@@ -47,7 +47,7 @@ export function CreateStepSecond(props: IProps) {
                         formData.append('description', description);
                         formData.append('title', title);
                         formData.append('location', location);
-                        formData.append('price', values.price);
+                        formData.append('salary', values.price);
                         if (Array.isArray(previews) && previews[0].file) {
                             formData.append('logo', previews[0].file);
                         }

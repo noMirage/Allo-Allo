@@ -1,5 +1,4 @@
 import { TCategory } from "./works";
-
 export interface IVacancies {
   category: TCategory;
   category_id: number;
@@ -13,5 +12,14 @@ export interface IVacancies {
   title: string;
   updated_at: string;
   user_id: number;
+  organization: string;
   views: number;
+}
+
+export interface IVacancyPaginationList {
+  current_page: number;
+  vacancies: IVacancies[];
+  last_page: number;
+  per_page: number;
+  total: 2;
 }

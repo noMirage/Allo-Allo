@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Vacancy;
 use App\Models\VacancyCategory;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\DB;
 class VacancyController extends Controller
 {
    public function store(Request $request)
@@ -21,7 +22,7 @@ class VacancyController extends Controller
         'category' => 'required|string',  
         'description' => 'required|string',
         'location' => 'required|string',
-        'salary' => 'nullable|integer',
+        'salary' => 'nullable|string|max:255',
         'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
@@ -42,13 +43,15 @@ class VacancyController extends Controller
     ], 422);
    }
 
+   $salary = $request->input('salary');
+
     $vacancy = Vacancy::create([
         'user_id' => $user->id,
         'category_id' => $category->id,
         'title' => $request->title,
         'description' => $request->description,
         'location' => $request->location,
-        'salary' => $request->salary,
+        'salary' => ($salary !== null && $salary !== '' && $salary !== '?') ? $salary : null,
     ]);
 
     if ($request->hasFile('logo')) {
@@ -167,4 +170,36 @@ class VacancyController extends Controller
         'data' => new UserResource($user->fresh()),
     ], 200);
 }
+public function getVacancies(Request $request)
+{
+    $vacancies = Vacancy::with('employer.employerProfile')
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(50);
+
+    $vacancies->getCollection()->transform(function ($vacancy) {
+        return [
+            'id' => $vacancy->id,
+            'title' => $vacancy->title,
+            'description' => $vacancy->description,
+            'location' => $vacancy->location,
+            'salary' => $vacancy->salary,
+            'logo' => $vacancy->logo,
+            'created_at' => $vacancy->created_at,
+            'organization' => $vacancy->employer?->employerProfile?->organization ?? 'Без організації',
+        ];
+    });
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Успішно отримані!',
+        'data' => [
+            'vacancies' => $vacancies->items(),
+            'current_page' => $vacancies->currentPage(),
+            'last_page' => $vacancies->lastPage(),
+            'per_page' => $vacancies->perPage(),
+            'total' => $vacancies->total(),
+        ],
+    ]);
+}
+
 }
