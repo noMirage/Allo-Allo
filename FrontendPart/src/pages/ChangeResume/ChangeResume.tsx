@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks/AppRedux';
-import { IUser } from '../../interfaces/user';
+import { IUser, IUserJobSeeker } from '../../interfaces/user';
 import { hasKeys } from '../../utils/js/checkTypes';
 import { useParams } from 'react-router-dom';
 import { ChangeResumeForm } from './components/ChangeResumeForm/ChangeResumeForm';
@@ -12,7 +12,7 @@ export function ChangeResume() {
 
     let { index } = useParams();
 
-    if (hasKeys<IUser>(user)) {
+    if (hasKeys<IUserJobSeeker>(user)) {
         return (
             <ChangeResumeForm resume={user.resumes[Number(index)]} />
         );

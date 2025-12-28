@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GET_USER } from "../configs/configs";
 import { utilServer } from "../utils/js/utilServer";
 import { TLoading } from "../interfaces/typeReduxThunk";
-import { IUser } from "../interfaces/user";
+import { IUser, IUserEmployer } from "../interfaces/user";
 
 export interface IinitialStateUser {
   loading: TLoading;
@@ -29,7 +29,7 @@ const user = createSlice({
     logOut: (state: IinitialStateUser) => {
       state.data = {};
     },
-    update: (state: IinitialStateUser, action: PayloadAction<IUser>) => {
+    update: (state: IinitialStateUser, action: PayloadAction<IUser | IUserEmployer>) => {
       state.data = action.payload;
     },
   },
@@ -42,7 +42,7 @@ const user = createSlice({
     });
     builder.addCase(
       getUser.fulfilled,
-      (state: IinitialStateUser, action: PayloadAction<IUser | {}>) => {
+      (state: IinitialStateUser, action: PayloadAction<IUser | IUserEmployer | {}>) => {
         state.loading = "succeeded";
         state.data = action.payload;
         console.log(state.data);

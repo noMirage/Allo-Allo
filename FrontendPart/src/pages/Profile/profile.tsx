@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../hooks/AppRedux";
-import { IUser, IUserEmployer } from "../../interfaces/user";
+import { IUser, IUserEmployer, IUserJobSeeker } from "../../interfaces/user";
 import { hasKeys } from "../../utils/js/checkTypes";
 import gStyles from "../../styles/styles.module.scss";
 import styles from "./styles.module.scss";
@@ -18,16 +18,18 @@ export function Profile() {
                     <HeadInfo
                         avatar={user.avatar}
                         fullName={user.full_name}
-                        location={user.location}
+                        location={(user as IUserJobSeeker).location}
                         phone={user.phone}
                         email={user.email}
+                        role={user.role}
+                        organization={(user as IUserEmployer).organization}
                     />
                     {user.role === "job_seeker" ? (
                         <UserCreateData
                             title="Резюме"
                             description="Ви немаєте жодного створенного резюме, будь ласка створіть!"
                             redirect={{ url: CREATE_RESUME, name: "Створити резюме" }}
-                            data={user.resumes}
+                            data={(user as IUserJobSeeker).resumes}
                             role={user.role}
                         />
                     ) : (

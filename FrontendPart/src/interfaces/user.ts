@@ -20,10 +20,8 @@ export interface IUser {
   full_name: string;
   phone: string;
   email: string;
-  location: string;
   age?: number;
   avatar: string | null;
-  resumes: TResume[];
   created_at: string;
   updated_at: string;
 }
@@ -31,4 +29,10 @@ export interface IUser {
 export interface IUserEmployer extends IUser {
   organization?: string;
   vacancies: IVacancies[];
+}
+
+export interface IUserJobSeeker extends IUser {
+  role: "job_seeker";
+  location: string;
+  resumes: TResume[];
 }

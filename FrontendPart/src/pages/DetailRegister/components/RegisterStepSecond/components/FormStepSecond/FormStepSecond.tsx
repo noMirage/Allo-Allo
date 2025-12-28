@@ -27,7 +27,7 @@ export function FormStepSecond(props: IProps) {
             <div>
                 <div className={`${pStyles.bodyForm} ${styles.body}`}>
                     <p className={`${gStyles.textExtraLarge} ${styles.title}`}>Вкажіть важе місце проживання для того щоб пришвидшити пошук</p>
-                    <SelectLocation errors={errors} location={location} setLocation={setLocation} />
+                    {userRole === 'job_seeker' && <SelectLocation errors={errors} location={location} setLocation={setLocation} placeholder="Локація" />}
                     {userRole === 'employer' && <div>
                         <Field className={`${styles.input} ${gStyles.textBig} ${errors.organization && gStyles.inputWrong}`} placeholder='Назва організації' type="text" name="organization" validate={validateBaseField} />
                         <ErrorMessage name="organization" component="div" />

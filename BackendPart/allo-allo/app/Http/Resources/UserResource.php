@@ -32,6 +32,11 @@ class UserResource extends JsonResource
                 fn () => $this->employerProfile?->organization,
             ),
 
+              'location' => $this->when(
+               $this->isJobSeeker(),
+               $this->location
+              ),
+
             'resumes' => $this->when(
             $this->isJobSeeker(),
             fn () => $this->resumes

@@ -34,8 +34,8 @@ export function RegisterStepSecond(props: IProps) {
                     formData.append('fullName', userInfo.fullName);
                     formData.append('phone', userInfo.phone);
                     formData.append('email', userInfo.email || '');
-                    formData.append('location', location);
                     formData.append('role', userRole);
+                    if (userRole === 'job_seeker') formData.append('location', location);
                     if (userRole === 'employer') formData.append('organization', values.organization);
                     const data = await utilServer(POST_USER_REGISTER, 'post', formData);
                     if (data.success && hasKeys<IUser>(data.data!)) {

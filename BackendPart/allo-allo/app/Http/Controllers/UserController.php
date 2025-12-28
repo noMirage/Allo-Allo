@@ -19,7 +19,7 @@ public function register(Request $request)
         'fullName' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users,email',
         'phone' => 'nullable|max:16|alpha_num',
-        'location' => 'required|string',
+        'location' => 'required_if:role,job_seeker|string',
         'role' => 'required|in:job_seeker,employer',
         'organization' => 'required_if:role,employer|string|max:255',
     ]);
@@ -73,33 +73,40 @@ public function register(Request $request)
   }
 
 
-      public function mainEditProfile(Request $request)
-    {
-         $data = $request->validate([
-           'fullName' => 'sometimes|string|max:255',
-           'phone'    => 'sometimes|nullable|string|max:16',
-           'location' => 'sometimes|string',
-        ]);
+  public function mainEditProfile(Request $request)
+{
+    $data = $request->validate([
+       'fullName' => 'sometimes|string|max:255',
+       'phone'    => 'sometimes|nullable|string|max:16',
+       'location' => 'required_if:role,job_seeker|string',
+       'role' => 'required|in:job_seeker,employer',
+       'organization' => 'required_if:role,employer|string|max:255',
+    ]);
 
-        $user = UserModel::findOrFail(auth()->id());
+    $user = UserModel::findOrFail(auth()->id());
 
-          $updateData = [];
-          if (isset($data['fullName'])) $updateData['full_name'] = $data['fullName'];
-          if (isset($data['phone'])) $updateData['phone'] = $data['phone'];
-          if (isset($data['location'])) $updateData['location'] = $data['location'];
+    if (isset($data['fullName'])) $user->full_name = $data['fullName'];
+    if (isset($data['phone'])) $user->phone = $data['phone'];
 
-          if (!empty($updateData)) {
-              $user->update($updateData);
-              $user->refresh(); 
-           }
+    if ($user->isJobSeeker() && isset($data['location'])) {
+        $user->location = $data['location'];
+    }
 
-          return response()->json([
-             'success' => true,
-             'message' => 'Дані успішно змінені!',
-             'data' => new UserResource($user),
-         ]);
-     }
+    if ($user->isEmployer() && isset($data['organization'])) {
+        $user->employerProfile()->updateOrCreate(
+            ['user_id' => $user->id],
+            ['organization' => $data['organization']]
+        );
+    }
 
+    $user->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Дані успішно змінені!',
+        'data' => new UserResource($user),
+    ]);
+}
       public function updateAvatar(Request $request) {
         $request->validate([
             'avatar' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
