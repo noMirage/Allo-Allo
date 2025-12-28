@@ -7,14 +7,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { HOME_PATH, PROFILE_PATH } from "../../../../routs/routs";
 import { Formik } from "formik";
 import { TUserDataWResumeWithoutCategory } from "./types/types";
-import { FormChangeResume } from "./components/FormChangeResume/FormChangeResume";
-import { ContainerButtons } from "./components/ContainerButtons/ContainerButtons";
 import { TPreviews } from "../../../../interfaces/global";
 import { utilServer } from "../../../../utils/js/utilServer";
 import { hasKeys } from "../../../../utils/js/checkTypes";
 import { UPDATE_RESUME } from "../../../../configs/configs";
 import { useAppDispatch } from "../../../../hooks/AppRedux";
 import { update } from "../../../../servers/user";
+import { FormBaseField } from "../../../../components/ui/FormBaseField/FormBaseField";
+import { ContainerButtons } from "../../../../components/ui/ContainerButtons/ContainerButtons";
 
 interface IProps {
     resume: TResume;
@@ -41,7 +41,7 @@ export function ChangeResumeForm(props: IProps) {
         }));
     }
 
-    const [previews, setPreviews] = useState<TPreviews[]>(objectPreviews);
+    const [previews, setPreviews] = useState<TPreviews[] | TPreviews>(objectPreviews);
 
     return (
         <div className={styles.wrapper}>
@@ -58,15 +58,15 @@ export function ChangeResumeForm(props: IProps) {
                             formData.append('description', String(values.description));
                             formData.append('title', String(values.title));
                             formData.append('category_id', String(resume.category.id));
+                            if (Array.isArray(previews)) {
+                                previews
+                                    .filter(img => !img.file && img.url)
+                                    .forEach(img => formData.append('existing_images[]', img.url!));
 
-                            previews
-                                .filter(img => !img.file && img.url)
-                                .forEach(img => formData.append('existing_images[]', img.url));
-
-                            previews
-                                .filter((img): img is { url: string; file: File } => img.file instanceof File)
-                                .forEach(img => formData.append('images[]', img.file));
-
+                                previews
+                                    .filter((img): img is { url: string; file: File } => img.file instanceof File)
+                                    .forEach(img => formData.append('images[]', img.file));
+                            }
 
                             const dataServer = await utilServer(`${UPDATE_RESUME}${resume.id}`, 'post', formData, () => { }, false);
 
@@ -80,7 +80,16 @@ export function ChangeResumeForm(props: IProps) {
                             errors, submitForm
                         }) => (
                             <div>
-                                <FormChangeResume description={data.description as string} setPreviews={setPreviews} previews={previews} setData={setData} errors={errors} category={resume.category.name} images={resume.images} />
+                                <FormBaseField<TUserDataWResumeWithoutCategory>
+                                    title="Редагування резюме: "
+                                    description={data.description as string}
+                                    setPreviews={setPreviews}
+                                    previews={previews}
+                                    setData={setData}
+                                    errors={errors}
+                                    category={resume.category.name}
+                                    images={resume.images}
+                                />
                                 <ContainerButtons submitForm={submitForm} />
                             </div>
                         )}

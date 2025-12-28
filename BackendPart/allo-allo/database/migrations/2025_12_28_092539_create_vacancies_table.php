@@ -23,7 +23,7 @@ return new class extends Migration
           ->cascadeOnDelete();
     $table->string('title');
     $table->text('description');
-    $table->integer('salary')->nullable();
+    $table->string('salary')->nullable();
     $table->string('location');
     $table->string('logo')->nullable();
     $table->timestamps();

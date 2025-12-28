@@ -16,11 +16,12 @@ import { IVacancies } from '../../../../../../interfaces/vacancies';
 interface IProps {
     data: TResume[] | IVacancies[];
     url: string;
+    pathChange: string;
 }
 
 export function ListData(props: IProps) {
 
-    const { data, url } = props;
+    const { data, url, pathChange } = props;
 
     const dispatch = useAppDispatch();
 
@@ -50,7 +51,7 @@ export function ListData(props: IProps) {
                             </div>
                         </Link>
                         <div className={styles.containerButtons}>
-                            <Link to={`${CHANGE_RESUME}/${index}`} className={`${gStyles.textBig} ${styles.buttonChange}`}>Змінити</Link>
+                            <Link to={`${pathChange}/${index}`} className={`${gStyles.textBig} ${styles.buttonChange}`}>Змінити</Link>
                             <button onClick={() => handleSubmit(item.id)} className={`${gStyles.textBig} ${styles.buttonRemove}`}>Видалити</button>
                         </div>
                     </li>

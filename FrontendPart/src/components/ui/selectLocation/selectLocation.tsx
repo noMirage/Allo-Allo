@@ -14,10 +14,11 @@ interface IProps {
   errors: FormikErrors<{
     location: string;
   }>;
+  placeholder?: string; 
 }
 
 export function SelectLocation(props: IProps) {
-  const { location, errors, setLocation } = props;
+  const { location, errors, setLocation, placeholder = '' } = props;
 
   const [isShowSelect, setIsShowSelect] = useState<boolean>(true);
 
@@ -28,7 +29,7 @@ export function SelectLocation(props: IProps) {
   return (
     <Form className={styles.formContainer}>
       <div className={styles.container}>
-        <ModifiedInput setIsShowSelect={setIsShowSelect} location={location} setLocation={setLocation} errors={errors} />
+        <ModifiedInput placeholder={placeholder} setIsShowSelect={setIsShowSelect} location={location} setLocation={setLocation} errors={errors} />
         <ErrorMessage className={gStyles.warningMessage} name="location" component="div" />
         <SeletOption isShowSelect={isShowSelect} setIsShowSelect={setIsShowSelect} setLocation={setLocation} location={location} />
       </div>

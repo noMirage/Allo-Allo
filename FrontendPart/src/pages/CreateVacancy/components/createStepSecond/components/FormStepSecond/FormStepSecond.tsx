@@ -18,8 +18,8 @@ interface IProps {
         price: string
     }>;
     submitForm: (() => Promise<void>) & (() => Promise<any>);
-    setPreviews: React.Dispatch<React.SetStateAction<TPreviews[]>>
-    previews: TPreviews[];
+    setPreviews: React.Dispatch<React.SetStateAction<TPreviews[] | TPreviews>>
+    previews: TPreviews[] | TPreviews;
     setData: React.Dispatch<React.SetStateAction<TUserDataVacancy>>
 }
 
@@ -35,10 +35,10 @@ export function FormStepSecond(props: IProps) {
                     <Field className={`${styles.input} ${gStyles.textBig} ${errors.price && gStyles.inputWrong}`} placeholder='Вкажить заробітню плату' type="text" name="price" />
                     <SelectImage previews={previews} setPreviews={setPreviews} setData={setData} multipleMode={false} placeholder="Натисніть щоб завантажити логотип організації/компанії">
                         {
-                            previews.length > 0 &&
+                            Array.isArray(previews) && previews.length > 0 &&
                             <ul className={`${styles.listImages}`}>
                                 {previews.map((src, index) =>
-                                    <ItemSelectedImage key={src.url} setPreviews={setPreviews} src={src.url} index={index} />
+                                    <ItemSelectedImage key={src.url} setPreviews={setPreviews} src={src.url || ""} index={index} />
                                 )}
                             </ul>
                         }

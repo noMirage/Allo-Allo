@@ -5,8 +5,8 @@ import { ReactNode } from "react";
 import { TPreviews } from "../../../interfaces/global";
 
 interface IProps {
-    setPreviews: React.Dispatch<React.SetStateAction<TPreviews[]>>;
-    previews: TPreviews[];
+    previews: TPreviews[] | TPreviews;
+    setPreviews: React.Dispatch<React.SetStateAction<TPreviews[] | TPreviews>>;
     setData: React.Dispatch<React.SetStateAction<any>>;
     className?: string;
     children: ReactNode;
@@ -34,8 +34,13 @@ export function SelectImage(props: IProps) {
         });
 
         setPreviews((prevState) => {
-            const newState = [...prevState, ...data];
-            return newState;
+            if (Array.isArray(prevState)) {
+                const newState = [...prevState, ...data];
+                return newState;
+            } else {
+                const newState = {url: URL.createObjectURL(files[0]), file: files[0]};
+                return newState;
+            }
         });
 
         setData((prevState: any) => {

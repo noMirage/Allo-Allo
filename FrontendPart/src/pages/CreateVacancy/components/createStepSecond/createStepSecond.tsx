@@ -30,7 +30,7 @@ export function CreateStepSecond(props: IProps) {
 
     const [location, setLocation] = useState<string>("");
 
-    const [previews, setPreviews] = useState<TPreviews[]>([]);
+    const [previews, setPreviews] = useState<TPreviews[] | TPreviews>([]);
 
     const dispatch = useAppDispatch();
 
@@ -48,7 +48,7 @@ export function CreateStepSecond(props: IProps) {
                         formData.append('title', title);
                         formData.append('location', location);
                         formData.append('price', values.price);
-                        if (previews[0].file) {
+                        if (Array.isArray(previews) && previews[0].file) {
                             formData.append('logo', previews[0].file);
                         }
                         const data = await utilServer(POST_ADD_VACANCY, 'post', formData, () => { }, false);

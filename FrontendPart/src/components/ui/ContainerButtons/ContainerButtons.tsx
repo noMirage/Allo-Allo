@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
-import gStyles from '../../../../../../styles/styles.module.scss';
+import gStyles from '../../../styles/styles.module.scss';
 import { Link } from "react-router-dom";
-import { PROFILE_PATH } from "../../../../../../routs/routs";
+import { PROFILE_PATH } from '../../../routs/routs';
 
 interface IProps {
     submitForm: (() => Promise<void>) & (() => Promise<any>)

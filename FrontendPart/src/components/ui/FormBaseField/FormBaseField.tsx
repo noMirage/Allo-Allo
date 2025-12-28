@@ -1,16 +1,14 @@
-import { useState } from "react";
 import styles from './styles.module.scss';
-import gStyles from '../../../../../../styles/styles.module.scss';
-import pStyles from '../../styles.module.scss';
+import gStyles from '../../../styles/styles.module.scss';
 import { ErrorMessage, Field, Form, FormikErrors } from "formik";
-import { validateBaseField } from "../../../../../../utils/js/validates";
-import { TCategoryWorks } from "../../../../../../interfaces/works";
-import { TUserDataWResumeWithoutCategory } from "../../types/types";
 import { ListSelectedImages } from "./components/ListSelectedImages/ListSelectedImages";
-import { TPreviews } from "../../../../../../interfaces/global";
-import { DescriptionField } from "../../../../../../components/ui/DescriptionField/descriptionField";
+import { TPreviews } from '../../../interfaces/global';
+import { TCategoryWorks } from '../../../interfaces/works';
+import { DescriptionField } from '../DescriptionField/descriptionField';
+import { validateBaseField } from '../../../utils/js/validates';
+import { ReactNode } from 'react';
 
-interface IProps {
+interface IProps<T> {
     errors: FormikErrors<{
         title: string | string[] | FileList;
         description: string | string[] | FileList;
@@ -18,22 +16,26 @@ interface IProps {
     }>
     images: string[];
     category: TCategoryWorks;
-    setData: React.Dispatch<React.SetStateAction<TUserDataWResumeWithoutCategory>>;
-    setPreviews: React.Dispatch<React.SetStateAction<TPreviews[]>>;
-    previews: TPreviews[];
+    setData: React.Dispatch<React.SetStateAction<T>>;
+    setPreviews: React.Dispatch<React.SetStateAction<TPreviews | TPreviews[]>>
+    previews: TPreviews[] | TPreviews;
     description: string;
+    title: string;
+    multipleMode?: boolean;
+    children?: ReactNode;
+    placeholder?: string;
 }
 
-export function FormChangeResume(props: IProps) {
+export function FormBaseField<T>(props: IProps<T>) {
 
-    const { errors, previews, setPreviews, category, setData, description } = props;
+    const { errors, previews, children = <></>, setPreviews, category, setData, description, title, multipleMode = true, placeholder = '' } = props;
 
     return (
         <div className={`${styles.form} ${styles.body}`}>
-            <p className={`${gStyles.textExtraLarge} ${styles.title}`}>Редагування резюме: {category}</p>
+            <p className={`${gStyles.textExtraLarge} ${styles.title}`}>{title} {category}</p>
             <Form>
                 <Field
-                    className={`${pStyles.input} ${gStyles.textExtraBig} ${errors.title && gStyles.inputWrong
+                    className={`${styles.input} ${gStyles.textExtraBig} ${errors.title && gStyles.inputWrong
                         }`}
                     placeholder="Заголовок"
                     type="text"
@@ -51,7 +53,8 @@ export function FormChangeResume(props: IProps) {
                     name="description"
                     component="div"
                 />
-                <ListSelectedImages setData={setData} previews={previews} setPreviews={setPreviews} />
+                <ListSelectedImages placeholder={placeholder} multipleMode={multipleMode} setData={setData} previews={previews} setPreviews={setPreviews} />
+                {children}
             </Form>
         </div>
     );

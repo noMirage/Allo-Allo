@@ -15,7 +15,7 @@ export function ListVacancies(props: IProps) {
 
     return (
         <ul className={styles.list}>
-            {data.map((item, _) => (
+            {/* {data.map((item, _) => (
                 <li>
                     <Link className={styles.itemBody} to={`${DETAILS_VACANCIES_PATH}/${item.id}`}>
                         <div className={styles.body}><h2 className={`${styles.title} ${gStyles.textLarge}`}>{item.title}</h2>
@@ -28,7 +28,7 @@ export function ListVacancies(props: IProps) {
                         </div>
                     </Link>
                 </li>
-            ))}
+            ))} */}
         </ul>
     );
 }

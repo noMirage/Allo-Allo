@@ -57,3 +57,4 @@ Route::middleware('auth:sanctum')->group(function() {
 });
 
 Route::middleware('auth:sanctum')->delete('/vacancyDelete/{id}', [VacancyController::class, 'deleteVacancy']);
+Route::post('/updateVacancy/{id}', [VacancyController::class, 'updateVacancy']);

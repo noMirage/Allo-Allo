@@ -1,7 +1,7 @@
 @use 'sass:map';
-@use '../../../../../../utils/styles/functions.scss' as f;
-@use '../../../../../../utils/styles/mixins.scss' as m;
-@import '../../../../../../utils/styles/colors.scss';
+@use '../../../utils/styles/functions.scss' as f;
+@use '../../../utils/styles/mixins.scss' as m;
+@import '../../../utils/styles/colors.scss';
 
 .containerButtons {
     display: flex;
@@ -23,7 +23,7 @@
             display: block;
             width: 30px;
             height: 20px;
-            background: url('../../../../../../assets/global/singleArrow.svg') 100%/100% no-repeat;
+            background: url('../../../assets/global/singleArrow.svg') 100%/100% no-repeat;
         }
     }
 
@@ -40,7 +40,7 @@
             display: block;
             width: 30px;
             height: 20px;
-            background: url('../../../../../../assets/global/singleArrowWhite.svg') 100%/100% no-repeat;
+            background: url('../../../assets/global/singleArrowWhite.svg') 100%/100% no-repeat;
             transform: rotate(-180deg) translate(-50%, 0);
         }
     }
