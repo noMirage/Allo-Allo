@@ -1,3 +1,4 @@
+import { IVacancies } from "./vacancies";
 import { TCategory } from "./works";
 
 export type TUserRole = "job_seeker" | "employer";
@@ -29,5 +30,5 @@ export interface IUser {
 
 export interface IUserEmployer extends IUser {
   organization?: string;
-  vacancies: any[];
+  vacancies: IVacancies[];
 }

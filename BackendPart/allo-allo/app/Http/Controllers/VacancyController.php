@@ -63,4 +63,32 @@ class VacancyController extends Controller
         'data' =>  new UserResource($user),
     ], 201);
 }
+
+  public function deleteVacancy($id)
+    {
+        $user = auth()->user();
+
+        $vacancy = Vacancy::where('id', $id)
+                        ->where('user_id', $user->id)
+                        ->first();
+
+        if (!$vacancy) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Вакансія не знайдена або не належить вам',
+            ], 404);
+        }
+
+         if ($vacancy->logo) {
+           \Storage::disk('public')->delete($vacancy->logo);
+         }
+
+        $vacancy->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Вакансія видалена',
+            "data" => new UserResource(auth()->user()->fresh()),
+        ], 200);
+    }
 }

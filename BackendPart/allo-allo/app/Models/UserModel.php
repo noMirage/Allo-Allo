@@ -45,7 +45,7 @@ class UserModel extends Authenticatable
     }
     public function vacancies()
 {
-    return $this->hasMany(Vacancy::class, 'user_id', 'id');
+      return $this->hasMany(Vacancy::class, 'user_id', 'id')->with('category');
 }
 
      public function isJobSeeker(): bool

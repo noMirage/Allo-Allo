@@ -1,10 +1,17 @@
+import { TCategory } from "./works";
+
 export interface IVacancies {
-  id: number;
-  title: string;
-  price: string;
-  date: string;
-  located: string;
-  organisation: string;
+  category: TCategory;
+  category_id: number;
+  created_at: string;
   description: string;
-  reviews: number;
+  id: number;
+  is_active: number;
+  location: string;
+  logo: string | null;
+  salary: string | null;
+  title: string;
+  updated_at: string;
+  user_id: number;
+  views: number;
 }

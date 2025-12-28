@@ -16,4 +16,5 @@ export const GET_RESUME = "/resumes/category/";
 export const GET_SELECTED_RESUME = "/resume/";
 export const POST_INCREMENT_VIEW = "/resumes/incrementView/";
 export const POST_ADD_VACANCY = "/addVacancy";
+export const DELETE_VACANCY = "/vacancyDelete/";
 export const PATH_TO_STORE = 'http://localhost:8000/storage/';
