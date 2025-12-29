@@ -4,7 +4,7 @@ import { ErrorMessage, Field, Form, FormikErrors, FormikValues } from "formik";
 import { Link } from "react-router-dom";
 import { DETAIL_REGISTER } from "../../../../../../routs/routs";
 import {
-    validateBaseField,
+    validateFullName,
 } from "../../../../../../utils/js/validates";
 import pStyles from '../../../../styles.module.scss';
 import styles from "./styles.module.scss";
@@ -56,7 +56,7 @@ export function FormStepOne(props: IProps) {
                         placeholder="Ім'я фамілія"
                         type="text"
                         name="fullName"
-                        validate={validateBaseField}
+                        validate={validateFullName}
                     />
                     <ErrorMessage
                         className={gStyles.warningMessage}
