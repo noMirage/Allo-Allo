@@ -16,7 +16,6 @@ import { IResume } from "../../interfaces/resume";
 import { GET_SELECTED_RESUME, POST_INCREMENT_VIEW } from "../../configs/configs";
 import { hasKeys } from "../../utils/js/checkTypes";
 import { utilServer } from "../../utils/js/utilServer";
-import { IUserEmployer, IUserJobSeeker } from "../../interfaces/user";
 
 export function DetailsWorker() {
     const { id, title, prevLocation } = useParams();

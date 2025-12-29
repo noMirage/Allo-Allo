@@ -4,8 +4,7 @@ import resume from '../../../../../../assets/global/resume.svg';
 import 'swiper/css';
 import { IUser, TResume } from '../../../../../../interfaces/user';
 import { Link } from 'react-router-dom';
-import { CHANGE_RESUME, DETAILS_WORKER_PATH } from '../../../../../../routs/routs';
-import { DELETE_RESUME } from '../../../../../../configs/configs';
+import { DETAILS_VACANCIES_PATH } from '../../../../../../routs/routs';
 import { utilServer } from '../../../../../../utils/js/utilServer';
 import { useAppDispatch } from '../../../../../../hooks/AppRedux';
 import { update } from '../../../../../../servers/user';
@@ -41,7 +40,7 @@ export function ListData(props: IProps) {
                 );
                 return (
                     <li className={styles.container}>
-                        <Link className={styles.bodyItem} to={`${DETAILS_WORKER_PATH}/${item.id}/${item.title}/${item.category.name}`}>
+                        <Link className={styles.bodyItem} to={`${DETAILS_VACANCIES_PATH}/${item.id}/${item.title}/${item.category.name}`}>
                             <div className={styles.bodyImage}>
                                 <img src={work?.icon ? work.icon : resume} alt="" />
                             </div>

@@ -201,5 +201,37 @@ public function getVacancies(Request $request)
         ],
     ]);
 }
+public function getVacancyById($id)
+{
+     $vacancy = Vacancy::with('employer.employerProfile:id,user_id,organization')->find($id)->find($id);
+
+    if (!$vacancy) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Вакансія не знайдена',
+        ], 404);
+    }
+
+    return response()->json([
+        'success' => true,
+        'data' => [
+            'id' => $vacancy->id,
+            'title' => $vacancy->title,
+            'description' => $vacancy->description,
+            'location' => $vacancy->location,
+            'salary' => $vacancy->salary,
+            'logo' => $vacancy->logo,
+            'created_at' => $vacancy->created_at,
+            'employer' => $vacancy->employer ? [
+                'id' => $vacancy->employer->id,
+                'full_name' => $vacancy->employer->full_name,
+                'avatar' => $vacancy->employer->avatar,
+                'phone' => $vacancy->employer->phone,
+                'email' => $vacancy->employer->email,
+                'organization' => $vacancy->employer->employerProfile?->organization,
+            ] : null,
+        ],
+    ]);
+}
 
 }

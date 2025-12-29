@@ -16,4 +16,5 @@ export const POST_ADD_VACANCY = "/addVacancy";
 export const DELETE_VACANCY = "/vacancyDelete/";
 export const UPDATE_VACANCY = "/updateVacancy/";
 export const GET_VACANCIES = "/getVacancies?page=";
-export const PATH_TO_STORE = 'http://localhost:8000/storage/';
+export const GET_VACANCY_BY_ID = "/vacancy/";
+export const PATH_TO_STORE = "http://localhost:8000/storage/";

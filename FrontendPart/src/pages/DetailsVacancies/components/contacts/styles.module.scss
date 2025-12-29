@@ -1,0 +1,54 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@import '../../../../utils/styles/colors.scss';
+
+.wrapper {
+    border: 2px solid map.get($colors, 'gray');
+    padding: f.rem(20);
+    border-radius: f.rem(12);
+    display: flex;
+    align-items: center;
+    max-width: 65%;
+}
+
+.phone {
+    position: relative;
+    width: 100%;
+    padding: 0 0 0 f.rem(30);
+    flex-basis: 33.33%;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-3px, -50%);
+        background: url('../../../../assets/global/phoneBlack.svg') 100%/100% no-repeat;
+    }
+}
+
+.email {
+    position: relative;
+    width: 100%;
+    padding: 0 0 0 f.rem(30);
+    flex-basis: 33.33%;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-3px, -50%);
+        background: url('../../../../assets/global/emailBlack.svg') 100%/100% no-repeat;
+    }
+}
+
+.fullName {
+    flex-basis: 33.33%;
+}
