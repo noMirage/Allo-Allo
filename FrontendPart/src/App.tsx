@@ -18,6 +18,7 @@ import { CreateResume } from './pages/CreateResume/CreateResume';
 import { ChangeResume } from './pages/ChangeResume/ChangeResume';
 import { CreateVacancy } from './pages/CreateVacancy/CreateVacancy';
 import { ChangeVacancy } from './pages/ChangeVacancy/ChangeResume';
+import { NotFound } from './pages/NotFound/NotFound';
 
 function App() {
   const location = useLocation();
@@ -41,6 +42,7 @@ function App() {
           <Route path={`${ABOUT_US_PATH}`} element={<AboutUs />} />
           <Route path={`${CONTACTS_PATH}`} element={<Contacts />} />
           <Route path={`${PROFILE_PATH}`} element={<Profile />} />
+          <Route path={'*'} element={<NotFound />} />
         </Routes>
       </Layout>}
       <Routes>
