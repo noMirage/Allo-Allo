@@ -36,6 +36,8 @@ export function CreateStepSecond(props: IProps) {
 
     const navigate = useNavigate();
 
+    const [error, setError] = useState<string | null>(null);
+
     return (
         <div className={`${styles.wrapper}`}>
             <div className={styles.container}>
@@ -56,6 +58,11 @@ export function CreateStepSecond(props: IProps) {
                         if (data.success && hasKeys<IUserEmployer>(data.data!)) {
                             dispatch(update(data.data));
                             navigate(PROFILE_PATH);
+                        } else if (!data.success) {
+                            setError(data.error);
+                            setTimeout(() => {
+                                setError(null);
+                            }, 4000);
                         }
                     }}
                 >
@@ -69,6 +76,7 @@ export function CreateStepSecond(props: IProps) {
                             setData={setData}
                             setPreviews={setPreviews}
                             previews={previews}
+                            error={error}
                         />
                     )}
                 </Formik>

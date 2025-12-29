@@ -25,6 +25,9 @@ class VacancyController extends Controller
         'location' => 'required|string',
         'salary' => 'nullable|string|max:255',
         'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ],
+    [
+        'images.*'     => 'Кожен файл має бути дійсним файлом',
     ]);
 
     $category = VacancyCategory::where('name', $request->category)->first();
@@ -123,9 +126,12 @@ class VacancyController extends Controller
 
                 if ($value === 'null') return;
 
-                $fail('Лого має бути файлом або рядком "null".');
+                $fail('Лого має бути файлом або рядком.');
             },
         ],
+    ],
+    [
+        'images.*'     => 'Кожен файл має бути дійсним файлом',
     ]);
 
     if ($request->hasFile('logo')) {

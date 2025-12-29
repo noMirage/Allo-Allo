@@ -43,6 +43,8 @@ export function ChangeResumeForm(props: IProps) {
 
     const [previews, setPreviews] = useState<TPreviews[] | TPreviews>(objectPreviews);
 
+    const [error, setError] = useState<string | null>(null);
+
     return (
         <div className={styles.wrapper}>
             <div className={gStyles.container}>
@@ -73,6 +75,11 @@ export function ChangeResumeForm(props: IProps) {
                             if (dataServer.success && hasKeys<IUser>(dataServer.data!)) {
                                 dispatch(update(dataServer.data));
                                 navigate(PROFILE_PATH);
+                            } else if (!dataServer.success) {
+                                setError(dataServer.error);
+                                setTimeout(() => {
+                                    setError(null);
+                                }, 4000);
                             }
                         }}
                     >
@@ -89,6 +96,8 @@ export function ChangeResumeForm(props: IProps) {
                                     errors={errors}
                                     category={resume.category.name}
                                     images={resume.images}
+                                    error={error}
+                                    placeholder="Вибиріть фото ваших робіт"
                                 />
                                 <ContainerButtons submitForm={submitForm} />
                             </div>

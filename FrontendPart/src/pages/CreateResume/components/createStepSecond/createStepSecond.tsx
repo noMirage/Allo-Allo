@@ -30,6 +30,8 @@ export function CreateStepSecond(props: IProps) {
 
     const dispatch = useAppDispatch();
 
+    const [error, setError] = useState<string | null>(null);
+
     async function handleSubmit() {
         const formData = new FormData();
         formData.append('category', dataResume.category);
@@ -43,6 +45,8 @@ export function CreateStepSecond(props: IProps) {
         if (data.success && hasKeys<IUser>(data.data!)) {
             dispatch(update(data.data));
             navigate(PROFILE_PATH);
+        } else if (!data.success) {
+            setError(data.error);
         }
     }
 
@@ -51,15 +55,18 @@ export function CreateStepSecond(props: IProps) {
             <div className={styles.container}>
                 <div className={`${styles.body}`}>
                     <p className={`${gStyles.textExtraLarge} ${styles.title}`} >Завантажте фотографії ваших робіт</p>
-                    <SelectImage previews={previews} setPreviews={setPreviews} setData={setData}>
-                        {
-                            Array.isArray(previews) && previews.length > 0 &&
-                            <ul className={`${styles.listImages}`}>
-                                {previews.map((src, index) =>
-                                    <ItemSelectedImage key={src.url} setPreviews={setPreviews} src={src.url || ""} index={index} />
-                                )}
-                            </ul>
-                        }
+                    <SelectImage error={error} previews={previews} setPreviews={setPreviews} setData={setData}>
+                        <>
+                            <div className={gStyles.warningMessage}>{error}</div>
+                            {
+                                Array.isArray(previews) && previews.length > 0 &&
+                                <ul className={`${styles.listImages}`}>
+                                    {previews.map((src, index) =>
+                                        <ItemSelectedImage key={src.url} setPreviews={setPreviews} src={src.url || ""} index={index} />
+                                    )}
+                                </ul>
+                            }
+                        </>
                     </SelectImage>
                 </div>
                 <div className={pStyles.containerButtons}>

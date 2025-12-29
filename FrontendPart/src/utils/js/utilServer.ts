@@ -26,7 +26,7 @@ export async function utilServer<T>(
     return { ...res.data };
   } catch (error: any) {
     if (functionRejectWithValue) {
-      throw functionRejectWithValue(error?.message || "Помилка...");
+       functionRejectWithValue(error?.message || "Помилка...");
     }
     return {
       success: false,

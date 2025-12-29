@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import gStyles from '../../../../../../styles/styles.module.scss';
 import resume from '../../../../../../assets/global/resume.svg';
 import 'swiper/css';
-import { IUser, TResume } from '../../../../../../interfaces/user';
+import { IUser, TResume, TUserRole } from '../../../../../../interfaces/user';
 import { Link } from 'react-router-dom';
 import { DETAILS_VACANCIES_PATH } from '../../../../../../routs/routs';
 import { utilServer } from '../../../../../../utils/js/utilServer';
@@ -16,11 +16,12 @@ interface IProps {
     data: TResume[] | IVacancies[];
     url: string;
     pathChange: string;
+    pathToShow: string;
 }
 
 export function ListData(props: IProps) {
 
-    const { data, url, pathChange } = props;
+    const { data, url, pathChange, pathToShow } = props;
 
     const dispatch = useAppDispatch();
 
@@ -40,7 +41,7 @@ export function ListData(props: IProps) {
                 );
                 return (
                     <li className={styles.container}>
-                        <Link className={styles.bodyItem} to={`${DETAILS_VACANCIES_PATH}/${item.id}/${item.title}/${item.category.name}`}>
+                        <Link className={styles.bodyItem} to={`${pathToShow}/${item.id}/${item.title}/${item.category.name}`}>
                             <div className={styles.bodyImage}>
                                 <img src={work?.icon ? work.icon : resume} alt="" />
                             </div>

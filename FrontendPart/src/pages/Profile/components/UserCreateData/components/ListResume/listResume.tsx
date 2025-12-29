@@ -4,7 +4,7 @@ import pStyles from '../../../../styles.module.scss';
 import 'swiper/css';
 import { TResume } from '../../../../../../interfaces/user';
 import { Link } from 'react-router-dom';
-import { CHANGE_RESUME, CREATE_RESUME } from '../../../../../../routs/routs';
+import { CHANGE_RESUME, CREATE_RESUME, DETAILS_WORKER_PATH } from '../../../../../../routs/routs';
 import { ListData } from '../ListData/ListData';
 import { DELETE_RESUME } from '../../../../../../configs/configs';
 
@@ -22,7 +22,7 @@ export function ListResume(props: IProps) {
                 <p className={`${gStyles.textLarge} ${styles.title}`}>Всі ваші створені резюме</p>
                 <Link to={CREATE_RESUME} className={`${gStyles.textBig} ${styles.createButton} ${pStyles.button} ${styles.buttonCreate} `}>Створити резюме</Link>
             </div>
-            <ListData pathChange={CHANGE_RESUME} url={DELETE_RESUME} data={resumes} />
+            <ListData pathToShow={DETAILS_WORKER_PATH} pathChange={CHANGE_RESUME} url={DELETE_RESUME} data={resumes} />
         </div>
     );
 

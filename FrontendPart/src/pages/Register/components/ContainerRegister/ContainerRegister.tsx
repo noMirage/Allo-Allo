@@ -12,6 +12,8 @@ export function ContainerRegister() {
   const [valueEmail, setValueEmail] = useState<string>("");
 
   async function handleSubmit(email: string, isSwitch: boolean = true) {
+    setValueEmail(email);
+    setVerificationEmail(false);
     let data = await utilServer<string>(POST_VERIFICATY_EMAIL, 'post', { email });
     setValueEmail(email);
     if (!data.success) {
