@@ -5,7 +5,6 @@ import { ControllButtons } from './componenets/ControllButtons/ControllButtons';
 import { DescriptionField } from '../../../../components/ui/DescriptionField/descriptionField';
 import { validateBaseField } from '../../../../utils/js/validates';
 
-
 interface IProps<T> {
     returnPath: string;
     continuePath: string;

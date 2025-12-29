@@ -4,17 +4,23 @@ import gStyles from '../../styles/styles.module.scss';
 import { ReactComponent as Arrow } from '../../assets/global/singleArrow.svg';
 import { IVacancyDetails } from "../../interfaces/vacancies";
 import { useVacancy } from "../../hooks/useVacancy";
-import { GET_VACANCY_BY_ID, PATH_TO_STORE } from "../../configs/configs";
+import { GET_VACANCY_BY_ID, PATH_TO_STORE, POST_INCREMENT_VIEW_VACANCY } from "../../configs/configs";
 import { Link } from "react-router-dom";
 import { VACANCIES_PATH } from "../../routs/routs";
 import { hasKeys } from "../../utils/js/checkTypes";
 import { formatDate } from "../../utils/js/formatDate";
 import { Contacts } from "./components/contacts/contacts";
+import { utilServer } from "../../utils/js/utilServer";
+import { useEffect } from "react";
 
 export function DetailsVacancies() {
     const { id } = useParams();
 
     const [vacancy] = useVacancy<IVacancyDetails>(`${GET_VACANCY_BY_ID}${id || 0}`);
+
+    useEffect(() => {
+        utilServer(`${POST_INCREMENT_VIEW_VACANCY}${id}`, 'post');
+    }, []);
 
     if (vacancy && hasKeys<IVacancyDetails>(vacancy)) {
         return (

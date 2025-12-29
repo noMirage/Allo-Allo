@@ -31,7 +31,7 @@ export function FormStepSecond(props: IProps) {
             <div>
                 <div className={`${pStyles.bodyForm} ${styles.body}`}>
                     <p className={`${gStyles.textExtraLarge} ${styles.title}`}>Вкажіть місце вашої компанії/організації</p>
-                    <SelectLocation errors={errors} location={location} setLocation={setLocation} />
+                    <SelectLocation placeholder="Локація" errors={errors} location={location} setLocation={setLocation} />
                     <Field className={`${styles.input} ${gStyles.textBig} ${errors.price && gStyles.inputWrong}`} placeholder='Вкажить заробітню плату' type="text" name="price" />
                     <SelectImage previews={previews} setPreviews={setPreviews} setData={setData} multipleMode={false} placeholder="Натисніть щоб завантажити логотип організації/компанії">
                         {

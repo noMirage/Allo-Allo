@@ -60,3 +60,4 @@ Route::middleware('auth:sanctum')->delete('/vacancyDelete/{id}', [VacancyControl
 Route::post('/updateVacancy/{id}', [VacancyController::class, 'updateVacancy']);
 Route::get('/getVacancies', [VacancyController::class, 'getVacancies']);
 Route::get('/vacancy/{id}', [VacancyController::class, 'getVacancyById']);
+Route::post('/vacancy/incrementView/{id}', [VacancyController::class, 'incrementViews']);

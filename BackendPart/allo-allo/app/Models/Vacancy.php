@@ -30,5 +30,10 @@ public function employer()
 {
     return $this->belongsTo(UserModel::class, 'user_id');
 }
+
+public function vacancyViews()
+{
+    return $this->hasMany(VacancyView::class);
+}
     
 }

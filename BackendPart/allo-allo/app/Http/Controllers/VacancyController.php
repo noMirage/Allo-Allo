@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vacancy;
 use App\Models\VacancyCategory;
+use App\Models\VacancyView;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\DB;
 class VacancyController extends Controller
@@ -184,6 +185,7 @@ public function getVacancies(Request $request)
             'location' => $vacancy->location,
             'salary' => $vacancy->salary,
             'logo' => $vacancy->logo,
+            "views" => $vacancy->views,
             'created_at' => $vacancy->created_at,
             'organization' => $vacancy->employer?->employerProfile?->organization ?? 'Без організації',
         ];
@@ -222,6 +224,7 @@ public function getVacancyById($id)
             'salary' => $vacancy->salary,
             'logo' => $vacancy->logo,
             'created_at' => $vacancy->created_at,
+            "views" => $vacancy->views,
             'employer' => $vacancy->employer ? [
                 'id' => $vacancy->employer->id,
                 'full_name' => $vacancy->employer->full_name,
@@ -234,4 +237,31 @@ public function getVacancyById($id)
     ]);
 }
 
+ public function incrementViews(int $id)
+{
+    $vacancy = Vacancy::findOrFail($id);
+    $userId = auth()->id();
+
+    if (!$userId) {
+        return response()->json(['status' => 'Гість']);
+    }
+
+    try {
+        VacancyView::create([
+            'vacancy_id' => $vacancy->id,
+            'user_id' => $userId,
+        ]);
+
+        $vacancy->increment('views');
+
+    } catch (QueryException $e) {
+
+    }
+
+    return response()->json([
+        'status' => 'ok',
+        "message" => 'Успіх',
+        "data" => '',
+    ],200);
+}
 }

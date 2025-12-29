@@ -13,7 +13,7 @@ import { ReactComponent as Arrow } from '../../assets/global/singleArrow.svg';
 import { Navigate } from "../../components/ui/navigate/navigate";
 import { useResume } from "../../hooks/useResume";
 import { IResume } from "../../interfaces/resume";
-import { GET_SELECTED_RESUME, POST_INCREMENT_VIEW } from "../../configs/configs";
+import { GET_SELECTED_RESUME, POST_INCREMENT_VIEW_RESUME } from "../../configs/configs";
 import { hasKeys } from "../../utils/js/checkTypes";
 import { utilServer } from "../../utils/js/utilServer";
 
@@ -23,7 +23,7 @@ export function DetailsWorker() {
     const [data] = useResume<IResume>(`${GET_SELECTED_RESUME}${id || 0}`);
 
     useEffect(() => {
-        utilServer(`${POST_INCREMENT_VIEW}${id}`, 'post');
+        utilServer(`${POST_INCREMENT_VIEW_RESUME}${id}`, 'post');
     }, []);
 
     if (data && hasKeys<IResume>(data) && title) {
