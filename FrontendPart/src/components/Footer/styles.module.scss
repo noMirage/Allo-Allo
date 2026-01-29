@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '../../utils/styles/functions.scss' as f;
+@import '../../utils/styles/adaptive.scss';
 @import '../../utils/styles/colors.scss';
 
 .footer {
@@ -83,5 +84,45 @@
             transition: 0.4s linear;
             width: 100%;
         }
+    }
+}
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ADAPTIVE
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .icon {
+        max-width: 25px;
+        max-height: 25px;
+        min-width: 25px;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .footer {
+        padding: f.rem(25);
+    }
+
+    .body {
+        margin: 0 0 f.rem(25) 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .containerFooter {
+        flex-direction: column;
+        justify-items: center;
+    }
+
+    .list {
+        text-align: center;
+    }
+}
+
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .logo {
+        max-width: 200px;
     }
 }

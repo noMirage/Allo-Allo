@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '../utils/styles/functions.scss' as f;
+@import '../utils/styles/adaptive.scss';
 @import '../utils/styles/colors.scss';
 @import '../utils/styles/null.scss';
 
@@ -64,4 +65,30 @@
 .warningMessage {
     font-size: f.rem(16);
     margin: 0 0 0 0;
+}
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .textLarge {
+        font-size: f.rem(22) !important;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .textBig {
+        font-size: f.rem(18);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .textExtraLarge {
+        font-size: f.rem(30);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .container {
+        padding: 0 f.rem(10);
+    }
 }

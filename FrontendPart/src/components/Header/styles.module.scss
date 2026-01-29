@@ -1,10 +1,69 @@
 @use 'sass:map';
 @use '../../utils/styles/functions.scss' as f;
+@import '../../utils/styles/adaptive.scss';
 @import '../../utils/styles/colors.scss';
 
 .list {
     height: f.rem(100);
     width: 100%;
+}
+
+.profile {
+    display: none !important;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+.burger {
+    width: 45px;
+    height: 35px;
+    cursor: pointer;
+    position: relative;
+    display: none;
+
+    span {
+        background-color: map.get($colors, 'white');
+        width: 100%;
+        height: 3px;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        border-radius: 4px;
+        transform: translateY(-50%);
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 3.5px;
+        border-radius: 4px;
+        position: absolute;
+        top: 0;
+        transition: 0.3s linear;
+        left: 0;
+        background-color: map.get($colors, 'white');
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        border-radius: 4px;
+        top: 100%;
+        transition: 0.3s linear;
+        left: 0;
+        background-color: map.get($colors, 'white');
+    }
 }
 
 
@@ -41,7 +100,8 @@
 
 .logoBody {
     flex: 1 1 40%;
-    img{
+
+    img {
         max-width: 280px;
     }
 }
@@ -116,4 +176,192 @@
     max-height: 40px;
     margin-right: f.rem(15);
     transition: 0.6s linear;
+}
+
+.logIn {
+    display: none;
+    width: 100%;
+    margin-bottom: f.rem(10);
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        padding: f.rem(12) 0;
+        background-color: map-get($colors, "amber");
+        font-weight: 700;
+        border-radius: f.rem(6);
+        color: map.get($colors, 'white');
+
+        img {
+            width: 30px;
+            height: 30px;
+            margin-right: f.rem(15);
+        }
+    }
+}
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ADAPTIVE
+
+@media (max-width: map.get($adaptive, 'laptop')) {
+    .phone {
+        display: none !important;
+    }
+
+    .logoBody {
+        img {
+            max-width: 240px;
+        }
+    }
+}
+
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .phone {
+        display: none !important;
+    }
+
+    .logoBody {
+        img {
+            max-width: 240px;
+        }
+    }
+}
+
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .header {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        z-index: 10;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.6)
+    }
+
+    .bodyList {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        background: map.get($colors, 'charCoal');
+        height: 100vh;
+        width: 50%;
+        z-index: 0;
+        transition: 0.3s linear;
+        padding: f.rem(100) 0 0 0;
+
+        .listName {
+            &::before {
+                display: none;
+            }
+
+            &::after {
+                display: none;
+            }
+
+            margin: 0 0 f.rem(25) 0;
+        }
+    }
+
+    .list {
+        flex-direction: column;
+    }
+
+    .burger {
+        display: block;
+        z-index: 50;
+    }
+
+    .openBurger {
+        span {
+            display: none;
+        }
+
+        &::before {
+            transition: 0.3s linear;
+            transform: rotate(-45deg);
+            top: 50%;
+        }
+
+        &::after {
+            transition: 0.3s linear;
+            transform: rotate(45deg);
+            top: 50%;
+        }
+    }
+
+    .logo img {
+        max-width: f.rem(220);
+        position: relative;
+        z-index: 1;
+    }
+
+    .headerTop {
+        padding: f.rem(20) 0 f.rem(20) 0;
+    }
+
+    .openBodyList {
+        display: block;
+    }
+
+    .openBodyList {
+        right: 0;
+        transition: 0.3s linear;
+    }
+
+    .listName {
+        padding: f.rem(10);
+        margin: f.rem(5) !important;
+    }
+
+    .itemIcon {
+        width: f.rem(60) !important;
+    }
+}
+
+@media (max-width: 530px) {
+    .logIn {
+        display: block;
+    }
+}
+
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .logoBody {
+        img {
+            max-width: 220px;
+        }
+    }
+
+    .burger {
+        width: 40px;
+        height: 30px;
+    }
+
+    .bodyList {
+        width: 70%;
+    }
+
+    .profile {
+        display: block !important;
+
+        img {
+            margin-right: f.rem(20);
+            max-width: 40px;
+            max-height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .logoBody {
+        img {
+            max-width: 200px;
+        }
+    }
 }

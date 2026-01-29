@@ -35,14 +35,14 @@ function App() {
       {!hideLayout && <Layout>
         <Routes>
           <Route path={HOME_PATH} element={<Home />} />
-          <Route path={`${ORDER_WORK_PATH}/:nameWork/*`} element={<SearchWorkers />} />
+          {/* <Route path={`${ORDER_WORK_PATH}/:nameWork/*`} element={<SearchWorkers />} />
           <Route path={`${DETAILS_WORKER_PATH}/:id/:title/:prevLocation/*`} element={<DetailsWorker />} />
           <Route path={`${VACANCIES_PATH}`} element={<Vacancies />} />
           <Route path={`${DETAILS_VACANCIES_PATH}/:id/*`} element={<DetailsVacancies />} />
           <Route path={`${ABOUT_US_PATH}`} element={<AboutUs />} />
           <Route path={`${CONTACTS_PATH}`} element={<Contacts />} />
           <Route path={`${PROFILE_PATH}`} element={<Profile />} />
-          <Route path={'*'} element={<NotFound />} />
+          <Route path={'*'} element={<NotFound />} /> */}
         </Routes>
       </Layout>}
       <Routes>

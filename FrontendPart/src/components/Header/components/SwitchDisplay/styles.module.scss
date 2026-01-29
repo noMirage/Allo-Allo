@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../../../../utils/styles/functions.scss' as f;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
 
 .fullName {
     margin-right: f.rem(40);
@@ -27,7 +28,7 @@
     }
 }
 
-.collab {
+.logIn {
     a {
         display: flex;
         align-items: center;
@@ -45,5 +46,53 @@
             height: 30px;
             margin-right: f.rem(15);
         }
+    }
+}
+
+.logInAdaptive {
+    display: none;
+}
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ADAPTIVE
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .fullName {
+        display: none;
+    }
+
+    .containerAvatar {
+        margin-right: f.rem(25);
+        z-index: 1;
+
+        img {
+            max-width: f.rem(70);
+        }
+    }
+
+    .logIn {
+        display: none;
+
+        a {
+            padding: f.rem(12) f.rem(20);
+        }
+    }
+
+    .logInAdaptive {
+        display: block;
+        margin-right: f.rem(25);
+        position: relative;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 530px) {
+    .logInAdaptive {
+        display: none;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .containerAvatar {
+        display: none;
     }
 }

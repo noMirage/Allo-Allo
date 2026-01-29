@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '../../../../utils/styles/functions.scss' as f;
+@import '../../../../utils/styles/adaptive.scss';
 @import '../../../../utils/styles/colors.scss';
 
 .wrapper {
@@ -29,23 +30,50 @@
     display: flex;
     flex-direction: column;
     background-color: map.get($colors, 'charCoal');
-    padding: f.rem(25);
     margin-top: f.rem(1);
+    padding: f.rem(10) 0 f.rem(10) 0;
 }
 
 .item {
-    margin-bottom: f.rem(10);
+
     color: map.get($colors, 'white');
     transition: 0.4s linear;
     display: block;
+    padding: f.rem(10);
 
     &:hover {
-        color: map.get($colors, 'gray');
         transition: 0.4s linear;
+        background-color: map.get($colors, 'darkGray');
     }
 }
 
 .headerItem {
     display: flex;
     align-items: center;
+}
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .list {
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .headerItem {
+        margin: 0;
+    }
+
+    .wrapperDropDownMenu {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .itemIcon {
+        max-width: f.rem(40);
+        margin-right: f.rem(20);
+    }
 }

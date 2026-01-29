@@ -3,14 +3,18 @@ import gStyles from "../../../../styles/styles.module.scss";
 import defaultAvatar from '../../../../assets/global/avatar.jpg';
 import { Link } from "react-router-dom";
 import email from '../../../../assets/global/emailBlack.svg';
-import { useAppSelector } from "../../../../hooks/AppRedux";
 import { PROFILE_PATH, REGISTER_PATH } from "../../../../routs/routs";
 import { IUser } from "../../../../interfaces/user";
 import { hasKeys } from "../../../../utils/js/checkTypes";
 import { PATH_TO_STORE } from "../../../../configs/configs";
 
-export function SwitchDisplay() {
-    const user: IUser | {} = useAppSelector((state) => state.user.data);
+interface IProps {
+    user: IUser | {};
+}
+
+export function SwitchDisplay(props: IProps) {
+
+    const { user } = props;
 
     if (hasKeys<IUser>(user) && user.id) {
         return (
@@ -21,9 +25,14 @@ export function SwitchDisplay() {
         )
     } else {
         return (
-            <li className={styles.collab}>
-                <Link to={REGISTER_PATH} className={`${gStyles.textExtraBig}`}><img src={email} /> Зареєструватися / Увійти</Link>
-            </li>
+            <>
+                <li className={styles.logIn}>
+                    <Link to={REGISTER_PATH} className={`${gStyles.textExtraBig}`}><img src={email} /> Зареєструватися / Увійти</Link>
+                </li>
+                <li className={`${styles.logIn} ${styles.logInAdaptive}`}>
+                    <Link to={REGISTER_PATH} className={`${gStyles.textLarge}`}><img src={email} />Увійти</Link>
+                </li>
+            </>
         );
     }
 }
