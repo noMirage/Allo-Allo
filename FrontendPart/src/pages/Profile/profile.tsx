@@ -11,7 +11,7 @@ import { CREATE_RESUME, CREATE_VACANCY } from "../../routs/routs";
 export function Profile() {
     const user: IUser | {} = useAppSelector((state) => state.user.data);
 
-    if (hasKeys<IUser>(user)) {
+    if (hasKeys<IUser>(user) && user.id) {
         return (
             <div className={gStyles.container}>
                 <div className={`${styles.wrapper}`}>
