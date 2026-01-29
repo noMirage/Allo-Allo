@@ -41,6 +41,8 @@ export function ChangeVacancyForm(props: IProps) {
 
     const [location, setLocation] = useState<string>(vacancies.location);
 
+    const [error, setError] = useState<string | null>(null);
+
     return (
         <div className={styles.wrapper}>
             <div className={gStyles.container}>
@@ -81,6 +83,11 @@ export function ChangeVacancyForm(props: IProps) {
                             if (dataServer.success && hasKeys<IUser>(dataServer.data!)) {
                                 dispatch(update(dataServer.data));
                                 navigate(PROFILE_PATH);
+                            } else if (!dataServer.success) {
+                                setError(dataServer.error);
+                                setTimeout(() => {
+                                    setError(null);
+                                }, 4000);
                             }
                         }}
                     >
@@ -97,6 +104,8 @@ export function ChangeVacancyForm(props: IProps) {
                                     category={vacancies.category.name}
                                     images={[vacancies.logo || ""]}
                                     placeholder="Натисніть щоб завантажити логотип"
+                                    error={error}
+
                                 >
                                     <div className={styles.location}>
                                         <SelectLocation placeholder="Місце організації/компанії" errors={errors} location={location} setLocation={setLocation} />

@@ -24,11 +24,12 @@ interface IProps<T> {
     multipleMode?: boolean;
     children?: ReactNode;
     placeholder?: string;
+    error: string | null;
 }
 
 export function FormBaseField<T>(props: IProps<T>) {
 
-    const { errors, previews, children = <></>, setPreviews, category, setData, description, title, multipleMode = true, placeholder = '' } = props;
+    const { errors, error, previews, children = <></>, setPreviews, category, setData, description, title, multipleMode = true, placeholder = '' } = props;
 
     return (
         <div className={`${styles.form} ${styles.body}`}>
@@ -53,7 +54,7 @@ export function FormBaseField<T>(props: IProps<T>) {
                     name="description"
                     component="div"
                 />
-                <ListSelectedImages placeholder={placeholder} multipleMode={multipleMode} setData={setData} previews={previews} setPreviews={setPreviews} />
+                <ListSelectedImages error={error} placeholder={placeholder} multipleMode={multipleMode} setData={setData} previews={previews} setPreviews={setPreviews} />
                 {children}
             </Form>
         </div>

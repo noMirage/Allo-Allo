@@ -12,7 +12,7 @@ import { PATH_TO_STORE } from "../../../../configs/configs";
 export function SwitchDisplay() {
     const user: IUser | {} = useAppSelector((state) => state.user.data);
 
-    if (hasKeys<IUser>(user)) {
+    if (hasKeys<IUser>(user) && user.id) {
         return (
             <li className={styles.profile}>
                 <p className={`${gStyles.textLarge} ${styles.fullName}`}>{user.full_name}</p>

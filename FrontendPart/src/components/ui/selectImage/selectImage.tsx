@@ -12,6 +12,7 @@ interface IProps {
     children: ReactNode;
     multipleMode?: boolean;
     placeholder?: string;
+    error: string | null;
 }
 
 export function SelectImage(props: IProps) {
@@ -22,7 +23,8 @@ export function SelectImage(props: IProps) {
         children,
         previews,
         multipleMode = true,
-        placeholder = 'Натисність щоб завантажити фотографії'
+        placeholder = 'Натисність щоб завантажити фотографії',
+        error = null,
     } = props;
 
     function handleSelectImages(event: React.ChangeEvent<HTMLInputElement>) {
@@ -56,7 +58,7 @@ export function SelectImage(props: IProps) {
                 {multipleMode ? (
                     <input
                         onChange={(event) => handleSelectImages(event)}
-                        className={`${styles.hiddenInput}`}
+                        className={`${styles.hiddenInput} ${error && gStyles.inputWrong}`}
                         multiple
                         accept="image/*"
                         type="file"
@@ -73,7 +75,7 @@ export function SelectImage(props: IProps) {
                 )}
                 <input
                     placeholder={placeholder}
-                    className={`${styles.input} ${gStyles.textExtraBig}`}
+                    className={`${styles.input} ${gStyles.textExtraBig} ${error && gStyles.inputWrong}`}
                     name="show"
                 />
             </div>

@@ -18,6 +18,9 @@ class ResumeController extends Controller
         'description' => 'nullable|string',
         'images' => 'nullable|array',
         'images.*' => 'file|image|max:5120',
+    ],
+    [
+        'images.*'     => 'Кожен файл має бути дійсним файлом',
     ]);
 
     $category = ResumeCategory::where('name', $data['category'])->first();
@@ -120,6 +123,9 @@ public function updateResume(Request $request, $id){
         'images.*'    => 'file|image|max:5120',
         'existing_images'   => 'nullable|array',
         'existing_images.*' => 'string',
+    ],
+    [
+        'images.*'     => 'Кожен файл має бути дійсним файлом',
     ]);
 
     $resume->update([

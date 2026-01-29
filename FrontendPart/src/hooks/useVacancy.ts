@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TLoading } from "../interfaces/typeReduxThunk";
 import { utilServer } from "../utils/js/utilServer";
 
-export function useVacancies<T extends {}>(http: string) {
+export function useVacancy<T extends {}>(http: string) {
   const [data, setData] = useState<T>();
   const [loading, setLoading] = useState<TLoading>("idle");
   const [error, setError] = useState<string | null>(null);

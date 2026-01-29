@@ -70,3 +70,16 @@
         $color: map.get($colors, 'black'));
     margin-bottom: f.rem(15);
 }
+
+.listImages {
+    li {
+        max-width: f.rem(100);
+        height: f.rem(100);
+        object-fit: contain;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

@@ -2,7 +2,7 @@ import gStyles from "../../../../../../../../styles/styles.module.scss";
 import styles from "./styles.module.scss";
 import pStyles from "../../../../../../styles.module.scss";
 import { ErrorMessage, Field, Formik, Form } from "formik";
-import { validateBaseField } from "../../../../../../../../utils/js/validates";
+import { validateFullName } from "../../../../../../../../utils/js/validates";
 import { SelectLocation } from "../../../../../../../../components/ui/selectLocation/selectLocation";
 import { useState } from "react";
 import { PhoneInputCustom } from "../../../../../../../../components/ui/PhoneInputCustom/PhoneInputCustom";
@@ -70,7 +70,7 @@ export function ModalEdit(props: IProps) {
                                 placeholder="Ім'я фамілія"
                                 type="text"
                                 name="fullName"
-                                validate={validateBaseField}
+                                validate={validateFullName}
                             />
                             <ErrorMessage
                                 className={gStyles.warningMessage}

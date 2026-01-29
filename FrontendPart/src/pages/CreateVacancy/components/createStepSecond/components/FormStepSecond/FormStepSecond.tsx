@@ -20,20 +20,22 @@ interface IProps {
     submitForm: (() => Promise<void>) & (() => Promise<any>);
     setPreviews: React.Dispatch<React.SetStateAction<TPreviews[] | TPreviews>>
     previews: TPreviews[] | TPreviews;
-    setData: React.Dispatch<React.SetStateAction<TUserDataVacancy>>
+    setData: React.Dispatch<React.SetStateAction<TUserDataVacancy>>;
+    error: string | null;
 }
 
 export function FormStepSecond(props: IProps) {
-    const { returnPath, setLocation, location, errors, submitForm, setPreviews, previews, setData } = props;
+    const { returnPath, error, setLocation, location, errors, submitForm, setPreviews, previews, setData } = props;
 
     return (
         <>
             <div>
                 <div className={`${pStyles.bodyForm} ${styles.body}`}>
                     <p className={`${gStyles.textExtraLarge} ${styles.title}`}>Вкажіть місце вашої компанії/організації</p>
-                    <SelectLocation errors={errors} location={location} setLocation={setLocation} />
+                    <SelectLocation placeholder="Локація" errors={errors} location={location} setLocation={setLocation} />
                     <Field className={`${styles.input} ${gStyles.textBig} ${errors.price && gStyles.inputWrong}`} placeholder='Вкажить заробітню плату' type="text" name="price" />
-                    <SelectImage previews={previews} setPreviews={setPreviews} setData={setData} multipleMode={false} placeholder="Натисніть щоб завантажити логотип організації/компанії">
+                    <SelectImage error={error} previews={previews} setPreviews={setPreviews} setData={setData} multipleMode={false} placeholder="Натисніть щоб завантажити логотип організації/компанії">
+                        <div className={gStyles.warningMessage}>{error}</div>
                         {
                             Array.isArray(previews) && previews.length > 0 &&
                             <ul className={`${styles.listImages}`}>

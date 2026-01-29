@@ -1,0 +1,22 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@import '../../utils/styles/colors.scss';
+
+.wrapper {
+    padding: f.rem(100) 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.icon {
+    max-width: f.rem(320);
+    max-height: f.rem(250);
+    object-fit: cover;
+    margin-bottom: f.rem(25);
+}
