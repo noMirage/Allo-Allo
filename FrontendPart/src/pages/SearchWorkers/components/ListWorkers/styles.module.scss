@@ -1,6 +1,8 @@
 @use 'sass:map';
 @use '../../../../utils/styles/functions.scss' as f;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
+
 
 
 .bodyLogo {
@@ -81,4 +83,23 @@
 
 .itemList {
     position: relative;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .itemBody {
+        padding: f.rem(20);
+    }
+
+    .bodyLogo {
+        display: none;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .bodyImage {
+        position: absolute;
+        bottom: f.rem(10);
+    }
 }

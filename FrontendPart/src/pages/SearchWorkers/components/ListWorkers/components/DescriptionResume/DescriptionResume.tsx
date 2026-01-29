@@ -13,7 +13,7 @@ export function DescriptionResume(props: IProps) {
     return (
         <div className={styles.bodyText}>
             <h3 className={`${gStyles.textLarge}`}>{title}</h3>
-            <div className={gStyles.textExtraBig} dangerouslySetInnerHTML={{ __html: limitSymbol(description.replace(/<\/?[^>]+(>|$)/g, " ")) }} />
+            <div className={`${gStyles.textExtraBig} ${styles.description}`} dangerouslySetInnerHTML={{ __html: limitSymbol(description.replace(/<\/?[^>]+(>|$)/g, " ")) }} />
         </div>
     );
 }

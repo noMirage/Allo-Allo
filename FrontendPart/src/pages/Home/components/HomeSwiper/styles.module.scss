@@ -60,6 +60,10 @@
         top: 60%;
         width: 80%;
     }
+
+    .body {
+        margin-top: -100px;
+    }
 }
 
 @media (max-width: map.get($adaptive, 'ExtraPhone')) {
@@ -69,7 +73,7 @@
 }
 
 @media (max-width: map.get($adaptive, 'phone')) {
-     .wrapper {
+    .wrapper {
         width: 90%;
     }
 }

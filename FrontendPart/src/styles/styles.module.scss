@@ -73,6 +73,14 @@
     .textLarge {
         font-size: f.rem(22) !important;
     }
+
+    .textExtraBig {
+        font-size: f.rem(16);
+    }
+
+    .textMedium {
+        font-size: f.rem(14);
+    }
 }
 
 @media (max-width: map.get($adaptive, 'tablet')) {
@@ -85,10 +93,14 @@
     .textExtraLarge {
         font-size: f.rem(30);
     }
-}
 
-@media (max-width: map.get($adaptive, 'phone')) {
     .container {
         padding: 0 f.rem(10);
     }
+
+    .textLarge {
+        font-size: f.rem(20) !important;
+    }
 }
+
+@media (max-width: map.get($adaptive, 'phone')) {}

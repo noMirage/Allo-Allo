@@ -1,6 +1,8 @@
 @use 'sass:map';
 @use '../../../utils/styles/functions.scss' as f;
 @import '../../../utils/styles/colors.scss';
+@import '../../../utils/styles/adaptive.scss';
+
 
 .list {
     margin-bottom: f.rem(20);
@@ -29,16 +31,24 @@
 
 }
 
-.item {
-    &::after {
-        content: '/';
-        margin: 0 f.rem(20);
-    }
+.slide {
+    width: 150px;
+    flex-shrink: 0;
+}
 
-    &:last-child {
-        &::after {
-            content: '';
-            margin: 0;
-        }
+.wrapperSwiper {
+    margin: 0;
+    white-space: nowrap;
+
+    >div {
+        align-items: center !important;
+    }
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .slide {
+        width: 140px;
     }
 }

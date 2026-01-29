@@ -9,10 +9,11 @@ interface IProps {
     category: string;
     fullName: string;
     location: string;
+    isGallery: boolean;
 }
 
 export function Contact(props: IProps) {
-    const { phone, category, published, fullName, location } = props;
+    const { phone, category, published, fullName, location, isGallery } = props;
 
     const date = new Date(published);
 
@@ -31,7 +32,7 @@ export function Contact(props: IProps) {
     }
 
     return (
-        <section className={styles.wrapper}>
+        <section className={`${styles.wrapper} ${!isGallery && styles.wapperExtend}`}>
             <div className={styles.header}>
                 <p className={gStyles.textBig}>Опубліковано {formatted}</p>
                 <Heart className={styles.heartIcon} />

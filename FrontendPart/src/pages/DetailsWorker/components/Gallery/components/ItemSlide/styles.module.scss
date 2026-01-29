@@ -1,6 +1,8 @@
 @use 'sass:map';
 @use '../../../../../../utils/styles/functions.scss' as f;
 @import '../../../../../../utils/styles/colors.scss';
+@import '../../../../../../utils/styles/adaptive.scss';
+
 
 
 .itemGallery {
@@ -14,5 +16,17 @@
         min-width: 100%;
         max-height: f.rem(500);
         object-fit: cover;
+    }
+}
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+
+    .itemGallery {
+        img {
+            max-height: f.rem(300);
+        }
     }
 }

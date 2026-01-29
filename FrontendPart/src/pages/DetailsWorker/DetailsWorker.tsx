@@ -37,8 +37,8 @@ export function DetailsWorker() {
                         </li>
                     </Navigate>
                     <div className={styles.body}>
-                        <Gallery dataGallery={data.images || []} />
-                        <Contact location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
+                        {data.images.length > 0 && <Gallery dataGallery={data.images || []} />}
+                        <Contact isGallery={Boolean(data.images.length)} location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
                     </div>
                     <Description description={data.description} />
                 </div>

@@ -1,11 +1,13 @@
 @use 'sass:map';
 @use '../../../../utils/styles/functions.scss' as f;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
 
 .wrapper {
     padding: f.rem(50) 0 f.rem(50) 0;
     flex: 1 1 auto;
     margin-right: f.rem(25);
+    width: 100%;
 }
 
 .title {
@@ -32,4 +34,35 @@
     width: 100px;
     height: 100px;
     background-color: red;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .wrapper {
+        order: 2;
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+        display: flex;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .wrapper {
+        padding: f.rem(25);
+        max-height: f.rem(350);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .wrapper {
+        padding: f.rem(20);
+    }
 }
