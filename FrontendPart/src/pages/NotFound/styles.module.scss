@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../../utils/styles/functions.scss' as f;
 @import '../../utils/styles/colors.scss';
+@import '../../utils/styles/adaptive.scss';
 
 .wrapper {
     padding: f.rem(100) 0;
@@ -19,4 +20,18 @@
     max-height: f.rem(250);
     object-fit: cover;
     margin-bottom: f.rem(25);
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .icon {
+        max-width: f.rem(280);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .icon {
+        max-width: f.rem(100);
+    }
 }
