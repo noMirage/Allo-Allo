@@ -26,6 +26,7 @@ export function DetailsWorker() {
     }, []);
 
     if (data && hasKeys<IResume>(data) && title) {
+        const isImages = (Array.isArray(data.images) && data.images.length > 0) ? true : false;
         return (
             <section className={styles.wrapper}>
                 <div className={`${gStyles.container}`}>
@@ -35,11 +36,13 @@ export function DetailsWorker() {
                             <Link to={`${ORDER_WORK_PATH}/${prevLocation}`} className={gStyles.textBig}>Назад</Link>
                         </li>
                     </Navigate>
-                    <div className={styles.body}>
-                        {Array.isArray(data.images) && data.images.length > 0 && <Gallery dataGallery={data.images || []} />}
+                  <div className={styles.wrapperBody} style={{display: !isImages ? 'flex' : 'block'}}>
+                      <div className={styles.body}>
+                        {isImages && <Gallery dataGallery={data.images || []} />}
                         <Contact isGallery={Boolean(Array.isArray(data.images) ? data.images.length : 0)} location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
                     </div>
                     <Description description={data.description} />
+                  </div>
                 </div>
             </section>
         );

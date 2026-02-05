@@ -32,6 +32,13 @@
     }
 }
 
+.wrapperBody {
+    >div {
+        order: 2;
+        margin-left: f.rem(25);
+    }
+}
+
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -43,4 +50,16 @@
     .wrapper {
         padding: f.rem(40) 0 f.rem(50) 0;
     }
+}
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .wrapperBody {
+        flex-direction: column;
+
+        >div {
+            order: 1;
+            margin: 0
+        }
+    }
+
 }
