@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../../utils/styles/functions.scss' as f;
 @import '../../utils/styles/colors.scss';
+@import '../../utils/styles/adaptive.scss';
 
 .wrapper {
     padding: f.rem(20) 0 f.rem(50) 0;
@@ -8,6 +9,7 @@
 
 .title {
     flex: 1 1 auto;
+    margin: 0 f.rem(10) f.rem(10) 0;
 }
 
 .container {
@@ -135,4 +137,52 @@
 
 .description {
     margin-bottom: f.rem(20);
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .body {
+        padding: f.rem(25);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .logo {
+        max-width: 50px;
+        max-height: 50px;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .body {
+        padding: f.rem(20);
+    }
+}
+
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .located {
+        &::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .salary {
+        &::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .date {
+        &::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+        }
+    }
 }

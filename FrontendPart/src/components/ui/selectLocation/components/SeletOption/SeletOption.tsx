@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { IUkraineLocation } from "../../../../../interfaces/UkraineLocations";
 import { GET_UKRAINE_LOCATIONS } from "../../../../../configs/configs";
 import { utilServer } from "../../../../../utils/js/utilServer";
+import gStyles from '../../../../../styles/styles.module.scss';
 
 interface IProps {
     location: string;
@@ -47,10 +48,10 @@ export function SeletOption(props: IProps) {
                     <SimpleBar className={styles.containerItem}>
                         {UkraineLocations.map((item, _) => (
                             <li key={item.object_code} onClick={(event) => { handleSelectLocation(item.object_category, item.object_name, item.region, item.community); setIsShowSelect(!isShowSelect) }}>
-                                <h3>{item.object_category}</h3>
-                                <h4>{item.object_name}</h4>
-                                <h5>{item.region}</h5>
-                                <h6>{item.community}</h6>
+                                <h3 className={`${gStyles.textMedium}`}>{item.object_category}</h3>
+                                <h4 className={`${gStyles.textMedium}`}>{item.object_name}</h4>
+                                <h5 className={`${gStyles.textMedium}`}>{item.region}</h5>
+                                <h6 className={`${gStyles.textMedium}`}>{item.community}</h6>
                             </li>
                         ))}
                     </SimpleBar>

@@ -23,8 +23,8 @@ export function EditProfile(props: IProps) {
     return (
         <>
             <div className={styles.containerHeadInfo}>
-                <p className={`${gStyles.textLarge}`}>Основна інформація</p>
-                <button onClick={() => setIsModal(true)} className={`${gStyles.textBig} ${pStyles.button}`}>Редагувати профіль</button>
+                <p className={`${gStyles.textLarge} ${styles.title}`}>Основна інформація</p>
+                <button onClick={() => setIsModal(true)} className={`${gStyles.textBig} ${pStyles.button} ${styles.button}`}>Редагувати профіль</button>
             </div>
             {isModal && <Modal isModal={isModal} setIsModal={setIsModal}>
                 <ModalEdit organization={organization} role={role} fullName={fullName} phone={phone} currentLocation={location} setIsModal={setIsModal} />

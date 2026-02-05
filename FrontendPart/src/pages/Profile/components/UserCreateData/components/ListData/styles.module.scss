@@ -2,6 +2,7 @@
 @use '../../../../../../utils/styles/functions.scss' as f;
 @use '../../../../../../utils/styles/mixins.scss' as m;
 @import '../../../../../../utils/styles/colors.scss';
+@import '../../../../../../utils/styles/adaptive.scss';
 
 .title {
     text-align: center;
@@ -15,6 +16,7 @@
     justify-content: flex-start;
     margin-bottom: f.rem(20);
     position: relative;
+    padding: f.rem(20) f.rem(25);
 
     &:last-child {
         margin-bottom: 0;
@@ -77,12 +79,45 @@
     color: map.get($colors, 'black');
     width: 100%;
     height: 100%;
-    padding: f.rem(20) f.rem(25);
 }
 
-.containerButtons {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translate(0, -50%);
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .container {
+        flex-direction: column;
+    }
+
+    .containerButtons {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .buttonChange {
+        max-width: f.rem(120);
+        margin-right: f.rem(15);
+        text-align: center;
+    }
+
+    .buttonRemove {
+        max-width: f.rem(120);
+        text-align: center;
+        margin: 0;
+    }
+
+    .bodyItem {
+        margin-bottom: f.rem(20);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .container {
+        padding: f.rem(20) f.rem(15);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .bodyImage {
+        margin-right: f.rem(15);
+    }
 }

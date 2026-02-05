@@ -103,4 +103,12 @@
     }
 }
 
-@media (max-width: map.get($adaptive, 'phone')) {}
+@media (max-width: map.get($adaptive, 'phone')) {
+    .textExtraLarge {
+        font-size: f.rem(25);
+    }
+
+    .textBig {
+        font-size: f.rem(16);
+    }
+}

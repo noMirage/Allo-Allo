@@ -2,6 +2,7 @@
 @use '../../../../../utils/styles/functions.scss' as f;
 @use '../../../../../utils/styles/mixins.scss' as m;
 @import '../../../../../utils/styles/colors.scss';
+@import '../../../../../utils/styles/adaptive.scss';
 
 .list {
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
@@ -28,4 +29,11 @@
     max-height: f.rem(250);
     background-color: map.get($colors, 'white');
     padding: f.rem(20) f.rem(0);
+}
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    
 }

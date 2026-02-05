@@ -18,12 +18,14 @@ export function ListVacancies(props: IProps) {
     return (
         <ul className={styles.list}>
             {data.map((item, _) => {
-                console.log(item);
                 return (
                     <li>
                         <Link className={styles.itemBody} to={`${DETAILS_VACANCIES_PATH}/${item.id}`}>
                             <div className={styles.container}>
-                                <div className={styles.wrapperInfo}><img src={`${PATH_TO_STORE}${item.logo}`} alt="" />
+                                <div className={styles.wrapperInfo}>
+                                    <div className={styles.avatar}>
+                                        <img src={`${PATH_TO_STORE}${item.logo}`} alt="" />
+                                    </div>
                                     <div className={styles.containerInfo}>
                                         <div className={styles.body}><h2 className={`${styles.title} ${gStyles.textLarge}`}>{item.title}</h2>
                                             <p className={`${styles.viewes} ${gStyles.textBig}`}><Reviews className={styles.iconReviews} />{item.views || 0}</p>

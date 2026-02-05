@@ -12,6 +12,8 @@ import { update } from "../../../../../../../../servers/user";
 import { useAppDispatch } from "../../../../../../../../hooks/AppRedux";
 import { hasKeys } from "../../../../../../../../utils/js/checkTypes";
 import { IUser, TUserRole } from "../../../../../../../../interfaces/user";
+import { Link } from "react-router-dom";
+import logo from '../../../../../../../../assets/Header/logo.svg';
 
 interface IProps {
     setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,8 +32,13 @@ export function ModalEdit(props: IProps) {
     const dispatch = useAppDispatch();
 
     return (
-        <>
+        <div className={`${gStyles.container} ${styles.container}`}>
             <div className={styles.body}>
+                <div className={styles.logo}>
+                    <Link to='/' className={styles.logo}>
+                        <img src={logo} />
+                    </Link>
+                </div>
                 <div onClick={() => setIsModal(false)} className={styles.close}></div>
                 <h2 className={`${gStyles.textExtraLarge} ${styles.title}`}>
                     Редагування профіля
@@ -104,6 +111,6 @@ export function ModalEdit(props: IProps) {
                     )}
                 </Formik>
             </div>
-        </>
+        </div>
     );
 }

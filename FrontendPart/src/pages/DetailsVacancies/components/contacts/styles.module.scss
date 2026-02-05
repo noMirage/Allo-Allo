@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../../../../utils/styles/functions.scss' as f;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
 
 .wrapper {
     border: 2px solid map.get($colors, 'gray');
@@ -8,7 +9,8 @@
     border-radius: f.rem(12);
     display: flex;
     align-items: center;
-    max-width: 65%;
+    max-width: f.rem(700);
+    width: 100%;
 }
 
 .phone {
@@ -51,4 +53,33 @@
 
 .fullName {
     flex-basis: 33.33%;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .wrapper {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        h3 {
+            text-align: start;
+        }
+    }
+
+    .fullName {
+        flex-basis: 100%;
+        margin-bottom: f.rem(10);
+        font-weight: 700;
+    }
+
+    .email {
+        flex: 1 1 auto;
+    }
+
+    .phone {
+        flex: 1 1 auto;
+        margin-bottom: f.rem(10);
+    }
 }

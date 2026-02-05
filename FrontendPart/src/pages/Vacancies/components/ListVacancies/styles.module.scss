@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../../../../utils/styles/functions.scss' as f;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
 
 .itemBody {
     width: 100%;
@@ -112,12 +113,36 @@
 
 .location {
     text-transform: lowercase;
+
 }
 
 .mainInfo {
     display: flex;
+    margin-bottom: f.rem(15);
 
     p {
         margin-right: f.rem(20);
+    }
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .avatar {
+        display: none;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .mainInfo {
+        flex-direction: column;
+
+        p {
+            margin-bottom: f.rem(5);
+        }
+
+        span {
+            margin-bottom: f.rem(15);
+        }
     }
 }

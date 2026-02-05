@@ -11,6 +11,7 @@ import { update } from '../../../../../../servers/user';
 import { hasKeys } from '../../../../../../utils/js/checkTypes';
 import { WORKS } from '../../../../../../constants/works';
 import { IVacancies } from '../../../../../../interfaces/vacancies';
+import { limitSymbol } from '../../../../../../utils/js/limitSymbol';
 
 interface IProps {
     data: TResume[] | IVacancies[];
@@ -47,7 +48,7 @@ export function ListData(props: IProps) {
                             </div>
                             <div className={styles.bodyInfo}>
                                 <h2 className={gStyles.textLarge}>{item.category.name}</h2>
-                                <h3 className={gStyles.textLarge}>{item.title}</h3>
+                                <h3 className={gStyles.textLarge}>{limitSymbol(item.title, 30)}</h3>
                             </div>
                         </Link>
                         <div className={styles.containerButtons}>

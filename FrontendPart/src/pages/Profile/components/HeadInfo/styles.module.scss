@@ -2,6 +2,7 @@
 @use '../../../../utils/styles/functions.scss' as f;
 @use '../../../../utils/styles/mixins.scss' as m;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
 
 .bodyHeadInfo {
     margin-bottom: f.rem(50);
@@ -14,6 +15,7 @@
     padding: f.rem(25);
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .body {
@@ -87,8 +89,8 @@
     }
 }
 
-.organization{
-     position: relative;
+.organization {
+    position: relative;
     width: 100%;
     padding: 0 0 0 f.rem(30);
 
@@ -109,4 +111,51 @@
     align-self: flex-end;
     background-color: map.get($colors, 'brightRed');
     max-width: f.rem(200);
+    white-space: nowrap;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .mainInfo {
+        order: 1;
+    }
+
+    .bodyButton {
+        display: flex;
+        align-self: flex-end;
+        margin-top: f.rem(110);
+    }
+
+    .container {
+        padding: f.rem(15) f.rem(25);
+    }
+}
+
+
+@media (max-width: 640px) {
+    .bodyButton {
+        display: flex;
+        align-self: flex-end;
+        margin-top: 0;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .bodyButton {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .mainInfo {
+        margin-bottom: f.rem(15);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .container {
+        padding: f.rem(15);
+    }
 }

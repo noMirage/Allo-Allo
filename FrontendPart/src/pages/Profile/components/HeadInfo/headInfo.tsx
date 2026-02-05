@@ -41,7 +41,6 @@ export function HeadInfo(props: IProps) {
                     <address className={`${gStyles.textExtraBig} ${styles.importantInfo} ${styles.email}`}>{email}</address>
                     {role === 'job_seeker' && <address className={`${gStyles.textExtraBig} ${styles.importantInfo} ${styles.location}`}>{location}</address>}
                     {role === 'employer' && <address className={`${gStyles.textExtraBig} ${styles.importantInfo} ${styles.organization}`}>{organization}</address>}
-
                 </div>
             </div>
             <Formik
@@ -54,7 +53,7 @@ export function HeadInfo(props: IProps) {
             >
                 {({
                 }) => (
-                    <Form>
+                    <Form className={styles.bodyButton}>
                         <button className={`${gStyles.textBig} ${pStyles.button} ${styles.button}`}>Вийти з акаунту</button>
                     </Form>
                 )}

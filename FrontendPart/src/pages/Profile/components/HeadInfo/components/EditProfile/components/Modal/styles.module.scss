@@ -2,6 +2,7 @@
 @use '../../../../../../../../utils/styles/functions.scss' as f;
 @use '../../../../../../../../utils/styles/mixins.scss' as m;
 @import '../../../../../../../../utils/styles/colors.scss';
+@import '../../../../../../../../utils/styles/adaptive.scss';
 
 .body {
     max-width: f.rem(600);
@@ -65,5 +66,71 @@
         height: 2px;
         background-color: map.get($colors, 'black');
         transform: rotate(-45deg);
+    }
+}
+
+.logo {
+    display: none;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: 510px) {
+    .body {
+        padding: f.rem(35) f.rem(25);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .container {
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 1001;
+        position: relative;
+    }
+
+    .body {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 0;
+        padding: f.rem(10);
+    }
+
+    .close {
+        top: 40px;
+        right: 20px;
+    }
+
+    .title {
+        font-size: f.rem(28) !important;
+    }
+
+    .input {
+        font-size: f.rem(18);
+    }
+
+    .button {
+        font-size: f.rem(18);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: f.rem(25);
+
+        img {
+            max-width: f.rem(260);
+        }
     }
 }
