@@ -32,24 +32,15 @@
     }
 }
 
-// .item {
-//     &::after {
-//         content: '/';
-//         margin: 0 f.rem(20);
-//     }
-
-//     &:last-child {
-//         &::after {
-//             content: '';
-//             margin: 0;
-//         }
-//     }
-// }
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 @media (max-width: map.get($adaptive, 'ExtraTablet')) {
     .body {
         flex-direction: column;
+    }
+
+    .wrapper {
+        padding: f.rem(40) 0 f.rem(50) 0;
     }
 }

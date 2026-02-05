@@ -27,7 +27,7 @@ export function SelectImage(props: IProps) {
         error = null,
     } = props;
 
-    function handleSelectImages(event: React.ChangeEvent<HTMLInputElement>) {
+    function handleSelectImages(event: React.ChangeEvent<HTMLInputElement>, multiple: boolean) {
         const files = event.target.files;
         if (!files) return;
 
@@ -37,11 +37,15 @@ export function SelectImage(props: IProps) {
 
         setPreviews((prevState) => {
             if (Array.isArray(prevState)) {
-                const newState = [...prevState, ...data];
-                return newState;
+                if (multiple) {
+                    const newState = [...prevState, ...data];
+                    return newState;
+                } else {
+                    const newState = [...data];
+                    return newState;
+                }
             } else {
-                const newState = {url: URL.createObjectURL(files[0]), file: files[0]};
-                return newState;
+                return prevState;
             }
         });
 
@@ -57,7 +61,7 @@ export function SelectImage(props: IProps) {
             <div className={`${styles.containerInput} ${className}`}>
                 {multipleMode ? (
                     <input
-                        onChange={(event) => handleSelectImages(event)}
+                        onChange={(event) => handleSelectImages(event, true)}
                         className={`${styles.hiddenInput} ${error && gStyles.inputWrong}`}
                         multiple
                         accept="image/*"
@@ -66,7 +70,7 @@ export function SelectImage(props: IProps) {
                     />
                 ) : (
                     <input
-                        onChange={(event) => handleSelectImages(event)}
+                        onChange={(event) => handleSelectImages(event, false)}
                         className={`${styles.hiddenInput}`}
                         accept="image/*"
                         type="file"

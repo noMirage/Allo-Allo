@@ -2,6 +2,7 @@
 @use '../../../../utils/styles/functions.scss' as f;
 @use '../../../../utils/styles/mixins.scss' as m;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
 
 .body {
     max-width: f.rem(400);
@@ -14,4 +15,12 @@
     padding: f.rem(25);
     margin-bottom: f.rem(25);
     background-color: map.get($colors, 'white');
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .form {
+        padding: f.rem(20) f.rem(15);
+    }
 }

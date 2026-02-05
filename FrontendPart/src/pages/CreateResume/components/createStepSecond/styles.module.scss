@@ -2,6 +2,7 @@
 @use '../../../../utils/styles/functions.scss' as f;
 @use '../../../../utils/styles/mixins.scss' as m;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
 
 .wrapper {
     display: flex;
@@ -22,12 +23,11 @@
 }
 
 .listImages {
-    margin: f.rem(20) 0 f.rem(20) 0;
+    margin: f.rem(10) 0 f.rem(10) 0;
     gap: f.rem(20);
     display: flex;
     max-width: f.rem(800);
     width: 100%;
-    padding: f.rem(20);
     margin-bottom: f.rem(25);
 
     li {
@@ -42,6 +42,29 @@
     }
 }
 
-.title{
+.title {
     margin-bottom: f.rem(15);
+}
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .body {
+        padding: f.rem(25);
+    }
+
+    .title {
+        font-size: f.rem(28);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .body {
+        padding: f.rem(20);
+    }
+
+    .title {
+        font-size: f.rem(24);
+    }
 }

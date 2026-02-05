@@ -2,6 +2,8 @@
 @use '../../../../../../utils/styles/functions.scss' as f;
 @use '../../../../../../utils/styles/mixins.scss' as m;
 @import '../../../../../../utils/styles/colors.scss';
+@import '../../../../../../utils/styles/adaptive.scss';
+
 
 .title {
     margin-bottom: f.rem(20);
@@ -62,4 +64,18 @@
         $backgroundColor: map.get($colors, 'white'),
         $color: map.get($colors, 'black'));
     margin-bottom: f.rem(15);
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .title {
+        font-size: f.rem(28);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .title {
+        font-size: f.rem(24);
+    }
 }

@@ -41,7 +41,7 @@ export function CreateVacancy() {
     if (hasKeys<IUser>(user)) {
         return (
             <div className={styles.wrapper}>
-                <div className={gStyles.container}>
+                <div className={`${gStyles.container} ${styles.container}`}>
                     <div className={styles.body}>
                         <HeaderWithProgressBar routes={ROUTES} />
                     </div>

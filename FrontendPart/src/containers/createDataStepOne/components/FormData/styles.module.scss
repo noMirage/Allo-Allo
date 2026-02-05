@@ -2,6 +2,7 @@
 @use '../../../../utils/styles/functions.scss' as f;
 @use '../../../../utils/styles/mixins.scss' as m;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
 
 .title {
     margin-bottom: f.rem(15);
@@ -25,4 +26,27 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
     background-color: #fff;
     margin-bottom: f.rem(25);
+}
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .body {
+        padding: f.rem(25);
+    }
+
+    .title {
+        font-size: f.rem(28);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .body {
+        padding: f.rem(20);
+    }
+
+    .title {
+        font-size: f.rem(24);
+    }
 }

@@ -1,7 +1,6 @@
-import { useParams, useSearchParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import styles from './styles.module.scss';
 import gStyles from '../../styles/styles.module.scss';
-import { useAppDispatch, useAppSelector } from "../../hooks/AppRedux";
 import { useEffect } from "react";
 import { Gallery } from "./components/Gallery/Gallery";
 import { Contact } from "./components/Contact/Contact";
@@ -37,8 +36,8 @@ export function DetailsWorker() {
                         </li>
                     </Navigate>
                     <div className={styles.body}>
-                        {data.images.length > 0 && <Gallery dataGallery={data.images || []} />}
-                        <Contact isGallery={Boolean(data.images.length)} location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
+                        {Array.isArray(data.images) && data.images.length > 0 && <Gallery dataGallery={data.images || []} />}
+                        <Contact isGallery={Boolean(Array.isArray(data.images) ? data.images.length : 0)} location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
                     </div>
                     <Description description={data.description} />
                 </div>

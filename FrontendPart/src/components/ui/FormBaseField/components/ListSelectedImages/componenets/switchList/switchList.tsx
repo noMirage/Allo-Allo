@@ -19,7 +19,7 @@ export function SwitchList(props: IProps) {
         return (
             <>
                 <div className={gStyles.warningMessage}>{error}</div>
-                <ul className={`${styles.bodyImages}`}>
+                <ul className={`${styles.bodyImages}`} style={{ display: previews.length < 0 ? 'none' : 'block' }}>
                     {previews.map((src, index) => {
                         if (src.url) {
                             return (
@@ -34,7 +34,7 @@ export function SwitchList(props: IProps) {
         return (
             <>
                 <div className={gStyles.warningMessage}>{error}</div>
-                <div className={`${styles.bodyImages}`}>
+                <div className={`${styles.bodyImages}`} style={{ display: previews.url ? 'block' : 'none' }}>
                     {previews.url && <ItemSelectedImage key={previews.url} setPreviews={setPreviews} src={previews.url} index={0} />}
                 </div>
             </>

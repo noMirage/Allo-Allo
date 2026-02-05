@@ -2,6 +2,7 @@
 @use '../../utils/styles/functions.scss' as f;
 @use '../../utils/styles/mixins.scss' as m;
 @import '../../utils/styles/colors.scss';
+@import '../../utils/styles/adaptive.scss';
 
 .wrapper {
     width: 100%;
@@ -16,4 +17,12 @@
         $backgroundColor: map.get($colors, 'amber'),
         $color: map.get($colors, 'white'));
     font-weight: 700;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .wrapper {
+        padding-top: f.rem(40);
+    }
 }

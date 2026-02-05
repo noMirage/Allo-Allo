@@ -50,7 +50,7 @@ export function CreateStepSecond(props: IProps) {
                         formData.append('title', title);
                         formData.append('location', location);
                         formData.append('salary', values.price);
-                        if (Array.isArray(previews) && previews[0].file) {
+                        if (Array.isArray(previews) && previews.length > 0 && previews[0].file) {
                             formData.append('logo', previews[0].file);
                         }
                         const data = await utilServer(POST_ADD_VACANCY, 'post', formData, () => { }, false);

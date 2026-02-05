@@ -5,6 +5,7 @@
 
 .wrapper {
     width: 100%;
+    height: 100%;
 }
 
 .body {
@@ -12,7 +13,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    padding-top: f.rem(25);
 }
 
 .containerButtons {
@@ -54,4 +55,10 @@
             transform: rotate(-180deg) translate(-50%, 0);
         }
     }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

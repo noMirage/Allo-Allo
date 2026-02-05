@@ -35,7 +35,7 @@ export function DetailsVacancies() {
                             <div>
                                 <div className={styles.containerHeader}>
                                     <h2 className={`${styles.title} ${gStyles.textExtraLarge}`}>{vacancy.title}</h2>
-                                    <img className={styles.logo} src={`${PATH_TO_STORE}${vacancy.logo}`} />
+                                    {vacancy.logo && <img className={styles.logo} src={`${PATH_TO_STORE}${vacancy.logo}`} />}
                                 </div>
                                 {vacancy.salary && <p className={`${styles.salary} ${gStyles.textBig}`}>{vacancy.salary}</p>}
                             </div>

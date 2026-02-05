@@ -2,6 +2,7 @@
 @use '../../../../../../utils/styles/functions.scss' as f;
 @use '../../../../../../utils/styles/mixins.scss' as m;
 @import '../../../../../../utils/styles/colors.scss';
+@import '../../../../../../utils/styles/adaptive.scss';
 
 .resume {
     margin-bottom: f.rem(50);
@@ -44,4 +45,16 @@
 
 .text {
     margin-bottom: f.rem(20);
+    text-align: center;
+}
+
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .bodyImage {
+        max-width: 100px;
+        max-height: 100px;
+    }
 }

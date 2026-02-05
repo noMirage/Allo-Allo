@@ -2,6 +2,7 @@
 @use '../../../../../../utils/styles/functions.scss' as f;
 @use '../../../../../../utils/styles/mixins.scss' as m;
 @import '../../../../../../utils/styles/colors.scss';
+@import '../../../../../../utils/styles/adaptive.scss';
 
 
 .input {
@@ -43,4 +44,12 @@
     }
 
     line-height: f.rem(25);
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .form {
+        padding: f.rem(20) f.rem(15);
+    }
 }

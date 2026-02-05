@@ -2,6 +2,7 @@
 @use '../../../../../../utils/styles/functions.scss' as f;
 @use '../../../../../../utils/styles/mixins.scss' as m;
 @import '../../../../../../utils/styles/colors.scss';
+@import '../../../../../../utils/styles/adaptive.scss';
 
 .body {
     margin-bottom: f.rem(20);
@@ -64,5 +65,24 @@
             background: url('../../../../../../assets/global/singleArrowWhite.svg') 100%/100% no-repeat;
             transform: rotate(-180deg) translate(-50%, 0);
         }
+    }
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .input {
+        max-width: 100%;
+        font-size: f.rem(18);
+    }
+
+    .title {
+        font-size: f.rem(28);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .title {
+        font-size: f.rem(24);
     }
 }

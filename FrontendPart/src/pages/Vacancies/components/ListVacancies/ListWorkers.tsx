@@ -30,7 +30,7 @@ export function ListVacancies(props: IProps) {
                                         <div className={styles.body}><h2 className={`${styles.title} ${gStyles.textLarge}`}>{item.title}</h2>
                                             <p className={`${styles.viewes} ${gStyles.textBig}`}><Reviews className={styles.iconReviews} />{item.views || 0}</p>
                                         </div>
-                                        <p className={`${styles.salary} ${gStyles.textBig}`}>{item.salary}</p>
+                                        {item.salary && <p className={`${styles.salary} ${gStyles.textBig}`}>{item.salary}</p>}
                                         <div className={styles.mainInfo}>
                                             <p className={`${styles.organisation} ${gStyles.textBig}`}>{item.organization || ""}</p>
                                             <span className={`${styles.location} ${gStyles.textBig}`}>{limitSymbol(item.location, 40)}</span>

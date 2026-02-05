@@ -19,7 +19,7 @@ export function Register() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
+      <div className={`${gStyles.container} ${styles.container}`}>
         <Link to={HOME_PATH} className={styles.logo}>
           <img src={logo} alt="" />
         </Link>

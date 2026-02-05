@@ -2,6 +2,7 @@
 @use '../../../utils/styles/functions.scss' as f;
 @use '../../../utils/styles/mixins.scss' as m;
 @import '../../../utils/styles/colors.scss';
+@import '../../../utils/styles/adaptive.scss';
 
 
 .inputPhoneButton {
@@ -63,4 +64,13 @@
 
 .bodyPhone :global(.react-tel-input .country-list) {
     overflow-y: auto;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .bodyPhone :global(.form-control) {
+        width: 100%;
+    }
+
 }

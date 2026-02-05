@@ -145,6 +145,10 @@
     .body {
         padding: f.rem(25);
     }
+
+    .wrapper {
+        padding-top: f.rem(40);
+    }
 }
 
 @media (max-width: map.get($adaptive, 'ExtraTablet')) {

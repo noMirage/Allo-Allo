@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import gStyles from '../../styles/styles.module.scss';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "../../components/ui/pagination";
 import { ListVacancies } from "./components/ListVacancies/ListWorkers";
 import { IVacancyPaginationList } from "../../interfaces/vacancies";
@@ -11,7 +11,7 @@ import { hasKeys } from '../../utils/js/checkTypes';
 export function Vacancies() {
     const [currentValue, setCurrentValue] = useState<number>(1);
 
-    const [data] = useVacancy<IVacancyPaginationList>(`${GET_VACANCIES}`);
+    const [data] = useVacancy<IVacancyPaginationList>(`${GET_VACANCIES}${currentValue}`);
 
     if (data && hasKeys<IVacancyPaginationList>(data)) {
         return (

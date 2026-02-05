@@ -2,6 +2,7 @@
 @use '../../../../utils/styles/functions.scss' as f;
 @use '../../../../utils/styles/mixins.scss' as m;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
 
 .wrapper {
     width: 100%;
@@ -42,4 +43,24 @@
 
 .location {
     margin-top: f.rem(20);
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .logo {
+
+        img {
+            max-width: 280px;
+        }
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .logo {
+
+        img {
+            max-width: 260px;
+        }
+    }
 }

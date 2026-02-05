@@ -53,7 +53,7 @@
     }
 }
 
-@media (max-width: map.get($adaptive, 'phone')) {
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
     .bodyAvatar {
         width: 70px;
         height: 70px;

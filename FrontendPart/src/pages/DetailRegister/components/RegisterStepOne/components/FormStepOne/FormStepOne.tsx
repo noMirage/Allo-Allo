@@ -63,7 +63,7 @@ export function FormStepOne(props: IProps) {
                         name="fullName"
                         component="div"
                     />
-                    <PhoneInputCustom errors={errors} />
+                    <PhoneInputCustom className={styles.phone} errors={errors} />
                 </Form>
             </div >
             <div className={styles.containerButtons}>

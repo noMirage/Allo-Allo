@@ -8,6 +8,7 @@ import { DETAIL_REGISTER } from '../../routs/routs';
 import { Greet } from './components/Greet/Greet';
 import { TRoutes } from '../../interfaces/global';
 import { HeaderWithProgressBar } from '../../containers/HeaderWithProgressBar/HeaderWithProgressBar';
+import gStyles from '../../styles/styles.module.scss';
 
 
 const ROUTES: TRoutes[] = [
@@ -37,7 +38,7 @@ export function DetailRegister() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${gStyles.container}`}>
         <HeaderWithProgressBar routes={ROUTES} />
         <Routes>
           <Route path={''} element={<Greet path={`${DETAIL_REGISTER}${ROUTES[1].path}`} />} />

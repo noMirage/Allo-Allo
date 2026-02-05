@@ -25,7 +25,7 @@ export function ItemSelectedImage(props: IProps) {
                 return newState;
             } else {
                 let newState = { ...prevState };
-                newState = {url: null};
+                newState = { url: null };
                 return newState;
             }
         });
@@ -35,7 +35,7 @@ export function ItemSelectedImage(props: IProps) {
         <li onMouseLeave={() => setIsShowDeleteIcon(false)} onMouseEnter={() => setIsShowDeleteIcon(true)}>
             <div className={styles.body}>
                 {isShowDeleteIcon && <div onClick={() => handleDeleteImage()} className={styles.icon}><img src={iconDelete} alt="" /></div>}
-                {src.startsWith('blob:') ? <img src={src} /> : <img src={`${PATH_TO_STORE}${src}`} />}
+                {src.startsWith('blob:') ? <img className={styles.selectedImage} src={src} /> : <img className={styles.selectedImage} src={`${PATH_TO_STORE}${src}`} />}
             </div>
         </li>
     );

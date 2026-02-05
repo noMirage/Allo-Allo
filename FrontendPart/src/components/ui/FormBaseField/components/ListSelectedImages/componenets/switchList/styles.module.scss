@@ -5,7 +5,9 @@
 
 
 .bodyImages {
-    display: flex;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: f.rem(20);
     margin: f.rem(25) 0 0 0;
 

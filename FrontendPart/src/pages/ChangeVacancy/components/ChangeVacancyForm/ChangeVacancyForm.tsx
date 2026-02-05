@@ -105,7 +105,6 @@ export function ChangeVacancyForm(props: IProps) {
                                     images={[vacancies.logo || ""]}
                                     placeholder="Натисніть щоб завантажити логотип"
                                     error={error}
-
                                 >
                                     <div className={styles.location}>
                                         <SelectLocation placeholder="Місце організації/компанії" errors={errors} location={location} setLocation={setLocation} />

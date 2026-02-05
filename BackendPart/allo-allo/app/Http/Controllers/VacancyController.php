@@ -66,7 +66,7 @@ class VacancyController extends Controller
 
     return response()->json([
         'success' => true,
-        'message' => 'Vacancy created',
+        'message' => 'Вакансія успішно створена!',
         'data' =>  new UserResource($user),
     ], 201);
 }
@@ -181,7 +181,7 @@ public function getVacancies(Request $request)
 {
     $vacancies = Vacancy::with('employer.employerProfile')
                         ->orderBy('created_at', 'desc')
-                        ->paginate(50);
+                        ->paginate(12);
 
     $vacancies->getCollection()->transform(function ($vacancy) {
         return [

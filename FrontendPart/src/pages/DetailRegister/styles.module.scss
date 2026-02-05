@@ -2,6 +2,7 @@
 @use '../../utils/styles/functions.scss' as f;
 @use '../../utils/styles/mixins.scss' as m;
 @import '../../utils/styles/colors.scss';
+@import '../../utils/styles/adaptive.scss';
 
 .wrapper {
     width: 100%;
@@ -9,6 +10,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
     background-color: map.get($colors, 'lightGray');
 
 }
@@ -17,6 +19,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: inherit;
 }
 
 .title {
@@ -55,8 +59,6 @@
     }
 }
 
-// !!!!!!!!!!!!!!!!!!!!!
-
 .bodyForm {
     max-width: f.rem(800);
     width: 100%;
@@ -66,3 +68,16 @@
     background-color: #fff;
 }
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .bodyForm {
+        padding: f.rem(25);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .bodyForm {
+        padding: f.rem(20);
+    }
+}

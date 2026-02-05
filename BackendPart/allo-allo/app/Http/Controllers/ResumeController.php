@@ -162,8 +162,10 @@ public function updateResume(Request $request, $id){
         "data" => new UserResource(auth()->user()->fresh()),
     ]);
 }
-public function getAllByCategory(string $category)
+public function getAllByCategory(Request $request, string $category)
 {
+    $perPage = $request->get('per_page', 12);
+
     $categoryModel = ResumeCategory::where('name', $category)->first();
 
     if (!$categoryModel) {
@@ -174,13 +176,19 @@ public function getAllByCategory(string $category)
     }
 
     $resumes = Resume::where('category_id', $categoryModel->id)
-        ->with('user:id,full_name,avatar,phone,email,location') 
+        ->with('user:id,full_name,avatar,phone,email,location')
         ->latest()
-        ->paginate(50);
+        ->paginate($perPage);
 
     return response()->json([
         'success' => true,
         'data' => $resumes->items(),
+        'pagination' => [
+            'current_page' => $resumes->currentPage(),
+            'last_page'    => $resumes->lastPage(),
+            'total'        => $resumes->total(),
+            'per_page'     => $resumes->perPage(),
+        ],
     ]);
 }
 public function getResumeById($id)

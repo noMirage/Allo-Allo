@@ -46,6 +46,20 @@
 
 .salary {
     margin-bottom: f.rem(10);
+    position: relative;
+    padding-left: 35px;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 45px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        left: -15px;
+        transform: translateY(-50%);
+        background: url('../../../../assets/global/money.svg') no-repeat 15px/25px;
+    }
 }
 
 
@@ -61,6 +75,20 @@
 
 .organisation {
     margin-bottom: f.rem(10);
+    position: relative;
+    padding-left: 35px;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 45px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        left: -15px;
+        transform: translateY(-50%);
+        background: url('../../../../assets/global/organization.svg') no-repeat 15px/25px;
+    }
 }
 
 .wrapper {
@@ -113,12 +141,26 @@
 
 .location {
     text-transform: lowercase;
+    position: relative;
+    padding-left: 35px;
 
+    &::before {
+        content: "";
+        display: block;
+        width: 45px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        left: -15px;
+        transform: translateY(-50%);
+        background: url('../../../../assets/global/location.svg') no-repeat 15px/25px;
+    }
 }
 
 .mainInfo {
     display: flex;
     margin-bottom: f.rem(15);
+    flex-direction: column;
 
     p {
         margin-right: f.rem(20);
@@ -130,6 +172,14 @@
 @media (max-width: map.get($adaptive, 'tablet')) {
     .avatar {
         display: none;
+    }
+
+    .itemBody {
+        padding: f.rem(20);
+    }
+
+    .date {
+        bottom: -10px;
     }
 }
 
