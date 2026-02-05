@@ -19,11 +19,15 @@ export function Footer() {
                     <address className={`${styles.email} ${gStyles.textBig}`}><Email className={styles.icon} /> andriivanchov@gmail.com</address>
                 </div>
                 <ul className={styles.list}>
-                    {NAVIGATION_LINKS.map((item, _) => (
-                        <li className={`${styles.item} ${gStyles.textBig}`}>
-                            <Link to={item.to}>{item.name}</Link>
-                        </li>
-                    ))}
+                    {NAVIGATION_LINKS.map((item, index) => {
+                        if (index >= 1) {
+                            return (
+                                <li className={`${styles.item} ${gStyles.textBig}`}>
+                                    <Link to={item.to}>{item.name}</Link>
+                                </li>
+                            )
+                        }
+                    })}
                 </ul>
             </div>
         </footer>

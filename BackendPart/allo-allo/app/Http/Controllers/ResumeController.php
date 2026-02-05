@@ -16,11 +16,14 @@ class ResumeController extends Controller
         'category' => 'required|string',  
         'title' => 'required|string|max:255',
         'description' => 'nullable|string',
-        'images' => 'nullable|array',
+        'images' => 'nullable|array|max:10',
         'images.*' => 'file|image|max:5120',
     ],
     [
-        'images.*'     => 'Кожен файл має бути дійсним файлом',
+         'images.max' => 'Не має бути більше ніж 10 файлів',
+         'images.*.file' => 'Кожен файл має бути дійсним файлом',
+         'images.*.image' => 'Кожен файл має бути зображенням',
+         'images.*.max' => 'Кожен файл не повинен перевищувати 5MB'
     ]);
 
     $category = ResumeCategory::where('name', $data['category'])->first();
@@ -119,13 +122,16 @@ public function updateResume(Request $request, $id){
         'category_id' => 'required|integer|exists:resume_categories,id',
         'title'       => 'required|string|max:255',
         'description' => 'nullable|string',
-        'images'      => 'nullable|array',
+        'images' => 'nullable|array|max:10',
         'images.*'    => 'file|image|max:5120',
         'existing_images'   => 'nullable|array',
         'existing_images.*' => 'string',
     ],
     [
-        'images.*'     => 'Кожен файл має бути дійсним файлом',
+         'images.max' => 'Не має бути більше ніж 10 файлів',
+         'images.*.file' => 'Кожен файл має бути дійсним файлом',
+         'images.*.image' => 'Кожен файл має бути зображенням',
+         'images.*.max' => 'Кожен файл не повинен перевищувати 5MB'
     ]);
 
     $resume->update([

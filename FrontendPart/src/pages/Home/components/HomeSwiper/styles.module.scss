@@ -70,6 +70,10 @@
     .body {
         height: f.rem(500);
     }
+
+    .wrapper {
+        padding: f.rem(25) f.rem(25);
+    }
 }
 
 @media (max-width: map.get($adaptive, 'phone')) {
