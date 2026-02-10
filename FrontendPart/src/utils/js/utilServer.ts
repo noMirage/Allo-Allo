@@ -16,7 +16,7 @@ export async function utilServer<T>(
 
   try {
     const res = await axios.request({
-      url: `https://allo-allo.com.ua/api/${url}`,
+      url: `https://allo-allo.com.ua/api${url}`,
       method,
       data: method !== 'get' ? data : undefined,
       headers,
