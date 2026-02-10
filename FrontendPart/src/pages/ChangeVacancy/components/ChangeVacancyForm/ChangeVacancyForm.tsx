@@ -37,7 +37,7 @@ export function ChangeVacancyForm(props: IProps) {
         location: vacancies.location,
     });
 
-    const [previews, setPreviews] = useState<TPreviews | TPreviews[]>({ url: vacancies.logo || "" });
+    const [previews, setPreviews] = useState<TPreviews | TPreviews[]>([{ url: vacancies.logo || "" }]);
 
     const [location, setLocation] = useState<string>(vacancies.location);
 
