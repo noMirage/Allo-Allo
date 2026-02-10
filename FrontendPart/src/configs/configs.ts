@@ -1,4 +1,4 @@
-export const GET_UKRAINE_LOCATIONS = "/locations/search/?q=";
+export const GET_UKRAINE_LOCATIONS = "/locations/search?q=";
 export const GET_USER = "/logInAuto";
 export const LOGOUT_USER = "/logOut";
 export const MAIN_EDIT_PROFILE = "/mainEditProfile";
