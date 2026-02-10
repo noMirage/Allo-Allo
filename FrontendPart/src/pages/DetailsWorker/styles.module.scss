@@ -49,6 +49,10 @@
     .wrapper {
         padding: f.rem(40) 0 f.rem(50) 0;
     }
+
+    .bodyContainer {
+        margin: 0 0 0 0 !important;
+    }
 }
 
 @media (max-width: map.get($adaptive, 'tablet')) {

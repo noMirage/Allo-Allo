@@ -22,10 +22,17 @@
 
 .description {
     max-width: f.rem(900);
-      order: 1;
+    order: 1;
 }
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .wrapper {
+        margin-right: f.rem(15);
+    }
+
+}
 
 @media (max-width: map.get($adaptive, 'tablet')) {
     .wrapper {

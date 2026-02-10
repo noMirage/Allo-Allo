@@ -39,7 +39,7 @@ export function DetailsWorker() {
                     <div className={styles.wrapperBody} style={{ display: !isImages ? 'flex' : 'block' }}>
                         <div className={styles.body}>
                             {isImages && <Gallery dataGallery={data.images || []} />}
-                            <div style={{ marginLeft: !isImages ? '0px' : '25px' }}>
+                            <div style={{ marginLeft: !isImages ? '25px' : '0px' }} className={styles.bodyContainer}>
                                 <Contact isGallery={Boolean(Array.isArray(data.images) ? data.images.length : 0)} location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
                             </div>
                         </div>

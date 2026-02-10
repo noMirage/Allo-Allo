@@ -8,17 +8,17 @@ export async function utilServer<T>(
   method: "post" | "get" | "patch" | "delete",
   data?: unknown,
   functionRejectWithValue?: (error: any) => void,
-  options: boolean = true
+  options: boolean = true,
 ): Promise<ApiResult<T>> {
   const headers = options
-    ? { "Content-Type": "application/json", Accept: "application/json"  }
-    : { Accept: "application/json", 'Content-Type': 'multipart/form-data' };
+    ? { "Content-Type": "application/json", Accept: "application/json" }
+    : { Accept: "application/json", "Content-Type": "multipart/form-data" };
 
   try {
     const res = await axios.request({
       url: `https://allo-allo.com.ua/api${url}`,
       method,
-      data: method !== 'get' ? data : undefined,
+      data: method !== "get" ? data : undefined,
       headers,
       withCredentials: true,
     });
@@ -26,7 +26,7 @@ export async function utilServer<T>(
     return { ...res.data };
   } catch (error: any) {
     if (functionRejectWithValue) {
-       functionRejectWithValue(error?.message || "Помилка...");
+      functionRejectWithValue(error?.message || "Помилка...");
     }
     return {
       success: false,

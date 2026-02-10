@@ -17,5 +17,5 @@ export const DELETE_VACANCY = "/vacancyDelete/";
 export const UPDATE_VACANCY = "/updateVacancy/";
 export const GET_VACANCIES = "/getVacancies?page=";
 export const GET_VACANCY_BY_ID = "/vacancy/";
-export const POST_INCREMENT_VIEW_VACANCY = "/vacancy/incrementView/"
+export const POST_INCREMENT_VIEW_VACANCY = "/vacancy/incrementView/";
 export const PATH_TO_STORE = "https://allo-allo.com.ua/api/";
