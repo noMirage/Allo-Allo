@@ -66,8 +66,8 @@ export function ChangeVacancyForm(props: IProps) {
                             formData.append("location", String(location));
                             formData.append("category_id", String(vacancies.category.id));
 
-                            if (!Array.isArray(previews) && previews.file) {
-                                formData.append("logo", previews.file);
+                            if (Array.isArray(previews) && previews[0].url) {
+                                formData.append("logo", previews[0].url);
                             } else {
                                 formData.append("logo", 'null');
                             }
