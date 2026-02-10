@@ -37,7 +37,7 @@ export function ChangeVacancyForm(props: IProps) {
         location: vacancies.location,
     });
 
-    const [previews, setPreviews] = useState<TPreviews | TPreviews[]>([{ url: vacancies.logo || "" }]);
+    const [previews, setPreviews] = useState<TPreviews | TPreviews[]>([{ url: vacancies.logo || "", file: undefined }]);
 
     const [location, setLocation] = useState<string>(vacancies.location);
 
@@ -66,8 +66,8 @@ export function ChangeVacancyForm(props: IProps) {
                             formData.append("location", String(location));
                             formData.append("category_id", String(vacancies.category.id));
 
-                            if (Array.isArray(previews) && previews[0].url) {
-                                formData.append("logo", previews[0].url);
+                            if (Array.isArray(previews) && previews[0].file) {
+                                formData.append("logo", previews[0].file);
                             } else {
                                 formData.append("logo", 'null');
                             }
@@ -125,3 +125,4 @@ export function ChangeVacancyForm(props: IProps) {
         </div>
     );
 }
+

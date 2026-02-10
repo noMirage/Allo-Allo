@@ -35,12 +35,15 @@ export function SelectImage(props: IProps) {
             return { url: URL.createObjectURL(file), file };
         });
 
+
         setPreviews((prevState) => {
             if (Array.isArray(prevState)) {
                 if (multiple) {
                     const newState = [...prevState, ...data];
+                    console.log(files, '3434');
                     return newState;
                 } else {
+                    console.log(data, '3434');
                     const newState = [...data];
                     return newState;
                 }
