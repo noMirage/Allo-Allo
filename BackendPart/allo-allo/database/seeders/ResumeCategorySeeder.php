@@ -1,0 +1,28 @@
+<?php
+
+namespace Database\Seeders;
+use App\Models\ResumeCategory;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
+class ResumeCategorySeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $categories = ['сантехніка', 'зварювання', 'електрика', 'перевізник', 'збирання меблів'];
+        
+     foreach ($categories as $name) {
+            ResumeCategory::firstOrCreate([
+                'name' => $name,
+                'slug' => Str::slug($name),
+            ]);
+        }
+    }
+}

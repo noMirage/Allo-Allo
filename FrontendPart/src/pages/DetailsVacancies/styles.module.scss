@@ -1,13 +1,15 @@
 @use 'sass:map';
 @use '../../utils/styles/functions.scss' as f;
 @import '../../utils/styles/colors.scss';
+@import '../../utils/styles/adaptive.scss';
 
 .wrapper {
     padding: f.rem(20) 0 f.rem(50) 0;
 }
 
 .title {
-    margin-bottom: f.rem(10);
+    flex: 1 1 auto;
+    margin: 0 f.rem(10) f.rem(10) 0;
 }
 
 .container {
@@ -26,14 +28,43 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 
-.price {
-    margin-bottom: f.rem(25);
+.salary {
+    margin-bottom: f.rem(10);
+    font-weight: 400;
+    padding: 0 0 0 f.rem(30);
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-3px, -50%);
+        background: url('../../assets/global/money.svg') 100%/100% no-repeat;
+    }
 }
 
 .date {
     display: flex;
     align-items: center;
-    margin-bottom: f.rem(5);
+    margin-bottom: f.rem(10);
+    padding: 0 0 0 f.rem(30);
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-3px, -50%);
+        background: url('../../assets/global/clock.svg') 100%/100% no-repeat;
+    }
 
     p:first-child {
         margin-right: f.rem(20);
@@ -63,6 +94,20 @@
 
 .located {
     margin-bottom: f.rem(20);
+    padding: 0 0 0 f.rem(30);
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-3px, -50%);
+        background: url('../../assets/global/location.svg') 100%/100% no-repeat;
+    }
 }
 
 .return {
@@ -76,5 +121,72 @@
 
     a {
         color: map.get($colors, 'black');
+    }
+}
+
+.containerHeader {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    max-width: 80px;
+    max-height: 80px;
+    object-fit: contain;
+}
+
+.description {
+    margin-bottom: f.rem(20);
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .body {
+        padding: f.rem(25);
+    }
+
+    .wrapper {
+        padding-top: f.rem(40);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .logo {
+        max-width: 50px;
+        max-height: 50px;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .body {
+        padding: f.rem(20);
+    }
+}
+
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .located {
+        &::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .salary {
+        &::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .date {
+        &::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+        }
     }
 }

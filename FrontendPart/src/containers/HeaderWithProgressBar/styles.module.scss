@@ -1,0 +1,27 @@
+@use 'sass:map';
+@use '../../utils/styles/functions.scss' as f;
+@use '../../utils/styles/mixins.scss' as m;
+@import '../../utils/styles/colors.scss';
+@import '../../utils/styles/adaptive.scss';
+
+
+.logo {
+    margin: f.rem(50) 0 f.rem(50) 0;
+    display: block;
+}
+
+.logoImage {
+    max-width: 280px;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .logo {
+        margin-bottom: f.rem(20);
+
+        img {
+            max-width: f.rem(240);
+        }
+    }
+}

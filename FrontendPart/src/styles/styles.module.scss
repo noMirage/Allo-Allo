@@ -1,17 +1,16 @@
+@use 'sass:map';
 @use '../utils/styles/functions.scss' as f;
+@import '../utils/styles/adaptive.scss';
 @import '../utils/styles/colors.scss';
 @import '../utils/styles/null.scss';
 
 .container {
     max-width: f.rem(1480);
     width: 100%;
+    height: 100%;
     padding: 0 f.rem(20);
     margin: 0 auto;
     overflow: visible;
-}
-
-.wrapper {
-    width: 100%;
 }
 
 .textExtraLarge {
@@ -51,6 +50,62 @@
     line-height: f.em(21, 14);
 }
 
-.errorField {
-    border: 1px solid red !important;
+.bodyInput {
+    position: relative;
+    display: block;
+}
+
+.inputWrong {
+    border: 1.5px solid map.get($colors, 'brightRed') !important;
+}
+
+.warningMessage {
+    font-size: f.rem(16);
+    margin: 0 0 0 0;
+}
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .textLarge {
+        font-size: f.rem(22) !important;
+    }
+
+    .textExtraBig {
+        font-size: f.rem(16);
+    }
+
+    .textMedium {
+        font-size: f.rem(14);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .textBig {
+        font-size: f.rem(18);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .textExtraLarge {
+        font-size: f.rem(30);
+    }
+
+    .container {
+        padding: 0 f.rem(10);
+    }
+
+    .textLarge {
+        font-size: f.rem(20) !important;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .textExtraLarge {
+        font-size: f.rem(25);
+    }
+
+    .textBig {
+        font-size: f.rem(16);
+    }
 }

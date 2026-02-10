@@ -1,0 +1,85 @@
+@use 'sass:map';
+@use '../../../../utils/styles/functions.scss' as f;
+@import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
+
+.wrapper {
+    border: 2px solid map.get($colors, 'gray');
+    padding: f.rem(20);
+    border-radius: f.rem(12);
+    display: flex;
+    align-items: center;
+    max-width: f.rem(700);
+    width: 100%;
+}
+
+.phone {
+    position: relative;
+    width: 100%;
+    padding: 0 0 0 f.rem(30);
+    flex-basis: 33.33%;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-3px, -50%);
+        background: url('../../../../assets/global/phoneBlack.svg') 100%/100% no-repeat;
+    }
+}
+
+.email {
+    position: relative;
+    width: 100%;
+    padding: 0 0 0 f.rem(30);
+    flex-basis: 33.33%;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-3px, -50%);
+        background: url('../../../../assets/global/emailBlack.svg') 100%/100% no-repeat;
+    }
+}
+
+.fullName {
+    flex-basis: 33.33%;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .wrapper {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        h3 {
+            text-align: start;
+        }
+    }
+
+    .fullName {
+        flex-basis: 100%;
+        margin-bottom: f.rem(10);
+        font-weight: 700;
+    }
+
+    .email {
+        flex: 1 1 auto;
+    }
+
+    .phone {
+        flex: 1 1 auto;
+        margin-bottom: f.rem(10);
+    }
+}

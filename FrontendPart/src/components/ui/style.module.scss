@@ -15,20 +15,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // background-color: map.get($colors, 'silver');
     cursor: pointer;
     transition: 0.3s linear;
 
     &:hover {
         transition: 0.3s linear;
-        // color: map.get($colors, 'lightGreen');
-        // background-color: map.get($colors, 'silver');
-
     }
 }
 
 .activePagination {
     transition: 0.3s linear;
-    // color: map.get($colors, 'lightGreen');
-    // background-color: map.get($colors, 'smoke');
 }

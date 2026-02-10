@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use '../../../../../../utils/styles/functions.scss' as f;
+@import '../../../../../../utils/styles/adaptive.scss';
+@import '../../../../../../utils/styles/colors.scss';
+
+.bodyText {
+    flex: 1 1 auto;
+
+    h3 {
+        margin-bottom: f.rem(10);
+    }
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .description {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .description {
+        margin-bottom: f.rem(5);
+    }
+}

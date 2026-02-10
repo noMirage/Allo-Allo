@@ -8,7 +8,7 @@ function Layout({ children }: { children: JSX.Element }) {
         <div className={styles.body}>
             <Header />
             <main className={styles.page}>
-                {children}
+                  {children}
             </main>
             <Footer />
         </div>

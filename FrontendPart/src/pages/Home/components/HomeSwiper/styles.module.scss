@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '../../../../utils/styles/functions.scss' as f;
+@import '../../../../utils/styles/adaptive.scss';
 @import '../../../../utils/styles/colors.scss';
 
 .body {
@@ -43,5 +44,40 @@
 
     p {
         font-weight: 900;
+    }
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .wrapper {
+        width: 70%;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .wrapper {
+        top: 60%;
+        width: 80%;
+    }
+
+    .body {
+        margin-top: -100px;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .body {
+        height: f.rem(500);
+    }
+
+    .wrapper {
+        padding: f.rem(25) f.rem(25);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .wrapper {
+        width: 90%;
     }
 }

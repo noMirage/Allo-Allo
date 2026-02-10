@@ -1,5 +1,21 @@
-// export const GET_WORKERS = "http://getWorkers/?action=getWorkers";
-export const GET_WORKERS = "/serverSearchWorks.json";
-export const GET_DETAILS_WORKER = "/serverDetailsWorker.json";
-export const GET_VACANCIES = "/getVacancies.json";
-export const POST_USER_REGISTER = "http://127.0.0.1:8000/api/user";
+export const GET_UKRAINE_LOCATIONS = "/locations/search/?q=";
+export const GET_USER = "/logInAuto";
+export const LOGOUT_USER = "/logOut";
+export const MAIN_EDIT_PROFILE = "/mainEditProfile";
+export const AVATAR_PROFILE = "/avatar/Profile";
+export const POST_USER_REGISTER = "/register";
+export const POST_VERIFICATY_EMAIL = "/verificatyEmail";
+export const POST_CONFIRM_EMAIL = "/confirmEmail";
+export const POST_ADD_RESUME = "/addResumes";
+export const DELETE_RESUME = "/resumeDelete/";
+export const UPDATE_RESUME = "/updateResume/";
+export const GET_RESUME = "/resumes/category/";
+export const GET_SELECTED_RESUME = "/resume/";
+export const POST_INCREMENT_VIEW_RESUME = "/resumes/incrementView/";
+export const POST_ADD_VACANCY = "/addVacancy";
+export const DELETE_VACANCY = "/vacancyDelete/";
+export const UPDATE_VACANCY = "/updateVacancy/";
+export const GET_VACANCIES = "/getVacancies?page=";
+export const GET_VACANCY_BY_ID = "/vacancy/";
+export const POST_INCREMENT_VIEW_VACANCY = "/vacancy/incrementView/"
+export const PATH_TO_STORE = "http://localhost:8000/storage/";

@@ -1,0 +1,65 @@
+@use 'sass:map';
+@use '../../../../../../utils/styles/functions.scss' as f;
+@use '../../../../../../utils/styles/mixins.scss' as m;
+@import '../../../../../../utils/styles/colors.scss';
+@import '../../../../../../utils/styles/adaptive.scss';
+
+
+.body {
+    width: 100%;
+    border: 2px solid map.get($colors, 'gray');
+    border-radius: f.rem(6);
+    padding: f.rem(25);
+    margin-bottom: f.rem(50);
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    margin-bottom: f.rem(25);
+
+    p {
+        flex: 1 1 auto;
+    }
+}
+
+
+.buttonCreate {
+    max-width: f.rem(250);
+    text-align: center;
+    background-color: rgb(58, 176, 58);
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .body {
+        border: none;
+        padding: 0;
+    }
+
+    .buttonCreate {
+        max-width: f.rem(230);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .head {
+        flex-direction: column;
+    }
+
+    .title {
+        margin-bottom: f.rem(15);
+    }
+
+    .buttonCreate {
+        max-width: 80%;
+    }
+
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .buttonCreate {
+        max-width: 90%;
+    }
+}

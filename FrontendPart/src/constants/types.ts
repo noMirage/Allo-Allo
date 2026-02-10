@@ -1,5 +1,7 @@
+import { TCategoryWorks } from "../interfaces/works";
+
 export type TWorks = {
-  name: string;
+  category: TCategoryWorks;
   icon: string;
   to: string;
 };

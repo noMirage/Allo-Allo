@@ -3,6 +3,8 @@ import gStyles from '../../../styles/styles.module.scss';
 import { Link } from 'react-router-dom';
 import { INavigate } from '../../../interfaces/navigate';
 import { ReactNode } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 interface IProps {
   navigateList: INavigate[];
@@ -15,13 +17,27 @@ export function Navigate(props: IProps) {
   return (
     <ul className={`${styles.list} ${className}`}>
       {children}
-      {navigateList.map((item, _) => (
-        <li className={styles.item}>
-          <Link to={`${item.to}`} className={gStyles.textBig}>
-            {item.name}
-          </Link>
-        </li>
-      ))}
+
+      <Swiper
+        spaceBetween={5}
+        slidesPerView={"auto"}
+        className={styles.wrapperSwiper}
+        centeredSlidesBounds={true}
+        observer={true}
+        observeParents={true}
+        watchOverflow={true}
+        resistanceRatio={0}
+      >
+        {navigateList.map((item, _) => (
+          <SwiperSlide className={styles.slide}>
+            <li className={styles.item}>
+              <Link to={`${item.to}`} className={gStyles.textBig}>
+                {item.category}
+              </Link>
+            </li>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </ul>
   );
 }

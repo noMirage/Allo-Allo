@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../../../../utils/styles/functions.scss' as f;
 @import '../../../../utils/styles/colors.scss';
+@import '../../../../utils/styles/adaptive.scss';
 
 .itemBody {
     width: 100%;
@@ -21,6 +22,7 @@
     display: flex;
     align-items: center;
     margin-bottom: f.rem(0);
+    justify-content: flex-end;
 }
 
 .list {
@@ -42,8 +44,22 @@
     flex: 1 1 auto;
 }
 
-.price {
-    margin-bottom: f.rem(5);
+.salary {
+    margin-bottom: f.rem(10);
+    position: relative;
+    padding-left: 35px;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 45px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        left: -15px;
+        transform: translateY(-50%);
+        background: url('../../../../assets/global/money.svg') no-repeat 15px/25px;
+    }
 }
 
 
@@ -59,6 +75,20 @@
 
 .organisation {
     margin-bottom: f.rem(10);
+    position: relative;
+    padding-left: 35px;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 45px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        left: -15px;
+        transform: translateY(-50%);
+        background: url('../../../../assets/global/organization.svg') no-repeat 15px/25px;
+    }
 }
 
 .wrapper {
@@ -79,4 +109,90 @@
 
 .date {
     flex: 1 1 auto;
+}
+
+.container {
+    position: relative;
+}
+
+.wrapperInfo {
+    display: flex;
+    align-items: center;
+
+    img {
+        max-width: f.rem(80);
+        max-height: f.rem(80);
+        margin-right: f.rem(25);
+        object-fit: contain;
+    }
+}
+
+.date {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.viewes {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.location {
+    text-transform: lowercase;
+    position: relative;
+    padding-left: 35px;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 45px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        left: -15px;
+        transform: translateY(-50%);
+        background: url('../../../../assets/global/location.svg') no-repeat 15px/25px;
+    }
+}
+
+.mainInfo {
+    display: flex;
+    margin-bottom: f.rem(15);
+    flex-direction: column;
+
+    p {
+        margin-right: f.rem(20);
+    }
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .avatar {
+        display: none;
+    }
+
+    .itemBody {
+        padding: f.rem(20);
+    }
+
+    .date {
+        bottom: -10px;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .mainInfo {
+        flex-direction: column;
+
+        p {
+            margin-bottom: f.rem(5);
+        }
+
+        span {
+            margin-bottom: f.rem(15);
+        }
+    }
 }

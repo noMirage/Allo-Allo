@@ -1,9 +1,7 @@
 import { useParams } from "react-router-dom"
 import styles from './styles.module.scss';
 import gStyles from '../../styles/styles.module.scss';
-import { useAppDispatch, useAppSelector } from "../../hooks/AppRedux";
 import { useEffect } from "react";
-import { getDetailsWorker } from "../../servers/detailsWorker";
 import { Gallery } from "./components/Gallery/Gallery";
 import { Contact } from "./components/Contact/Contact";
 import { Description } from "./components/Description/Description";
@@ -12,21 +10,23 @@ import { ORDER_WORK_PATH } from "../../routs/routs";
 import { WORKS } from "../../constants/works";
 import { ReactComponent as Arrow } from '../../assets/global/singleArrow.svg';
 import { Navigate } from "../../components/ui/navigate/navigate";
+import { useResume } from "../../hooks/useResume";
+import { IResume } from "../../interfaces/resume";
+import { GET_SELECTED_RESUME, POST_INCREMENT_VIEW_RESUME } from "../../configs/configs";
+import { hasKeys } from "../../utils/js/checkTypes";
+import { utilServer } from "../../utils/js/utilServer";
 
 export function DetailsWorker() {
     const { id, title, prevLocation } = useParams();
 
-    const dispatch = useAppDispatch();
+    const [data] = useResume<IResume>(`${GET_SELECTED_RESUME}${id || 0}`);
 
     useEffect(() => {
-        if (id) {
-            dispatch(getDetailsWorker(Number(id)));
-        }
-    }, [id]);
+        utilServer(`${POST_INCREMENT_VIEW_RESUME}${id}`, 'post');
+    }, []);
 
-    const data = useAppSelector((state) => state.detailsWorkerReducer.data);
-
-    if (data && "gallery" in data && Array.isArray(data.gallery) && title && prevLocation) {
+    if (data && hasKeys<IResume>(data) && title) {
+        const isImages = (Array.isArray(data.images) && data.images.length > 0) ? true : false;
         return (
             <section className={styles.wrapper}>
                 <div className={`${gStyles.container}`}>
@@ -36,11 +36,15 @@ export function DetailsWorker() {
                             <Link to={`${ORDER_WORK_PATH}/${prevLocation}`} className={gStyles.textBig}>Назад</Link>
                         </li>
                     </Navigate>
-                    <div className={styles.body}>
-                        <Gallery dataGallery={data.gallery} />
-                        <Contact date={data.date} title={title} />
+                    <div className={styles.wrapperBody} style={{ display: !isImages ? 'flex' : 'block' }}>
+                        <div className={styles.body}>
+                            {isImages && <Gallery dataGallery={data.images || []} />}
+                            <div style={{ marginLeft: !isImages ? '25px' : '0' }}>
+                                <Contact isGallery={Boolean(Array.isArray(data.images) ? data.images.length : 0)} location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
+                            </div>
+                        </div>
+                        <Description description={data.description} />
                     </div>
-                    <Description description={data.description} />
                 </div>
             </section>
         );

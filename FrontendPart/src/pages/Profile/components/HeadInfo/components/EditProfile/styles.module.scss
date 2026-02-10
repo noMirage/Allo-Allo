@@ -1,0 +1,50 @@
+@use 'sass:map';
+@use '../../../../../../utils/styles/functions.scss' as f;
+@use '../../../../../../utils/styles/mixins.scss' as m;
+@import '../../../../../../utils/styles/colors.scss';
+@import '../../../../../../utils/styles/adaptive.scss';
+
+.bodyHeadInfo {
+    margin-bottom: f.rem(50);
+}
+
+.containerHeadInfo {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: f.rem(20);
+}
+
+.title {
+    margin-right: f.rem(10);
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .button {
+        max-width: f.rem(230);
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .containerHeadInfo {
+        flex-direction: column;
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: f.rem(15);
+    }
+
+    .button {
+        max-width: 80%;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .button {
+        max-width: 90%;
+    }
+}

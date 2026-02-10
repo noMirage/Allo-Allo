@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../../utils/styles/functions.scss' as f;
 @import '../../utils/styles/colors.scss';
+@import '../../utils/styles/adaptive.scss';
 
 .wrapper {
     padding: f.rem(20) 0 f.rem(50) 0;
@@ -31,16 +32,33 @@
     }
 }
 
-// .item {
-//     &::after {
-//         content: '/';
-//         margin: 0 f.rem(20);
-//     }
+.wrapperBody {
+    >div {
+        order: 2;
+    }
+}
 
-//     &:last-child {
-//         &::after {
-//             content: '';
-//             margin: 0;
-//         }
-//     }
-// }
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .body {
+        flex-direction: column;
+    }
+
+    .wrapper {
+        padding: f.rem(40) 0 f.rem(50) 0;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .wrapperBody {
+        flex-direction: column;
+
+        >div {
+            order: 1;
+            margin: 0
+        }
+    }
+
+}
