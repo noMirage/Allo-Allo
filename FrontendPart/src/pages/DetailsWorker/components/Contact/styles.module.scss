@@ -52,9 +52,9 @@
         height: 20px;
         background: url('../../../../assets/global/user.svg') 100%/100% no-repeat;
         position: absolute;
-        top: 0;
+        top: 50%;
         left: 0;
-        transform: translate(0, 25%);
+        transform: translate(0, -50%);
     }
 }
 
@@ -71,9 +71,9 @@
         height: 20px;
         background: url('../../../../assets/global/location.svg') 100%/100% no-repeat;
         position: absolute;
-        top: 0;
+        top: 50%;
         left: 0;
-        transform: translate(0, 50%);
+        transform: translate(0, -50%);
     }
 }
 
