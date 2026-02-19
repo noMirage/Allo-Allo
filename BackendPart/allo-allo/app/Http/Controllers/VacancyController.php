@@ -108,10 +108,11 @@ class VacancyController extends Controller
   public function getVacancies(Request $request)
 {
    $vacancies = Vacancy::with('employer.employerProfile')
-                    ->orderBy('created_at', 'desc')
-                    ->orderBy('id', 'desc')
+                    ->orderBy('created_at', 'asc')
+                    ->orderBy('id', 'asc')
                     ->paginate(12);
-
+                    
+$vacancies->setCollection(
     $vacancies->getCollection()->transform(function ($vacancy) {
         return [
             'id' => $vacancy->id,
@@ -120,11 +121,12 @@ class VacancyController extends Controller
             'location' => $vacancy->location,
             'salary' => $vacancy->salary,
             'logo' => $vacancy->logo,
-            "views" => $vacancy->views,
+            'views' => $vacancy->views,
             'created_at' => $vacancy->created_at,
             'organization' => $vacancy->employer?->employerProfile?->organization ?? 'Без організації',
         ];
-    });
+    })
+);
 
     return response()->json([
         'success' => true,

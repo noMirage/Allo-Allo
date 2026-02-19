@@ -16,11 +16,19 @@ export default function Pagination(props: IProps) {
 
     const pagination: (string | number)[] = [];
 
-    for (let index = 0; index < countPagination; index++) {
-        if (index >= 1 && (index >= currentNumber - countShowPaginationBullets / 2) && pagination.length <= countShowPaginationBullets) {
-            pagination.push(index);
-        }
-    };
+    if (countPagination <= 8) {
+        for (let index = 0; index <= countPagination; index++) {
+            if (index >= 1 && (index >= currentNumber - countShowPaginationBullets / 2) && pagination.length <= countShowPaginationBullets) {
+                pagination.push(index);
+            }
+        };
+    } else {
+        for (let index = 0; index < countPagination; index++) {
+            if (index >= 1 && (index >= currentNumber - countShowPaginationBullets / 2) && pagination.length <= countShowPaginationBullets) {
+                pagination.push(index);
+            }
+        };
+    }
 
     if (countPagination >= changePaginationAfter) {
         pagination[11] = '...';
