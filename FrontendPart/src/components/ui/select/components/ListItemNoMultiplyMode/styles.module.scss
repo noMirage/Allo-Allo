@@ -30,3 +30,7 @@
         color: map.get($colors, 'white');
     }
 }
+
+.containerItem {
+    max-height: f.rem(150);
+}

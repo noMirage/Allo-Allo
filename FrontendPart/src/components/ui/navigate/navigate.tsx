@@ -19,7 +19,7 @@ export function Navigate(props: IProps) {
       {children}
 
       <Swiper
-        spaceBetween={5}
+        spaceBetween={1}
         slidesPerView={"auto"}
         className={styles.wrapperSwiper}
         centeredSlidesBounds={true}

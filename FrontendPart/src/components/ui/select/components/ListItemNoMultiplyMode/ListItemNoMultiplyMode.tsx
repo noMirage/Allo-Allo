@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import gStyles from '../../../../../styles/styles.module.scss';
 import pStyles from '../../styles.module.scss';
+import "simplebar-react/dist/simplebar.min.css";
 import { ReactComponent as Arrow } from '../../../../../assets/global/singleArrow.svg';
+import SimpleBar from 'simplebar-react';
 
 interface IProps {
     refSelect: React.RefObject<HTMLDivElement | null>;
@@ -27,13 +29,15 @@ export default function ListItemNoMultiplyMode(props: IProps) {
                 <Arrow className={styles.iconArrow} />
             </div>
             <ul className={styles.list} ref={refContent}>
-                {options.map((item, index) => {
-                    if (item !== selectedOption) {
-                        return (
-                            <li onClick={() => handleSelectOption(() => { setSelectedOption(options[index]); handleSelect(options[index]) })} key={item} className={`${styles.item} ${gStyles.textBig}`}>{item}</li>
-                        )
-                    }
-                })}
+                <SimpleBar className={styles.containerItem}>
+                    {options.map((item, index) => {
+                        if (item !== selectedOption) {
+                            return (
+                                <li onClick={() => handleSelectOption(() => { setSelectedOption(options[index]); handleSelect(options[index]) })} key={item} className={`${styles.item} ${gStyles.textBig}`}>{item}</li>
+                            )
+                        }
+                    })}
+                </SimpleBar>
             </ul>
         </div>
     );

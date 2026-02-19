@@ -4,6 +4,8 @@ import gStyles from '../../../../../styles/styles.module.scss';
 import pStyles from '../../styles.module.scss';
 import { ReactComponent as Arrow } from '../../../../../assets/global/singleArrow.svg';
 import ItemList from './components/ItemList/ItemList';
+import "simplebar-react/dist/simplebar.min.css";
+import SimpleBar from 'simplebar-react';
 
 interface IProps {
     refSelect: React.RefObject<HTMLDivElement | null>;
@@ -27,7 +29,8 @@ export default function ListItemMultiplyMode(props: IProps) {
                 <Arrow className={styles.iconArrow} />
             </div>
             <ul className={styles.list} ref={refContent}>
-                {options.map((item, index) => {
+                <SimpleBar className={styles.containerItem}>
+                    {options.map((item, index) => {
                         return (
                             <ItemList
                                 name={item}
@@ -38,7 +41,8 @@ export default function ListItemMultiplyMode(props: IProps) {
                                 handleSelect={handleSelect}
                             />
                         )
-                })}
+                    })}
+                </SimpleBar>
             </ul>
         </div>
     );

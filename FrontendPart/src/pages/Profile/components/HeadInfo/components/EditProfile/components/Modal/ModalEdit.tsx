@@ -8,8 +8,6 @@ import { useEffect, useRef, useState } from "react";
 import { PhoneInputCustom } from "../../../../../../../../components/ui/PhoneInputCustom/PhoneInputCustom";
 import { utilServer } from "../../../../../../../../utils/js/utilServer";
 import { MAIN_EDIT_PROFILE } from "../../../../../../../../configs/configs";
-import { update } from "../../../../../../../../servers/user";
-import { useAppDispatch } from "../../../../../../../../hooks/AppRedux";
 import { hasKeys } from "../../../../../../../../utils/js/checkTypes";
 import { IUser, TUserRole } from "../../../../../../../../interfaces/user";
 import { Link } from "react-router-dom";
@@ -29,8 +27,6 @@ export function ModalEdit(props: IProps) {
     const { setIsModal, fullName, phone, currentLocation, role, organization, isModal } = props;
 
     const [location, setLocation] = useState<string>(currentLocation);
-
-    const dispatch = useAppDispatch();
 
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -84,7 +80,7 @@ export function ModalEdit(props: IProps) {
                             true
                         );
                         if (data.success && hasKeys<IUser>(data.data!)) {
-                            dispatch(update(data.data));
+                            window.location.reload();
                         }
                     }}
                 >
