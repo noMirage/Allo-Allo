@@ -20,18 +20,15 @@ export function ListItemWork(props: IProps) {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    function handleTrackClick() {
-        document.addEventListener("click", (event) => {
+    useEffect(() => {
+        function handleTrackClick(event: any) {
             if (event.target instanceof HTMLElement && !event.target.closest(`.${pStyles.listName}`)) {
                 setIsOpen(false);
             }
+        }
 
-        });
-    }
-
-    useEffect(() => {
-        handleTrackClick();
-        return () => handleTrackClick();
+        document.addEventListener("click", handleTrackClick);
+        return () => document.removeEventListener('click', handleTrackClick);
     }, []);
 
     return (

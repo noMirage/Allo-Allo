@@ -12,19 +12,19 @@ interface IProps {
 
 export default function Pagination(props: IProps) {
 
-    const { countPagination, setCurrentValue, className, currentNumber, countShowPaginationBullets = 8, changePaginationAfter = 6 } = props;
+    const { countPagination, setCurrentValue, className, currentNumber, countShowPaginationBullets = 8, changePaginationAfter = 9 } = props;
 
     const pagination: (string | number)[] = [];
 
-    for (let index = 0; index <= countPagination; index++) {
+    for (let index = 0; index < countPagination; index++) {
         if (index >= 1 && (index >= currentNumber - countShowPaginationBullets / 2) && pagination.length <= countShowPaginationBullets) {
             pagination.push(index);
         }
     };
 
-    if (countPagination > changePaginationAfter) {
+    if (countPagination >= changePaginationAfter) {
         pagination[11] = '...';
-        pagination.push(countPagination + 1);
+        pagination.push(countPagination);
     };
 
     if (Number(pagination[0]) >= 2) {

@@ -27,7 +27,7 @@ export function EditProfile(props: IProps) {
                 <button onClick={() => setIsModal(true)} className={`${gStyles.textBig} ${pStyles.button} ${styles.button}`}>Редагувати профіль</button>
             </div>
             {isModal && <Modal isModal={isModal} setIsModal={setIsModal}>
-                <ModalEdit organization={organization} role={role} fullName={fullName} phone={phone} currentLocation={location} setIsModal={setIsModal} />
+                <ModalEdit isModal={isModal} organization={organization} role={role} fullName={fullName} phone={phone} currentLocation={location} setIsModal={setIsModal} />
             </Modal>}
         </>
     );

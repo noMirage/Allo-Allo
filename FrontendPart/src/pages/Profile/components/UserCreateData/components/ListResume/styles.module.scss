@@ -27,6 +27,22 @@
     max-width: f.rem(250);
     text-align: center;
     background-color: rgb(58, 176, 58);
+    transition: 0.3s linear;
+
+    &:hover {
+        transition: 0.3s linear;
+        background-color: rgb(42, 144, 42);
+    }
+
+    &:focus {
+        transition: 0.3s linear;
+        background-color: rgb(42, 144, 42);
+    }
+
+    &:active {
+        transition: 0.3s linear;
+        background-color: rgb(42, 144, 42);
+    }
 }
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

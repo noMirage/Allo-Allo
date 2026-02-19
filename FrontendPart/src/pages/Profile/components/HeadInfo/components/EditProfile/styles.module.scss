@@ -20,6 +20,25 @@
     margin-right: f.rem(10);
 }
 
+.button {
+    transition: 0.3s linear;
+
+    &:hover {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amberExtra');
+    }
+
+    &:focus {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amberExtra');
+    }
+
+    &:active {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amberExtra');
+    }
+}
+
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
 @media (max-width: map.get($adaptive, 'tablet')) {

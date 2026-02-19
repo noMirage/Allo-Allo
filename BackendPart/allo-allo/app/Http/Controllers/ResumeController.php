@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ResumeController extends Controller
 {
-  public function store(Request $request)
+ public function store(Request $request)
 {
     $data = $request->validate([
         'category' => 'required|string',  
@@ -18,12 +18,11 @@ class ResumeController extends Controller
         'description' => 'nullable|string',
         'images' => 'nullable|array|max:10',
         'images.*' => 'file|image|max:5120',
-    ],
-    [
-         'images.max' => 'Не має бути більше ніж 10 файлів',
-         'images.*.file' => 'Кожен файл має бути дійсним файлом',
-         'images.*.image' => 'Кожен файл має бути зображенням',
-         'images.*.max' => 'Кожен файл не повинен перевищувати 5MB'
+    ], [
+        'images.max' => 'Не має бути більше ніж 10 файлів',
+        'images.*.file' => 'Кожен файл має бути дійсним файлом',
+        'images.*.image' => 'Кожен файл має бути зображенням',
+        'images.*.max' => 'Кожен файл не повинен перевищувати 5MB'
     ]);
 
     $category = ResumeCategory::where('name', $data['category'])->first();
@@ -56,17 +55,26 @@ class ResumeController extends Controller
     $paths = [];
     if ($request->hasFile('images')) {
         foreach ($request->file('images') as $file) {
-            $paths[] = $file->store("resumes/{$user_id}/{$resume->id}", 'public');
+            
+            $folder = "storage/resumes/{$user_id}/{$resume->id}";
+            if (!file_exists(public_path($folder))) {
+                mkdir(public_path($folder), 0755, true);
+            }
+
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path($folder), $filename);
+
+            $paths[] = $folder . '/' . $filename;
         }
-        
+
         $resume->images = $paths;
         $resume->save();
     }
 
-     return response()->json([
-            'success' => true,
-            'message' => 'Резюме створено',
-            'data' => new UserResource(auth()->user()->fresh()),
+    return response()->json([
+        'success' => true,
+        'message' => 'Резюме створено',
+        'data' => new UserResource(auth()->user()->fresh()),
     ], 200);
 }
     public function index()
@@ -109,14 +117,15 @@ class ResumeController extends Controller
         ], 200);
     }
     
-public function updateResume(Request $request, $id){
+public function updateResume(Request $request, $id)
+{
     $request->merge([
         'category_id' => intval($request->input('category_id')),
-     ]);
+    ]);
 
     $resume = Resume::where('id', $id)
-                    ->where('user_id', auth()->id())
-                    ->firstOrFail();
+        ->where('user_id', auth()->id())
+        ->firstOrFail();
 
     $data = $request->validate([
         'category_id' => 'required|integer|exists:resume_categories,id',
@@ -126,12 +135,11 @@ public function updateResume(Request $request, $id){
         'images.*'    => 'file|image|max:5120',
         'existing_images'   => 'nullable|array',
         'existing_images.*' => 'string',
-    ],
-    [
-         'images.max' => 'Не має бути більше ніж 10 файлів',
-         'images.*.file' => 'Кожен файл має бути дійсним файлом',
-         'images.*.image' => 'Кожен файл має бути зображенням',
-         'images.*.max' => 'Кожен файл не повинен перевищувати 5MB'
+    ], [
+        'images.max' => 'Не має бути більше ніж 10 файлів',
+        'images.*.file' => 'Кожен файл має бути дійсним файлом',
+        'images.*.image' => 'Кожен файл має бути зображенням',
+        'images.*.max' => 'Кожен файл не повинен перевищувати 5MB'
     ]);
 
     $resume->update([
@@ -145,18 +153,28 @@ public function updateResume(Request $request, $id){
 
     foreach ($oldImages as $img) {
         if (!in_array($img, $keepImages)) {
-            Storage::disk('public')->delete($img);
+            $fullPath = public_path($img);
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+            }
         }
     }
 
     $finalImages = $keepImages;
 
     if ($request->hasFile('images')) {
+
+        $folder = "storage/resumes/{$resume->user_id}/{$resume->id}";
+
+        if (!file_exists(public_path($folder))) {
+            mkdir(public_path($folder), 0755, true);
+        }
+
         foreach ($request->file('images') as $file) {
-            $finalImages[] = $file->store(
-                "resumes/{$resume->user_id}/{$resume->id}",
-                'public'
-            );
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path($folder), $filename);
+
+            $finalImages[] = $folder . '/' . $filename;
         }
     }
 
@@ -168,9 +186,10 @@ public function updateResume(Request $request, $id){
         "data" => new UserResource(auth()->user()->fresh()),
     ]);
 }
+
 public function getAllByCategory(Request $request, string $category)
 {
-    $perPage = $request->get('per_page', 12);
+    $perPage = 12;
 
     $categoryModel = ResumeCategory::where('name', $category)->first();
 
@@ -188,12 +207,12 @@ public function getAllByCategory(Request $request, string $category)
 
     return response()->json([
         'success' => true,
-        'data' => $resumes->items(),
-        'pagination' => [
+        'data' => [
+            'resumes' => $resumes->items(),
             'current_page' => $resumes->currentPage(),
-            'last_page'    => $resumes->lastPage(),
-            'total'        => $resumes->total(),
-            'per_page'     => $resumes->perPage(),
+            'last_page' => $resumes->lastPage(),
+            'per_page' => $resumes->perPage(),
+            'total' => $resumes->total(),
         ],
     ]);
 }

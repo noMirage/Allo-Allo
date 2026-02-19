@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import gStyles from '../../styles/styles.module.scss';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Pagination from "../../components/ui/pagination";
 import { ListVacancies } from "./components/ListVacancies/ListWorkers";
 import { IVacancyPaginationList } from "../../interfaces/vacancies";
@@ -20,7 +20,7 @@ export function Vacancies() {
                     <h2 className={`${gStyles.textExtraLarge} ${styles.title}`}>Вакансії</h2>
                     <p className={`${styles.allVacancies} ${gStyles.textLarge}`}>{data.total} вакансій</p>
                     <ListVacancies data={data.vacancies} />
-                    <Pagination setCurrentValue={setCurrentValue} countPagination={Math.ceil(data.total / 12)} currentNumber={currentValue} className={styles.pagination} />
+                    <Pagination setCurrentValue={setCurrentValue} countPagination={Math.ceil(data.total / data.per_page)} currentNumber={currentValue} className={styles.pagination} />
                 </div>
             </section>
         );

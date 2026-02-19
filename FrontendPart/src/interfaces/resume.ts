@@ -14,3 +14,11 @@ export interface IResume {
   user_id: number;
   views: number;
 }
+
+export interface IResumePagination {
+  current_page: number;
+  last_page: number;
+  per_page: number;
+  resumes: IResume[];
+  total: number;
+}

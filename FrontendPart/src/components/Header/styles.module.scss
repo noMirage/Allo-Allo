@@ -252,10 +252,12 @@
         z-index: 0;
         transition: 0.3s linear;
         padding: f.rem(100) 0 0 0;
+        overflow-y: auto;
 
         .listName {
             min-height: inherit;
             flex-basis: initial !important;
+
             &::before {
                 display: none;
             }

@@ -4,7 +4,7 @@ import pStyles from "../../../../../../styles.module.scss";
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import { validateFullName } from "../../../../../../../../utils/js/validates";
 import { SelectLocation } from "../../../../../../../../components/ui/selectLocation/selectLocation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PhoneInputCustom } from "../../../../../../../../components/ui/PhoneInputCustom/PhoneInputCustom";
 import { utilServer } from "../../../../../../../../utils/js/utilServer";
 import { MAIN_EDIT_PROFILE } from "../../../../../../../../configs/configs";
@@ -22,18 +22,37 @@ interface IProps {
     role: TUserRole;
     currentLocation: string;
     organization: string;
+    isModal: boolean;
 }
 
 export function ModalEdit(props: IProps) {
-    const { setIsModal, fullName, phone, currentLocation, role, organization } = props;
+    const { setIsModal, fullName, phone, currentLocation, role, organization, isModal } = props;
 
     const [location, setLocation] = useState<string>(currentLocation);
 
     const dispatch = useAppDispatch();
 
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!isModal) return;
+
+        const handleClickOutside = (event: MouseEvent) => {
+            if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+                setIsModal(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isModal]);
+
+
     return (
         <div className={`${gStyles.container} ${styles.container}`}>
-            <div className={styles.body}>
+            <div className={styles.body} ref={modalRef}>
                 <div className={styles.logo}>
                     <Link to='/' className={styles.logo}>
                         <img src={logo} />

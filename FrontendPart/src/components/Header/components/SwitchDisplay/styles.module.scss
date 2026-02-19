@@ -41,6 +41,23 @@
         border-radius: f.rem(6);
         color: map.get($colors, 'white');
 
+        transition: 0.3s linear;
+
+        &:hover {
+            transition: 0.3s linear;
+            background-color: map.get($colors, 'amberExtra');
+        }
+
+        &:focus {
+            transition: 0.3s linear;
+            background-color: map.get($colors, 'amberExtra');
+        }
+
+        &:active {
+            transition: 0.3s linear;
+            background-color: map.get($colors, 'amberExtra');
+        }
+
         img {
             width: 30px;
             height: 30px;

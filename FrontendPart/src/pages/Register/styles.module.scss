@@ -13,6 +13,12 @@
     flex-direction: column;
     background-color: map.get($colors, 'lightGray');
     padding-bottom: f.rem(50);
+    transition: 0.3s linear;
+}
+
+.background {
+    transition: 0.3s linear;
+    background-color: #fff;
 }
 
 .container {
@@ -24,7 +30,7 @@
 .logo {
     display: flex;
     justify-content: center;
-    margin: f.rem(50) 0;
+    margin: f.rem(10) 0 f.rem(50) 0;
 
     img {
         max-width: 320px;
@@ -49,6 +55,7 @@
     text-align: center;
     color: map.get($colors, 'black');
     font-weight: 700;
+    background-color: transparent;
 }
 
 

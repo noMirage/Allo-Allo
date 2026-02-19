@@ -18,7 +18,7 @@ export function Register() {
   }, [loginAsA]);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${loginAsA === 'employer' && styles.background}`}>
       <div className={`${gStyles.container} ${styles.container}`}>
         <Link to={HOME_PATH} className={styles.logo}>
           <img src={logo} alt="" />

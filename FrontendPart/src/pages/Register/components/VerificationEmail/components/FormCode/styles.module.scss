@@ -23,6 +23,22 @@
         $color: map.get($colors, 'white'));
     font-weight: 700;
     margin-bottom: f.rem(15);
+    transition: 0.3s linear;
+
+    &:hover {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amber');
+    }
+
+    &:focus {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amber');
+    }
+
+    &:active {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amber');
+    }
 }
 
 .list {
@@ -95,6 +111,7 @@
 .buttonReturn {
     background-color: transparent;
     position: relative;
+    transition: 0.3s linear;
 
     &::before {
         content: '';
@@ -106,6 +123,21 @@
         top: 50%;
         left: 0%;
         transform: translate(0%, -50%);
+    }
+
+    &:hover {
+        transition: 0.3s linear;
+        color: map.get($colors, 'darkGray');
+    }
+
+    &:focus {
+        transition: 0.3s linear;
+        color: map.get($colors, 'darkGray');
+    }
+
+    &:active {
+        transition: 0.3s linear;
+        color: map.get($colors, 'darkGray');
     }
 }
 

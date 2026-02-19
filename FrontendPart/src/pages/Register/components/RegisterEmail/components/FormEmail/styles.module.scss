@@ -15,6 +15,19 @@
     margin-bottom: f.rem(15);
 }
 
+$colors: (
+    "darkRed": #8C0004,
+    "brightRed": #C8000A,
+    "amber": #E8A735,
+    "sand": #E2C499,
+    "charCoal": #2F2F2F,
+    "gray": #B0B0B0,
+    "black": #000,
+    "white": #fff,
+    'darkGray': rgb(79, 79, 79),
+    "lightGray": #ecebeb,
+);
+
 .button {
     @include m.button($padding: f.rem(12) f.rem(35) f.rem(12) f.rem(35),
         $width: 100%,
@@ -24,6 +37,22 @@
         $color: map.get($colors, 'white'));
     font-weight: 700;
     margin-bottom: f.rem(15);
+    transition: 0.3s linear;
+
+    &:hover {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amber');
+    }
+
+    &:focus {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amber');
+    }
+
+    &:active {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amber');
+    }
 }
 
 .form {

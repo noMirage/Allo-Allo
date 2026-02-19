@@ -112,6 +112,23 @@
     background-color: map.get($colors, 'brightRed');
     max-width: f.rem(200);
     white-space: nowrap;
+
+    transition: 0.3s linear;
+
+    &:hover {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'darkRed');
+    }
+
+    &:focus {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'darkRed');
+    }
+
+    &:active {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'darkRed');
+    }
 }
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1

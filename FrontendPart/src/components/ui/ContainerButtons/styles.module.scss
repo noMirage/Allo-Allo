@@ -18,6 +18,23 @@
     a:first-child {
         margin-right: f.rem(50);
 
+        transition: 0.3s linear;
+
+        &:hover {
+            transition: 0.3s linear;
+            color: map.get($colors, 'darkGray');
+        }
+
+        &:focus {
+            transition: 0.3s linear;
+            color: map.get($colors, 'darkGray');
+        }
+
+        &:active {
+            transition: 0.3s linear;
+            color: map.get($colors, 'darkGray');
+        }
+
         &::before {
             content: "";
             display: block;
@@ -34,6 +51,22 @@
         border-radius: f.rem(12);
         display: flex;
         align-items: center;
+        transition: 0.3s linear;
+
+        &:hover {
+            transition: 0.3s linear;
+            background-color: map.get($colors, 'amberExtra');
+        }
+
+        &:focus {
+            transition: 0.3s linear;
+            background-color: map.get($colors, 'amberExtra');
+        }
+
+        &:active {
+            transition: 0.3s linear;
+            background-color: map.get($colors, 'amberExtra');
+        }
 
         &::after {
             content: "";

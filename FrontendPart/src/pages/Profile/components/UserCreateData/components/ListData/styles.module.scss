@@ -52,6 +52,22 @@
         $color: map.get($colors, 'white'));
     font-weight: 700;
     margin-right: f.rem(25);
+    transition: 0.3s linear;
+
+    &:hover {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amberExtra');
+    }
+
+    &:focus {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amberExtra');
+    }
+
+    &:active {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'amberExtra');
+    }
 }
 
 .buttonRemove {
@@ -63,6 +79,23 @@
         $color: map.get($colors, 'white'));
     font-weight: 700;
     margin-right: f.rem(25);
+
+    transition: 0.3s linear;
+
+    &:hover {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'darkRed');
+    }
+
+    &:focus {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'darkRed');
+    }
+
+    &:active {
+        transition: 0.3s linear;
+        background-color: map.get($colors, 'darkRed');
+    }
 }
 
 .containerButtons {

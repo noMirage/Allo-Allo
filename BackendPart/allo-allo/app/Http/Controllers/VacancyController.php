@@ -20,14 +20,11 @@ class VacancyController extends Controller
 
     $request->validate([
         'title' => 'required|string|max:255',
-        'category' => 'required|string',  
+        'category' => 'required|string',
         'description' => 'required|string',
         'location' => 'required|string',
         'salary' => 'nullable|string|max:255',
         'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ],
-    [
-        'images.*'     => 'Кожен файл має бути дійсним файлом',
     ]);
 
     $category = VacancyCategory::where('name', $request->category)->first();
@@ -37,17 +34,17 @@ class VacancyController extends Controller
     }
 
     $existingVacancy = Vacancy::where('user_id', $user->id)
-    ->where('category_id', $category->id)
-    ->first();
+        ->where('category_id', $category->id)
+        ->first();
 
-   if ($existingVacancy) {
-    return response()->json([
-        'success' => false,
-        'message' => 'Ви вже створили вакансію в цій категорії',
-    ], 422);
-   }
+    if ($existingVacancy) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Ви вже створили вакансію в цій категорії',
+        ], 422);
+    }
 
-   $salary = $request->input('salary');
+    $salary = $request->input('salary');
 
     $vacancy = Vacancy::create([
         'user_id' => $user->id,
@@ -59,15 +56,24 @@ class VacancyController extends Controller
     ]);
 
     if ($request->hasFile('logo')) {
-        $logoPath = $request->file('logo')->store("vacancies/{$user->id}/{$vacancy->id}", 'public');
-        $vacancy->logo = $logoPath;
+
+        $folder = "storage/vacancies/{$user->id}/{$vacancy->id}";
+
+        if (!file_exists(public_path($folder))) {
+            mkdir(public_path($folder), 0755, true);
+        }
+
+        $filename = time() . '_' . $request->file('logo')->getClientOriginalName();
+        $request->file('logo')->move(public_path($folder), $filename);
+
+        $vacancy->logo = $folder . '/' . $filename;
         $vacancy->save();
     }
 
     return response()->json([
         'success' => true,
         'message' => 'Вакансія успішно створена!',
-        'data' =>  new UserResource($user),
+        'data' => new UserResource($user->fresh()),
     ], 201);
 }
 
@@ -98,90 +104,13 @@ class VacancyController extends Controller
             "data" => new UserResource(auth()->user()->fresh()),
         ], 200);
     }
-    public function updateVacancy(Request $request, $id)
+  public function updateVacancy(Request $request, $id) { $user = auth()->user(); $vacancy = Vacancy::where('id', $id) ->where('user_id', $user->id) ->first(); if (!$vacancy) { return response()->json([ 'success' => false, 'message' => 'Вакансія не знайдена або не належить вам', ], 404); } $request->validate([ 'title' => 'sometimes|required|string|max:255', 'category' => 'sometimes|required|string', 'description' => 'sometimes|required|string', 'location' => 'sometimes|required|string', 'salary' => 'nullable|string|max:255', 'logo' => [ 'nullable', function ($attribute, $value, $fail) use ($request) { if ($request->hasFile('logo')) return; if ($value === 'null') return; $fail('Лого має бути файлом або рядком.'); }, ], ]); if ($request->hasFile('logo')) { $request->validate([ 'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048', ]); } if ($request->has('category')) { $category = VacancyCategory::where('name', $request->category)->first(); if (!$category) { return response()->json([ 'success' => false, 'message' => 'Категорія не знайдена', ], 422); } $vacancy->category_id = $category->id; } if ($request->has('title')) $vacancy->title = $request->title; if ($request->has('description')) $vacancy->description = $request->description; if ($request->has('location')) $vacancy->location = $request->location; if ($request->filled('salary')) $vacancy->salary = $request->salary; if ($request->hasFile('logo')) { if ($vacancy->logo) { $oldPath = public_path($vacancy->logo); if (file_exists($oldPath)) { unlink($oldPath); } } $folder = "storage/vacancies/{$user->id}/{$vacancy->id}"; if (!file_exists(public_path($folder))) { mkdir(public_path($folder), 0755, true); } $filename = time() . '_' . $request->file('logo')->getClientOriginalName(); $request->file('logo')->move(public_path($folder), $filename); $vacancy->logo = $folder . '/' . $filename; } elseif ($request->input('logo') === 'null') { if ($vacancy->logo) { $oldPath = public_path($vacancy->logo); if (file_exists($oldPath)) { unlink($oldPath); } } $vacancy->logo = null; } $vacancy->save(); return response()->json([ 'success' => true, 'message' => 'Вакансія оновлена', 'data' => new UserResource($user->fresh()), ], 200); }
+  public function getVacancies(Request $request)
 {
-    $user = auth()->user();
-
-    $vacancy = Vacancy::where('id', $id)
-                      ->where('user_id', $user->id)
-                      ->first();
-
-    if (!$vacancy) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Вакансія не знайдена або не належить вам',
-        ], 404);
-    }
-
-    $request->validate([
-        'title' => 'sometimes|required|string|max:255',
-        'category' => 'sometimes|required|string',
-        'description' => 'sometimes|required|string',
-        'location' => 'sometimes|required|string',
-        'salary' => 'nullable|string|max:255',
-        'logo' => [
-            'nullable',
-            function ($attribute, $value, $fail) use ($request) {
-                if ($request->hasFile('logo')) return;
-
-                if ($value === 'null') return;
-
-                $fail('Лого має бути файлом або рядком.');
-            },
-        ],
-    ],
-    [
-        'images.*'     => 'Кожен файл має бути дійсним файлом',
-    ]);
-
-    if ($request->hasFile('logo')) {
-        $request->validate([
-            'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-    }
-
-    if ($request->has('category')) {
-        $category = VacancyCategory::where('name', $request->category)->first();
-        if (!$category) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Категорія не знайдена',
-            ], 422);
-        }
-        $vacancy->category_id = $category->id;
-    }
-
-
-    if ($request->has('title')) $vacancy->title = $request->title;
-    if ($request->has('description')) $vacancy->description = $request->description;
-    if ($request->has('location')) $vacancy->location = $request->location;
-    if ($request->filled('salary')) $vacancy->salary = $request->salary;
-
-    if ($request->hasFile('logo')) {
-        if ($vacancy->logo) {
-            \Storage::disk('public')->delete($vacancy->logo);
-        }
-        $vacancy->logo = $request->file('logo')->store("vacancies/{$user->id}/{$vacancy->id}", 'public');
-    } elseif ($request->input('logo') === 'null') {
-        if ($vacancy->logo) {
-            \Storage::disk('public')->delete($vacancy->logo);
-        }
-        $vacancy->logo = null;
-    }
-
-    $vacancy->save();
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Вакансія оновлена',
-        'data' => new UserResource($user->fresh()),
-    ], 200);
-}
-public function getVacancies(Request $request)
-{
-    $vacancies = Vacancy::with('employer.employerProfile')
-                        ->orderBy('created_at', 'desc')
-                        ->paginate(12);
+   $vacancies = Vacancy::with('employer.employerProfile')
+                    ->orderBy('created_at', 'desc')
+                    ->orderBy('id', 'desc')
+                    ->paginate(12);
 
     $vacancies->getCollection()->transform(function ($vacancy) {
         return [

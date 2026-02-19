@@ -25,7 +25,17 @@ export function Header() {
 
     useEffect(() => {
         setIsBurger(false);
+        document.body.style.overflow = 'auto';
     }, [location.pathname]);
+
+    function handleTargetBurger() {
+        setIsBurger(!isBurger);
+        if (document.body.style.overflow === 'hidden') {
+            document.body.style.overflow = 'auto';
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
+    }
 
     return (
         <header className={styles.header}>
@@ -42,7 +52,7 @@ export function Header() {
                             <img src={phone} />
                         </li>
                         <SwitchDisplay user={user} />
-                        <div onClick={() => setIsBurger(!isBurger)} className={`${styles.burger} ${isBurger && styles.openBurger}`}>
+                        <div onClick={() => handleTargetBurger()} className={`${styles.burger} ${isBurger && styles.openBurger}`}>
                             <span></span>
                         </div>
                     </ul>

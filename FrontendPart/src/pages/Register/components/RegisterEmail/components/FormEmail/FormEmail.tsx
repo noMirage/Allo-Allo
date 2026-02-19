@@ -25,10 +25,10 @@ export function FormEmail(props: IProps) {
           errors
         }) => (
           <Form>
-            <Field className={`${styles.input} ${gStyles.textBig} ${errors.email && gStyles.inputWrong}`} placeholder='Електроний адрес' type="email" name="email" validate={validateEmail} />
+            <Field tabIndex={1} className={`${styles.input} ${gStyles.textBig} ${errors.email && gStyles.inputWrong}`} placeholder='Електроний адрес' type="email" name="email" validate={validateEmail} />
             <ErrorMessage name="email" component="div" />
             <div className={styles.bodyButton}>
-              <button className={`${gStyles.textBig} ${styles.button}`}>Увійти</button>
+              <button tabIndex={2} className={`${gStyles.textBig} ${styles.button}`}>Увійти</button>
             </div>
             <p className={`${styles.condition} ${gStyles.textMedium}`}>Продовжуючи, ви приймаєте <Link to='/'>правила сервісу</Link> та <Link to='/'>політику конфіденційності</Link>.</p>
           </Form>

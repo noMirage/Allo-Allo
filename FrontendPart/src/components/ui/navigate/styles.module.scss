@@ -11,9 +11,11 @@
 
     a {
         color: map.get($colors, 'black');
+        
     }
 
     li {
+        
         &:last-child {
             margin: 0;
         }
