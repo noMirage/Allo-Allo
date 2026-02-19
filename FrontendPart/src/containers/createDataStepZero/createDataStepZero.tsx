@@ -5,11 +5,14 @@ import { TCategoryWorks } from '../../interfaces/works';
 import Select from '../../components/ui/select/Select';
 
 const OPTIONS = [
-    "сантехніка",
+    "будівництво",
     "зварювання",
     "електрика",
     "перевізник",
-    "збирання меблів"
+    "збирання меблів",
+    "сантехніка",
+    'ремонт машин',
+    'фарбування',
 ];
 
 interface IProps<T> {

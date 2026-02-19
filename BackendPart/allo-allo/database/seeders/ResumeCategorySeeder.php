@@ -16,7 +16,7 @@ class ResumeCategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['сантехніка', 'зварювання', 'електрика', 'перевізник', 'збирання меблів'];
+        $categories = ['сантехніка', 'зварювання', 'електрика', 'перевізник', 'збирання меблів', 'будівництво', 'ремонт машин', 'фарбування'];
         
      foreach ($categories as $name) {
             ResumeCategory::firstOrCreate([

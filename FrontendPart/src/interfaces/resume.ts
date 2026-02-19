@@ -1,4 +1,4 @@
-import { IUser, IUserJobSeeker } from "./user";
+import { IUserJobSeeker } from "./user";
 import { TCategory } from "./works";
 
 export interface IResume {
