@@ -2,6 +2,7 @@ import styles from "./styles.module.scss";
 import gStyles from "../../../../styles/styles.module.scss";
 import { ReactComponent as Heart } from "../../../../assets/global/heartIcon.svg";
 import { useState } from "react";
+import { PATH_TO_STORE } from "../../../../configs/configs";
 
 interface IProps {
     phone: string;
@@ -10,10 +11,11 @@ interface IProps {
     fullName: string;
     location: string;
     isGallery: boolean;
+    avatar: string | null;
 }
 
 export function Contact(props: IProps) {
-    const { phone, category, published, fullName, location, isGallery } = props;
+    const { phone, category, published, fullName, location, isGallery, avatar } = props;
 
     const date = new Date(published);
 
@@ -35,7 +37,7 @@ export function Contact(props: IProps) {
         <section className={`${styles.wrapper} ${!isGallery && styles.wapperExtend}`}>
             <div className={styles.header}>
                 <p className={gStyles.textBig}>Опубліковано {formatted}</p>
-                <Heart className={styles.heartIcon} />
+                <div className={styles.avatar}><img src={avatar ? `${PATH_TO_STORE}${avatar}` : ""} /></div>
             </div>
             <h1 className={`${gStyles.textLarge} ${styles.name}`}>{fullName}</h1>
             <h2 className={`${gStyles.textLarge} ${styles.description}`}>{location}</h2>

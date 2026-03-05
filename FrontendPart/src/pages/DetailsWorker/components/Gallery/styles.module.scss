@@ -22,6 +22,7 @@
     padding: f.rem(50) f.rem(35);
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
     width: 100%;
+    min-width: f.rem(300);
     border-radius: f.rem(6);
 }
 
@@ -45,6 +46,7 @@
         max-width: 100%;
         width: 100%;
         display: flex;
+        min-width: 0;
     }
 }
 
@@ -52,7 +54,7 @@
     .wrapper {
         padding: f.rem(25);
         max-height: f.rem(350);
-        margin-bottom: f.rem(15);
+        margin-bottom: f.rem(25);
 
         img {
             width: 100%;

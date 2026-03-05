@@ -19,17 +19,12 @@ export function Navigate(props: IProps) {
       {children}
 
       <Swiper
-        spaceBetween={1}
+        spaceBetween={40}
         slidesPerView={"auto"}
         className={styles.wrapperSwiper}
-        centeredSlidesBounds={true}
-        observer={true}
-        observeParents={true}
-        watchOverflow={true}
-        resistanceRatio={0}
       >
         {navigateList.map((item, _) => (
-          <SwiperSlide className={styles.slide}>
+          <SwiperSlide key={item.to} className={styles.slide}>
             <li className={styles.item}>
               <Link to={`${item.to}`} className={gStyles.textBig}>
                 {item.category}

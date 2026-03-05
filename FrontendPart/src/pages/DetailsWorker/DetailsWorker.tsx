@@ -31,7 +31,7 @@ export function DetailsWorker() {
             <section className={styles.wrapper}>
                 <div className={`${gStyles.container}`}>
                     <Navigate className={styles.list} navigateList={WORKS}>
-                        <li>
+                        <li className={styles.return}>
                             <Arrow />
                             <Link to={`${ORDER_WORK_PATH}/${prevLocation}`} className={gStyles.textBig}>Назад</Link>
                         </li>
@@ -40,7 +40,7 @@ export function DetailsWorker() {
                         <div className={styles.body}>
                             {isImages && <Gallery dataGallery={data.images || []} />}
                             <div style={{ marginLeft: !isImages ? '25px' : '0px' }} className={styles.bodyContainer}>
-                                <Contact isGallery={Boolean(Array.isArray(data.images) ? data.images.length : 0)} location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
+                                <Contact avatar={data.user.avatar} isGallery={Boolean(Array.isArray(data.images) ? data.images.length : 0)} location={data.user.location} fullName={data.user.full_name} phone={data.user.phone} published={data.created_at} category={title} />
                             </div>
                         </div>
                         <Description description={data.description} />

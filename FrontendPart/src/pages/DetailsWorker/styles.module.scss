@@ -19,9 +19,12 @@
     margin-bottom: f.rem(25);
 }
 
+.return {
+    margin-right: f.rem(30);
+}
+
 .list {
     li:first-child {
-        margin-right: f.rem(10);
         display: flex;
         align-items: center;
 
@@ -63,6 +66,10 @@
             order: 1;
             margin: 0
         }
+    }
+
+    .return {
+        margin-right: f.rem(15);
     }
 
 }
