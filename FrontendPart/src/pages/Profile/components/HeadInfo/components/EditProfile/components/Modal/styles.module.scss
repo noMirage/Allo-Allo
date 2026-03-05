@@ -145,10 +145,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: f.rem(25);
+        margin-bottom: f.rem(15);
 
         img {
-            max-width: f.rem(260);
+            max-width: f.rem(320);
+        }
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .logo {
+        img {
+            max-width: f.rem(280);
         }
     }
 }

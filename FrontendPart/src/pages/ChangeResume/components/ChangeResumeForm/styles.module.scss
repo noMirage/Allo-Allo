@@ -9,16 +9,6 @@
     padding-bottom: f.rem(50);
 }
 
-.logo {
-    display: flex;
-    justify-content: center;
-    margin: f.rem(50) 0;
-
-    img {
-        max-width: 320px;
-    }
-}
-
 .input {
     @include m.input($padding: f.rem(12) f.rem(15) f.rem(12) f.rem(15),
         $width: 100%,
@@ -41,17 +31,27 @@
     text-align: center;
 }
 
+.logo {
+    display: flex;
+    justify-content: center;
+    margin: f.rem(50) 0;
+
+    img {
+        max-width: 360px;
+    }
+}
+
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
 @media (max-width: map.get($adaptive, 'tablet')) {
     .logo img {
-        max-width: f.rem(280);
+        max-width: f.rem(320);
     }
 }
 
 @media (max-width: map.get($adaptive, 'phone')) {
     .logo img {
-        max-width: f.rem(240);
+        max-width: f.rem(280);
     }
 }
