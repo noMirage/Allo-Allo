@@ -102,7 +102,7 @@
     flex: 1 1 40%;
 
     img {
-        max-width: 280px;
+        max-width: 330px;
     }
 }
 
@@ -211,12 +211,6 @@
     .phone {
         display: none !important;
     }
-
-    .logoBody {
-        img {
-            max-width: 240px;
-        }
-    }
 }
 
 
@@ -227,7 +221,7 @@
 
     .logoBody {
         img {
-            max-width: 240px;
+            max-width: 300px;
         }
     }
 }
@@ -298,7 +292,7 @@
     }
 
     .logo img {
-        max-width: f.rem(220);
+        max-width: 290px;
         position: relative;
         z-index: 1;
     }
@@ -326,7 +320,7 @@
     }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 570px) {
     .logIn {
         display: block;
     }
@@ -336,7 +330,7 @@
 @media (max-width: map.get($adaptive, 'ExtraPhone')) {
     .logoBody {
         img {
-            max-width: 220px;
+            max-width: 260px;
         }
     }
 
@@ -367,7 +361,7 @@
 @media (max-width: map.get($adaptive, 'phone')) {
     .logoBody {
         img {
-            max-width: 200px;
+            max-width: 240px;
         }
     }
 }

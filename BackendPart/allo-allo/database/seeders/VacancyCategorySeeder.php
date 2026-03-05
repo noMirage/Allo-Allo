@@ -16,7 +16,7 @@ class VacancyCategorySeeder extends Seeder
      */
     public function run()
     {
-         $categories = ['сантехніка', 'зварювання', 'електрика', 'перевізник', 'збирання меблів', 'будівництво', 'ремонт машин', 'фарбування'];
+         $categories = ['сантехніка', 'зварювання', 'електрика', 'перевізник', 'збирання меблів', 'будівництво', 'ремонт автомобілів', 'фарбування'];
         
      foreach ($categories as $name) {
              VacancyCategory::firstOrCreate([

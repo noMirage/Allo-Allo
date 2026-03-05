@@ -16,6 +16,14 @@ export default function Pagination(props: IProps) {
 
     const pagination: (string | number)[] = [];
 
+    function handleScrollUp() {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }
+
     if (countPagination <= 8) {
         for (let index = 0; index <= countPagination; index++) {
             if (index >= 1 && (index >= currentNumber - countShowPaginationBullets / 2) && pagination.length <= countShowPaginationBullets) {
@@ -50,7 +58,7 @@ export default function Pagination(props: IProps) {
         <div className={`${styles.pagination} ${className}`}>
             <ul className={styles.list}>
                 {pagination.map((item, index) => (
-                    <li onClick={() => handleChangeValue(item)} className={`${currentNumber === item ? styles.activePagination : ''} ${styles.item} ${gStyles.textBig}`} key={index}>{item}</li>
+                    <li onClick={() => { handleChangeValue(item); handleScrollUp() }} className={`${currentNumber === item ? styles.activePagination : ''} ${styles.item} ${gStyles.textBig}`} key={index}>{item}</li>
                 ))}
             </ul>
         </div>

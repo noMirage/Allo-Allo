@@ -11,17 +11,25 @@
 }
 
 .logoImage {
-    max-width: 280px;
+    max-width: 380px;
 }
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
 @media (max-width: map.get($adaptive, 'ExtraPhone')) {
     .logo {
-        margin-bottom: f.rem(20);
+        margin-bottom: f.rem(30);
 
         img {
-            max-width: f.rem(240);
+            max-width: f.rem(340);
+        }
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .logo {
+        img {
+            max-width: f.rem(320);
         }
     }
 }

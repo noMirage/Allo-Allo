@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import gStyles from '../../styles/styles.module.scss';
-import logo from '../../assets/Header/logo.svg';
+import logo from '../../assets/Header/logoDark.svg';
 import { ReactComponent as Email } from '../../assets/global/emailWhite.svg';
 import { ReactComponent as Phone } from '../../assets/global/phoneWhite.svg';
 import { Link } from 'react-router-dom';
@@ -15,8 +15,8 @@ export function Footer() {
                     <Link to={HOME_PATH} className={styles.logo}>
                         <img src={logo} alt="" />
                     </Link>
-                    <address className={`${styles.phone} ${gStyles.textBig}`}><Phone className={styles.icon} /> + 380 954 944 9333</address>
-                    <address className={`${styles.email} ${gStyles.textBig}`}><Email className={styles.icon} /> andriivanchov@gmail.com</address>
+                    <address className={`${styles.phone} ${gStyles.textBig}`}><Phone className={styles.icon} />+380 95 411 8675</address>
+                    <address className={`${styles.email} ${gStyles.textBig}`}><Email className={styles.icon} />gazda.techn@gmail.com</address>
                 </div>
                 <ul className={styles.list}>
                     {NAVIGATION_LINKS.map((item, index) => {
@@ -29,6 +29,7 @@ export function Footer() {
                         }
                     })}
                 </ul>
+                <p className={`${styles.copyright} ${gStyles.textMedium}`}>© 2026 noMirage. Всі права захищені.</p>
             </div>
         </footer>
     );

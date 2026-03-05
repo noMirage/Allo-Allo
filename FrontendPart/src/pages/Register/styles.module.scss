@@ -12,7 +12,6 @@
     justify-content: center;
     flex-direction: column;
     background-color: map.get($colors, 'lightGray');
-    padding-bottom: f.rem(50);
     transition: 0.3s linear;
 }
 
@@ -30,10 +29,12 @@
 .logo {
     display: flex;
     justify-content: center;
-    margin: f.rem(10) 0 f.rem(50) 0;
+    align-items: center;
+    margin: f.rem(10) 0 f.rem(20) 0;
 
     img {
-        max-width: 320px;
+        max-width: 380px;
+        justify-self: center;
     }
 }
 
@@ -76,10 +77,26 @@
 
 @media (max-width: map.get($adaptive, 'tablet')) {
     .logo {
-        margin-bottom: f.rem(20);
+        img {
+            max-width: f.rem(340);
+        }
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .logo {
 
         img {
-            max-width: f.rem(280);
+            max-width: f.rem(330);
+        }
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .logo {
+
+        img {
+            max-width: f.rem(310);
         }
     }
 }

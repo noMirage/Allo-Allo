@@ -1,5 +1,6 @@
 import styles from './styles.module.scss';
 import logo from '../../assets/Header/logo.svg';
+import logoDark from '../../assets/Header/logoDark.svg';
 import phone from '../../assets/global/phoneBlack.svg';
 import gStyles from '../../styles/styles.module.scss';
 import { Link, useLocation } from 'react-router-dom';
@@ -14,6 +15,7 @@ import { useAppSelector } from '../../hooks/AppRedux';
 import { IUser } from '../../interfaces/user';
 import { hasKeys } from '../../utils/js/checkTypes';
 import email from '../../assets/global/emailBlack.svg';
+import { useMediaQuery } from 'react-responsive';
 
 export function Header() {
 
@@ -22,6 +24,8 @@ export function Header() {
     const [isBurger, setIsBurger] = useState<boolean>(false);
 
     const location = useLocation();
+
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     useEffect(() => {
         setIsBurger(false);
@@ -44,11 +48,11 @@ export function Header() {
                     <ul className={styles.headerTop}>
                         <li className={styles.logoBody}>
                             <Link to='/' className={styles.logo}>
-                                <img src={logo} />
+                                <img src={!isMobile ? logo : logoDark} />
                             </Link>
                         </li>
                         <li className={styles.phone}>
-                            <address className={gStyles.textLarge}>+ 380 954 944 9333</address>
+                            <address className={gStyles.textLarge}>+380 95 411 8675</address>
                             <img src={phone} />
                         </li>
                         <SwitchDisplay user={user} />

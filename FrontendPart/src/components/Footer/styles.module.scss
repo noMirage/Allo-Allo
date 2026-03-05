@@ -14,10 +14,15 @@
     display: block;
 
     img {
-        max-width: 220px;
+        max-width: 280px;
         width: 100%;
         object-fit: cover;
     }
+}
+
+.copyright {
+    color: map.get($colors, 'white');
+    align-self: flex-end;
 }
 
 .phone {
@@ -95,18 +100,28 @@
         max-height: 25px;
         min-width: 25px;
     }
-}
 
-@media (max-width: map.get($adaptive, 'ExtraPhone')) {
     .footer {
         padding: f.rem(25);
     }
 
+    .copyright {
+        flex-basis: 80%;
+    }
+
+}
+
+@media (max-width: 570px) {
     .body {
-        margin: 0 0 f.rem(25) 0;
+        margin: 0 0 f.rem(15) 0;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+    }
+
+    .copyright {
+        align-self: center;
         justify-content: center;
     }
 
@@ -117,12 +132,13 @@
 
     .list {
         text-align: center;
+        margin-bottom: f.rem(10);
     }
 }
 
 
 @media (max-width: map.get($adaptive, 'phone')) {
     .logo {
-        max-width: 200px;
+        max-width: 240px;
     }
 }

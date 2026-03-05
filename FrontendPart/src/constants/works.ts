@@ -47,9 +47,9 @@ export const WORKS: TWorks[] = [
     to: `${ORDER_WORK_PATH}/фарбування`,
   },
   {
-    category: "ремонт машин",
+    category: "ремонт автомобілів",
     icon: mechanic,
-    to: `${ORDER_WORK_PATH}/ремонт машин`,
+    to: `${ORDER_WORK_PATH}/ремонт автомобілів`,
   },
 ];
 

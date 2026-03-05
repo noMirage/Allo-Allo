@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 import gStyles from '../../../../styles/styles.module.scss';
 import pStyles from '../../styles.module.scss';
-import { DETAIL_REGISTER, REGISTER_PATH } from '../../../../routs/routs';
+import { REGISTER_PATH } from '../../../../routs/routs';
 import { Link } from 'react-router-dom';
 
 interface IProps {
