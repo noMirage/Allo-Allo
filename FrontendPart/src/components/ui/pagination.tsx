@@ -58,7 +58,11 @@ export default function Pagination(props: IProps) {
         <div className={`${styles.pagination} ${className}`}>
             <ul className={styles.list}>
                 {pagination.map((item, index) => (
-                    <li onClick={() => { handleChangeValue(item); handleScrollUp() }} className={`${currentNumber === item ? styles.activePagination : ''} ${styles.item} ${gStyles.textBig}`} key={index}>{item}</li>
+                    <li
+                        onClick={() => { handleChangeValue(item); handleScrollUp() }}
+                        className={`${currentNumber === item ? styles.activePagination : ''} ${styles.item} ${gStyles.textBig}`}
+                        key={index}
+                    >{item}</li>
                 ))}
             </ul>
         </div>

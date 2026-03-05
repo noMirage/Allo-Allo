@@ -25,4 +25,6 @@
 
 .activePagination {
     transition: 0.3s linear;
+    background-color: map.get($colors, 'brightRed');
+    color: map.get($colors, 'white');
 }
