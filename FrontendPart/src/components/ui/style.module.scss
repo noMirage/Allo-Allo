@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '../../utils/styles/functions.scss' as f;
+@import '../../utils/styles/adaptive.scss';
 @import '../../utils/styles/colors.scss';
 
 .list {
@@ -27,4 +28,13 @@
     transition: 0.3s linear;
     background-color: map.get($colors, 'brightRed');
     color: map.get($colors, 'white');
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .item {
+        width: f.rem(35);
+        height: f.rem(35);
+    }
 }

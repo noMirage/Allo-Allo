@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../../utils/styles/functions.scss' as f;
 @import '../../utils/styles/colors.scss';
+@import '../../utils/styles/adaptive.scss';
 
 .wrapper {
     padding: f.rem(40) 0 f.rem(50) 0;
@@ -14,4 +15,12 @@
 
 .allResume {
     margin-bottom: f.rem(20);
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .wrapper {
+        padding: f.rem(40) 0 f.rem(30) 0;
+    }
 }

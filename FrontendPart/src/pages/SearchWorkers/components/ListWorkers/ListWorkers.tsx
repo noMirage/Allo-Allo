@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
-import defaultAvatar from '../../../../assets/global/avatar.jpg';
+import avatarDefault from '../../../../assets/global/profileIcon.svg';
 import { DETAILS_WORKER_PATH } from '../../../../routs/routs';
 import { PATH_TO_STORE } from '../../../../configs/configs';
 import { IResume } from '../../../../interfaces/resume';
@@ -25,7 +25,7 @@ export function ListWorkers(props: IProps) {
                         <Link className={styles.itemBody} to={`${DETAILS_WORKER_PATH}/${item.id}/${`${item.title.replace(/\//g, " ")}`}/${sectionName}`}>
                             <div className={styles.wrapper}>
                                 <div className={styles.bodyLogo}>
-                                    <img src={item.user.avatar ? `${PATH_TO_STORE}${item.user.avatar}` : defaultAvatar} alt='logo' />
+                                    <img src={item.user.avatar ? `${PATH_TO_STORE}${item.user.avatar}` : avatarDefault} alt='logo' />
                                 </div>
                                 <DescriptionResume title={item.title} description={item.description} />
                                 <div className={styles.bodyImage}>

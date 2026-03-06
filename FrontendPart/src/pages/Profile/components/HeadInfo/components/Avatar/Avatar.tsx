@@ -1,5 +1,5 @@
 import styles from './styles.module.scss';
-import defaultAvatar from '../../../../../../assets/global/avatar.jpg';
+import avatarDefault from '../../../../../../assets/global/profileIcon.svg';
 import { utilServer } from '../../../../../../utils/js/utilServer';
 import { AVATAR_PROFILE, PATH_TO_STORE } from '../../../../../../configs/configs';
 import { useAppDispatch } from '../../../../../../hooks/AppRedux';
@@ -34,7 +34,7 @@ export function Avatar(props: IProps) {
         const formData = new FormData();
         formData.append('avatar', file);
 
-        const data = await utilServer(AVATAR_PROFILE, 'post', formData, () => {}, false);
+        const data = await utilServer(AVATAR_PROFILE, 'post', formData, () => { }, false);
 
         if (data.success && hasKeys<IUser>(data.data!)) {
             dispatch(update(data.data));
@@ -43,7 +43,7 @@ export function Avatar(props: IProps) {
 
     return (
         <div className={`${styles.bodyAvatar}`}>
-            <img src={avatar ? `${PATH_TO_STORE}${avatar}` : defaultAvatar} alt="" />
+            <img src={avatar ? `${PATH_TO_STORE}${avatar}` : avatarDefault} alt="" />
             <input name='avatar' accept='image/*' type='file' onChange={handleAvatarChange} />
         </div>
     );

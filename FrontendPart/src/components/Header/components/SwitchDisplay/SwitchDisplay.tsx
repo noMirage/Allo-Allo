@@ -1,6 +1,6 @@
 import styles from "./styles.module.scss";
 import gStyles from "../../../../styles/styles.module.scss";
-import defaultAvatar from '../../../../assets/global/avatar.jpg';
+import avatarDefault from '../../../../assets/global/profileIcon.svg';
 import { Link } from "react-router-dom";
 import email from '../../../../assets/global/emailBlack.svg';
 import { PROFILE_PATH, REGISTER_PATH } from "../../../../routs/routs";
@@ -20,7 +20,7 @@ export function SwitchDisplay(props: IProps) {
         return (
             <li className={styles.profile}>
                 <p className={`${gStyles.textLarge} ${styles.fullName}`}>{user.full_name}</p>
-                <Link to={PROFILE_PATH} className={`${styles.containerAvatar}`}><img src={user.avatar ? `${PATH_TO_STORE}${user.avatar}` : defaultAvatar} alt="" /></Link>
+                <Link to={PROFILE_PATH} className={`${styles.containerAvatar}`}><img src={user.avatar ? `${PATH_TO_STORE}${user.avatar}` : avatarDefault} alt="" /></Link>
             </li>
         )
     } else {

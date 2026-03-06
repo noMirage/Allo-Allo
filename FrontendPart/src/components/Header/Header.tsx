@@ -9,7 +9,7 @@ import { ListItemWork } from './components/ListItemWork/ListItemWork';
 import { SwitchDisplay } from './components/SwitchDisplay/SwitchDisplay';
 import { useEffect, useState } from 'react';
 import { PROFILE_PATH, REGISTER_PATH } from '../../routs/routs';
-import defaultAvatar from '../../assets/global/avatar.jpg';
+import avatarDefault from '../../assets/global/profileIcon.svg';
 import { PATH_TO_STORE } from '../../configs/configs';
 import { useAppSelector } from '../../hooks/AppRedux';
 import { IUser } from '../../interfaces/user';
@@ -63,7 +63,7 @@ export function Header() {
                 </div>
                 <div className={`${styles.bodyList} ${isBurger ? styles.openBodyList : ""}`}>
                     <ul className={`${styles.list} ${gStyles.container}`}>
-                        {hasKeys<IUser>(user) && user.id ? <li className={`${styles.listName} ${styles.profile} ${gStyles.textLarge}`}><Link to={PROFILE_PATH}><img src={user.avatar ? `${PATH_TO_STORE}${user.avatar}` : defaultAvatar} /><p>Профіль</p></Link></li> :
+                        {hasKeys<IUser>(user) && user.id ? <li className={`${styles.listName} ${styles.profile} ${gStyles.textLarge}`}><Link to={PROFILE_PATH}><img src={user.avatar ? `${PATH_TO_STORE}${user.avatar}` : avatarDefault} /><p>Профіль</p></Link></li> :
                             <li className={`${styles.logIn}`}>
                                 <Link to={REGISTER_PATH} className={`${gStyles.textLarge}`}><img src={email} />Увійти</Link>
                             </li>}

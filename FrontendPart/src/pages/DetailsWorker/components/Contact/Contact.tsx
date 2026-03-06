@@ -1,8 +1,8 @@
 import styles from "./styles.module.scss";
 import gStyles from "../../../../styles/styles.module.scss";
-import { ReactComponent as Heart } from "../../../../assets/global/heartIcon.svg";
 import { useState } from "react";
 import { PATH_TO_STORE } from "../../../../configs/configs";
+import avatarDefault from '../../../../assets/global/profileIcon.svg';
 
 interface IProps {
     phone: string;
@@ -37,7 +37,7 @@ export function Contact(props: IProps) {
         <section className={`${styles.wrapper} ${!isGallery && styles.wapperExtend}`}>
             <div className={styles.header}>
                 <p className={gStyles.textBig}>Опубліковано {formatted}</p>
-                <div className={styles.avatar}><img src={avatar ? `${PATH_TO_STORE}${avatar}` : ""} /></div>
+                <div className={styles.avatar}><img src={avatar ? `${PATH_TO_STORE}${avatar}` : avatarDefault} /></div>
             </div>
             <h1 className={`${gStyles.textLarge} ${styles.name}`}>{fullName}</h1>
             <h2 className={`${gStyles.textLarge} ${styles.description}`}>{location}</h2>
