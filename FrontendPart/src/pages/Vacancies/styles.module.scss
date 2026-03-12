@@ -25,3 +25,46 @@
         padding: f.rem(40) 0 f.rem(30) 0;
     }
 }
+
+// 1
+.wrapper {
+    padding: f.rem(40) 0 f.rem(40) 0;
+}
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: f.rem(30);
+}
+
+.allResume {
+    margin-bottom: f.rem(20);
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .wrapper {
+        padding: f.rem(20) 0 f.rem(30) 0;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .title {
+        margin-bottom: f.rem(15);
+    }
+
+    .allVacancies {
+        margin-bottom: f.rem(15);
+    }
+
+    .wrapper {
+        padding: f.rem(10) 0 f.rem(30) 0;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .wrapper {
+        padding: f.rem(0) 0 f.rem(30) 0;
+    }
+}

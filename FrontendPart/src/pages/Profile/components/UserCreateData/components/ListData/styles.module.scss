@@ -32,6 +32,12 @@
     align-items: center;
     justify-content: center;
     margin-right: f.rem(25);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 }
 
 .bodyInfo {
@@ -152,5 +158,7 @@
 @media (max-width: map.get($adaptive, 'ExtraPhone')) {
     .bodyImage {
         margin-right: f.rem(15);
+        max-width: 50px;
+        max-height: 50px;
     }
 }

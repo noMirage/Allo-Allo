@@ -23,6 +23,8 @@
 .copyright {
     color: map.get($colors, 'white');
     align-self: flex-end;
+    max-width: f.rem(300);
+    width: 100%;
 }
 
 .phone {
@@ -123,6 +125,8 @@
     .copyright {
         align-self: center;
         justify-content: center;
+        max-width: initial;
+        width: initial;
     }
 
     .containerFooter {

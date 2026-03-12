@@ -146,13 +146,17 @@
 
 @media (max-width: map.get($adaptive, 'ExtraTablet')) {
     .body {
-        padding: f.rem(50) 0 f.rem(50) 0;
+         padding: f.rem(30) 0 f.rem(30) 0;
     }
 }
 
 @media (max-width: map.get($adaptive, 'ExtraPhone')) {
     .icon {
         max-width: f.rem(100);
+    }
+
+    .body {
+        padding: f.rem(20) 0 f.rem(20) 0;
     }
 }
 

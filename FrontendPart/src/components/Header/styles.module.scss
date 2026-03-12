@@ -171,10 +171,10 @@
 }
 
 .itemIcon {
-    min-width: 40px;
-    min-height: 40px;
-    max-width: 40px;
-    max-height: 40px;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
     margin-right: f.rem(15);
     transition: 0.6s linear;
 }
@@ -236,13 +236,17 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.6)
     }
 
+    .singIn {
+        font-size: f.rem(25) !important;
+    }
+
     .bodyList {
         position: absolute;
         top: 0;
         right: -100%;
         background: map.get($colors, 'charCoal');
         height: 100vh;
-        width: 50%;
+        width: 60%;
         z-index: 0;
         transition: 0.3s linear;
         padding: f.rem(100) 0 0 0;
@@ -252,6 +256,12 @@
             min-height: inherit;
             flex-basis: initial !important;
 
+            font-size: f.rem(25) !important;
+
+            a {
+                font-size: f.rem(25) !important;
+            }
+
             &::before {
                 display: none;
             }
@@ -259,6 +269,8 @@
             &::after {
                 display: none;
             }
+
+
 
             margin: 0 0 f.rem(25) 0;
         }
@@ -340,7 +352,7 @@
     }
 
     .bodyList {
-        width: 70%;
+        width: 80%;
     }
 
     .profile {
@@ -348,9 +360,9 @@
 
         img {
             margin-right: f.rem(20);
-            max-width: 40px;
-            max-height: 40px;
-            min-width: 40px;
+            max-width: 50px;
+            max-height: 50px;
+            min-width: 50px;
             border-radius: 50%;
             overflow: hidden;
             cursor: pointer;

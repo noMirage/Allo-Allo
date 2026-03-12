@@ -134,6 +134,7 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
 @media (max-width: map.get($adaptive, 'ExtraTablet')) {
+
     .mainInfo {
         order: 1;
     }
@@ -170,6 +171,11 @@
     .mainInfo {
         margin-bottom: f.rem(15);
     }
+
+    .bodyHeadInfo {
+        margin-bottom: f.rem(30);
+    }
+
 }
 
 @media (max-width: map.get($adaptive, 'phone')) {

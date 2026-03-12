@@ -18,11 +18,11 @@ export function Contacts() {
                     </p>
                     <address className={`${gStyles.textBig} ${styles.phone} ${styles.contacts}`}>
                         <p>Номер телефона:</p>
-                        <p>+ 380 95 854 8 443</p>
+                        <p>+380 95 411 8675</p>
                     </address>
                     <address className={`${gStyles.textBig} ${styles.email} ${styles.contacts}`}>
                         <p>Електрона пошта:</p>
-                        <p>andriiUk@gmail.com</p>
+                        <p>gazda.techn@gmail.com</p>
                     </address>
                 </div>
             </div>

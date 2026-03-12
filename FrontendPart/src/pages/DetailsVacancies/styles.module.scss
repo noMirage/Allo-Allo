@@ -4,7 +4,7 @@
 @import '../../utils/styles/adaptive.scss';
 
 .wrapper {
-    padding: f.rem(20) 0 f.rem(50) 0;
+    padding: f.rem(20) 0 f.rem(40) 0;
 }
 
 .title {
@@ -147,7 +147,7 @@
     }
 
     .wrapper {
-        padding-top: f.rem(40);
+        padding: f.rem(20) 0 f.rem(30) 0;
     }
 }
 
@@ -161,6 +161,10 @@
 @media (max-width: map.get($adaptive, 'ExtraPhone')) {
     .body {
         padding: f.rem(20);
+    }
+
+    .wrapper {
+        padding: f.rem(10) 0 f.rem(30) 0;
     }
 }
 
@@ -188,5 +192,55 @@
             width: 20px;
             height: 20px;
         }
+    }
+
+    .wrapper {
+        padding: f.rem(0) 0 f.rem(30) 0;
+    }
+}
+
+
+//?????????????
+
+
+@media (max-width: map.get($adaptive, 'ExtraTablet')) {
+    .body {
+        flex-direction: column;
+    }
+
+    .bodyContainer {
+        margin: 0 0 0 0 !important;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'tablet')) {
+    .wrapperBody {
+        flex-direction: column;
+
+        >div {
+            order: 1;
+            margin: 0
+        }
+    }
+
+    .wrapper {
+        padding: f.rem(20) 0 f.rem(30) 0;
+    }
+
+    .return {
+        margin-right: f.rem(15);
+    }
+
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .wrapper {
+        padding: f.rem(10) 0 f.rem(30) 0;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .wrapper {
+        padding: f.rem(0) 0 f.rem(30) 0;
     }
 }

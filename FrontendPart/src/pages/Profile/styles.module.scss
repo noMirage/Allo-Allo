@@ -23,6 +23,12 @@
 
 @media (max-width: map.get($adaptive, 'tablet')) {
     .wrapper {
-        padding-top: f.rem(40);
+        padding: f.rem(20) 0 f.rem(30) 0;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .wrapper {
+        padding: f.rem(10) 0 f.rem(30) 0;
     }
 }

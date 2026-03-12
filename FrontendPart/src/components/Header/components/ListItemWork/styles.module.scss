@@ -18,6 +18,7 @@
 .itemIcon {
     transition: 0.6s linear;
     transform: rotate(0deg);
+    margin-right: f.rem(15);
 }
 
 .wrapperDropDownMenu {
@@ -69,11 +70,14 @@
     .wrapperDropDownMenu {
         width: 100% !important;
     }
+
+    .itemIcon {
+        margin-right: f.rem(20);
+    }
 }
 
 @media (max-width: map.get($adaptive, 'ExtraPhone')) {
     .itemIcon {
-        max-width: f.rem(40);
-        margin-right: f.rem(20);
+        max-width: f.rem(50);
     }
 }

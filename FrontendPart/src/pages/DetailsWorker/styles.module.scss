@@ -4,7 +4,7 @@
 @import '../../utils/styles/adaptive.scss';
 
 .wrapper {
-    padding: f.rem(20) 0 f.rem(50) 0;
+    padding: f.rem(20) 0 f.rem(40) 0;
 }
 
 .title {
@@ -49,10 +49,6 @@
         flex-direction: column;
     }
 
-    .wrapper {
-        padding: f.rem(40) 0 f.rem(50) 0;
-    }
-
     .bodyContainer {
         margin: 0 0 0 0 !important;
     }
@@ -68,8 +64,24 @@
         }
     }
 
+    .wrapper {
+        padding: f.rem(20) 0 f.rem(30) 0;
+    }
+
     .return {
         margin-right: f.rem(15);
     }
 
+}
+
+@media (max-width: map.get($adaptive, 'ExtraPhone')) {
+    .wrapper {
+        padding: f.rem(10) 0 f.rem(30) 0;
+    }
+}
+
+@media (max-width: map.get($adaptive, 'phone')) {
+    .wrapper {
+        padding: f.rem(0) 0 f.rem(30) 0;
+    }
 }

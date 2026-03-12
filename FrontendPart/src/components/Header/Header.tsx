@@ -65,7 +65,7 @@ export function Header() {
                     <ul className={`${styles.list} ${gStyles.container}`}>
                         {hasKeys<IUser>(user) && user.id ? <li className={`${styles.listName} ${styles.profile} ${gStyles.textLarge}`}><Link to={PROFILE_PATH}><img src={user.avatar ? `${PATH_TO_STORE}${user.avatar}` : avatarDefault} /><p>Профіль</p></Link></li> :
                             <li className={`${styles.logIn}`}>
-                                <Link to={REGISTER_PATH} className={`${gStyles.textLarge}`}><img src={email} />Увійти</Link>
+                                <Link to={REGISTER_PATH} className={`${gStyles.textLarge} ${styles.singIn}`}><img src={email} />Увійти</Link>
                             </li>}
                         {NAVIGATION_LINKS.map((item, _) => {
                             if (item.name === 'Послуги') {
