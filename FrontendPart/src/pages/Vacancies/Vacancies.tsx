@@ -16,7 +16,7 @@ export function Vacancies() {
     if (data && hasKeys<IVacancyPaginationList>(data)) {
         return (
             <section className={styles.wrapper}>
-                <div className={gStyles.container}>
+                <div className={`${gStyles.container} ${styles.container}`}>
                     <h2 className={`${gStyles.textExtraLarge} ${styles.title}`}>Вакансії</h2>
                     <p className={`${styles.allVacancies} ${gStyles.textLarge}`}>{data.total} вакансій</p>
                     <ListVacancies data={data.vacancies} />

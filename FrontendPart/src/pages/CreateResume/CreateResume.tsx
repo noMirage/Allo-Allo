@@ -12,6 +12,7 @@ import { TUserDataWResume } from './types/types';
 import { CreateStepSecond } from './components/createStepSecond/createStepSecond';
 import { CreateDataStepZero } from '../../containers/createDataStepZero/createDataStepZero';
 import { CreateDataStepOne } from '../../containers/createDataStepOne/createDataStepOne';
+import { TCategoryWorks } from '../../interfaces/works';
 
 const ROUTES: TRoutes[] = [
     {
@@ -28,13 +29,23 @@ const ROUTES: TRoutes[] = [
     },
 ];
 
+const OPTIONS: TCategoryWorks[] = [
+    "будівництво",
+    "зварювання",
+    "електрика",
+    "перевізник",
+    "збирання меблів",
+    "сантехніка",
+    'ремонт автомобілів',
+    'фарбування',
+];
 
 export function CreateResume() {
 
     const user: IUser | {} = useAppSelector((state) => state.user.data);
 
     const [data, setData] = useState<TUserDataWResume>({
-        category: "сантехніка",
+        category: OPTIONS[0],
         title: "",
         description: "",
         images: [],
@@ -48,7 +59,7 @@ export function CreateResume() {
                         <HeaderWithProgressBar routes={ROUTES} />
                     </div>
                     <Routes>
-                        <Route path={''} element={<CreateDataStepZero parentPath={CREATE_RESUME} returnPath={PROFILE_PATH} continuePath={ROUTES[1].path} title="Вкажіть категорію вашого резюме" setData={setData} />} />
+                        <Route path={''} element={<CreateDataStepZero options={OPTIONS} parentPath={CREATE_RESUME} returnPath={PROFILE_PATH} continuePath={ROUTES[1].path} title="Вкажіть категорію вашого резюме" setData={setData} />} />
                         <Route path={ROUTES[1].path} element={<CreateDataStepOne title="Вкажіть Заголовок та опис вашого резюме" parentPath={CREATE_RESUME} continuePath={ROUTES[2].path} returnPath={ROUTES[0].path} setData={setData} />} />
                         <Route path={ROUTES[2].path} element={<CreateStepSecond dataResume={data} comeBack={ROUTES[1].path} setData={setData} />} />
                     </Routes>

@@ -4,7 +4,17 @@
 @import '../../utils/styles/adaptive.scss';
 
 .wrapper {
-    padding: f.rem(40) 0 f.rem(50) 0;
+    padding: f.rem(40) 0 f.rem(30) 0;
+    flex: 1 1 auto;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
 }
 
 .title {
@@ -26,26 +36,17 @@
     }
 }
 
-// 1
-.wrapper {
-    padding: f.rem(40) 0 f.rem(40) 0;
-}
-
 .title {
     text-align: center;
     text-transform: uppercase;
     margin-bottom: f.rem(30);
 }
 
-.allResume {
-    margin-bottom: f.rem(20);
-}
-
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 @media (max-width: map.get($adaptive, 'tablet')) {
     .wrapper {
-        padding: f.rem(20) 0 f.rem(30) 0;
+        padding: f.rem(20) 0 f.rem(25) 0;
     }
 }
 
@@ -59,12 +60,12 @@
     }
 
     .wrapper {
-        padding: f.rem(10) 0 f.rem(30) 0;
+        padding: f.rem(10) 0 f.rem(20) 0;
     }
 }
 
 @media (max-width: map.get($adaptive, 'phone')) {
     .wrapper {
-        padding: f.rem(0) 0 f.rem(30) 0;
+        padding: f.rem(0) 0 f.rem(15) 0;
     }
 }

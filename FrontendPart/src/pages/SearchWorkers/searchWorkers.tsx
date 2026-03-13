@@ -22,7 +22,7 @@ export function SearchWorkers() {
     if (data && hasKeys<IResumePagination>(data) && nameWork) {
         return (
             <section className={styles.wrapper}>
-                <div className={gStyles.container}>
+                <div className={`${gStyles.container} ${styles.container}`}>
                     <h2 className={`${gStyles.textExtraLarge} ${styles.title}`}>{nameWork}</h2>
                     <p className={`${styles.allResume} ${gStyles.textLarge}`}>{data.total} Резюме</p>
                     <ListWorkers data={data.resumes} sectionName={nameWork as TCategoryWorks || 'зварювання'} />

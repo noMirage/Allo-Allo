@@ -12,6 +12,7 @@ import { TUserDataVacancy } from "./types/types";
 import { CreateStepSecond } from "./components/createStepSecond/createStepSecond";
 import { CreateDataStepZero } from "../../containers/createDataStepZero/createDataStepZero";
 import { CreateDataStepOne } from "../../containers/createDataStepOne/createDataStepOne";
+import { TCategoryWorks } from "../../interfaces/works";
 
 const ROUTES: TRoutes[] = [
     {
@@ -28,11 +29,22 @@ const ROUTES: TRoutes[] = [
     },
 ];
 
+const OPTIONS: TCategoryWorks[] = [
+    "будівництво",
+    "зварювання",
+    "електрика",
+    "перевізник",
+    "збирання меблів",
+    "сантехніка",
+    'ремонт автомобілів',
+    'фарбування',
+];
+
 export function CreateVacancy() {
     const user: IUser | {} = useAppSelector((state) => state.user.data);
 
     const [data, setData] = useState<TUserDataVacancy>({
-        category: "сантехніка",
+        category: OPTIONS[0],
         title: "",
         description: "",
         images: "",
@@ -55,6 +67,7 @@ export function CreateVacancy() {
                                     continuePath={ROUTES[1].path}
                                     title="Вкажіть категорію вашої вакансії"
                                     setData={setData}
+                                    options={OPTIONS}
                                 />
                             }
                         />

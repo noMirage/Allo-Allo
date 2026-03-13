@@ -26,7 +26,8 @@
 }
 
 .list {
-    margin-bottom: f.rem(50);
+    margin-bottom: f.rem(30);
+    flex: 1 1 auto;
 
     li {
         margin-bottom: f.rem(25);
@@ -35,6 +36,10 @@
         &:hover {
             transition: 0.4s linear;
             transform: scale(1.01);
+        }
+
+        &:last-child {
+            margin-bottom: 0;
         }
     }
 }
@@ -181,6 +186,10 @@
     .date {
         bottom: -10px;
     }
+
+    .list {
+        margin-bottom: f.rem(25);
+    }
 }
 
 @media (max-width: map.get($adaptive, 'ExtraPhone')) {
@@ -197,6 +206,6 @@
     }
 
     .list {
-        margin-bottom: f.rem(30);
+        margin-bottom: f.rem(20);
     }
 }

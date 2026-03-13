@@ -340,12 +340,6 @@
 
 
 @media (max-width: map.get($adaptive, 'ExtraPhone')) {
-    .logoBody {
-        img {
-            max-width: 260px;
-        }
-    }
-
     .burger {
         width: 40px;
         height: 30px;

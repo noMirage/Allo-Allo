@@ -4,10 +4,6 @@
 @import '../../../../../../utils/styles/colors.scss';
 @import '../../../../../../utils/styles/adaptive.scss';
 
-.resume {
-    margin-bottom: f.rem(50);
-}
-
 .body {
     width: 100%;
     border: 2px solid map.get($colors, 'gray');

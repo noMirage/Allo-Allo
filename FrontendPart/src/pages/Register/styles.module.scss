@@ -13,6 +13,7 @@
     flex-direction: column;
     background-color: map.get($colors, 'lightGray');
     transition: 0.3s linear;
+    padding: f.rem(20) 0;
 }
 
 .background {

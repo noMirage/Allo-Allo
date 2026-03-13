@@ -4,16 +4,7 @@ import { Link } from 'react-router-dom';
 import { TCategoryWorks } from '../../interfaces/works';
 import Select from '../../components/ui/select/Select';
 
-const OPTIONS = [
-    "будівництво",
-    "зварювання",
-    "електрика",
-    "перевізник",
-    "збирання меблів",
-    "сантехніка",
-    'ремонт автомобілів',
-    'фарбування',
-];
+
 
 interface IProps<T> {
     setData: React.Dispatch<React.SetStateAction<T>>;
@@ -21,10 +12,11 @@ interface IProps<T> {
     continuePath: string;
     parentPath: string;
     title: string;
+    options: TCategoryWorks[];
 }
 
 export function CreateDataStepZero<T extends { category: TCategoryWorks }>(props: IProps<T>) {
-    const { setData, returnPath, continuePath, parentPath, title } = props;
+    const { setData, returnPath, continuePath, parentPath, title, options } = props;
 
     function handleSelect(value: string | TCategoryWorks) {
         setData((prevState) => {
@@ -39,7 +31,7 @@ export function CreateDataStepZero<T extends { category: TCategoryWorks }>(props
             <div className={styles.container}>
                 <div className={`${styles.body}`}>
                     <p className={`${gStyles.textExtraLarge} ${styles.title}`}>{title}</p>
-                    <Select handleSelect={handleSelect} options={OPTIONS} firstOption={0} />
+                    <Select handleSelect={handleSelect} options={options} firstOption={0} />
                 </div>
                 <div className={styles.containerButtons}>
                     <Link className={`${gStyles.textBig}`} to={returnPath}>

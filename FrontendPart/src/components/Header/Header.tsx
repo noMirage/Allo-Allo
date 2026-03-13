@@ -30,6 +30,7 @@ export function Header() {
     useEffect(() => {
         setIsBurger(false);
         document.body.style.overflow = 'auto';
+        return () => { document.body.style.overflow = 'auto'; }
     }, [location.pathname]);
 
     function handleTargetBurger() {
